@@ -1,0 +1,31 @@
+{
+  "name" : "Admin",
+  "comment" : null,
+  "fullColumn" : [ {
+    "name" : "adminid",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  }, {
+    "name" : "adminname",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  }, {
+    "name" : "adminpassword",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  } ],
+  "pkColumn" : null,
+  "otherColumn" : null,
+  "savePackageName" : "com.debateweb",
+  "savePath" : "./src/main/java/com/debateweb",
+  "saveModelName" : "debate_website"
+}

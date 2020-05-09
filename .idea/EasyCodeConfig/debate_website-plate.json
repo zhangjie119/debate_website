@@ -1,0 +1,31 @@
+{
+  "name" : "Plate",
+  "comment" : "板块表",
+  "fullColumn" : [ {
+    "name" : "bid",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  }, {
+    "name" : "bname",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  }, {
+    "name" : "btime",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  } ],
+  "pkColumn" : null,
+  "otherColumn" : null,
+  "savePackageName" : "com.debateweb",
+  "savePath" : "./src/main/java/com/debateweb",
+  "saveModelName" : "debate_website"
+}
