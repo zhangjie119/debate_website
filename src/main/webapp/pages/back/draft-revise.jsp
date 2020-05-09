@@ -157,7 +157,7 @@ folder instead of downloading all of them to reduce the load. -->
                 <div class="nav-tabs-custom">
                     <div class="row data-type">
                         <form action="${pageContext.request.contextPath}/draft/update" method="post" enctype="multipart/form-data">
-                            <div class="col-md-12 data text-center" style="height:70px;">
+                            <div  class="col-md-12 data text-center" style="height:70px;">
                                 <div class="h3">辩稿信息修改</div>
                             </div>
                             <div class="col-md-2 title">辩稿ID</div>

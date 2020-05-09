@@ -52,12 +52,33 @@ public class CommentController {
                                  @RequestParam(name = "fid", required = true) Integer fid,
                                  @RequestParam(name = "page", required = true, defaultValue = "1") int page,
                                  @RequestParam(name = "size", required = true, defaultValue = "7") int size) {
-        List<Comment> commentList = commentService.queryByArticle(fid);
-        PageInfo pageInfo = new PageInfo(commentList);
 
-        map.put("pageInfo", pageInfo);
+        map.put("pageInfo", this.commentInfo(fid,page,size));
         //加入主贴id以供翻页使用
         map.put("articleId", fid);
         return "back/comment-list";
+    }
+
+    @RequestMapping("delete")
+    public String delete(Map<String, Object> map,
+                         @RequestParam(name = "pid", required = true) Integer pid,
+                         @RequestParam(name = "fid", required = true) Integer fid,
+                         @RequestParam(name = "page", required = true) int page,
+                         @RequestParam(name = "size", required = true) int size) {
+
+        //根据回帖id删除该条回复
+        this.commentService.deleteById(pid);
+
+        //把最新的数据加入map
+        map.put("pageInfo", this.commentInfo(fid,page,size));
+        //加入主贴id以供翻页使用
+        map.put("articleId", fid);
+
+        return "back/comment-list";
+    }
+
+    //根据帖子id获取帖子列表并加入分页bin
+    public PageInfo commentInfo(Integer fid, int page, int size) {
+        return new PageInfo(commentService.queryByArticle(fid,page,size));
     }
 }

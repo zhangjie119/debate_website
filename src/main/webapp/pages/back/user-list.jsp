@@ -137,10 +137,12 @@
     <div class="content-wrapper">
         <!-- 内容头部 -->
         <section class="content-header">
-            <h1>辩论视频管理</h1>
+            <h1>人员管理
+            <small>用户管理</small>
+            </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
-                <li><a href="#">辩论视频</a></li>
+                <li><a href="#">用户列表</a></li>
             </ol>
         </section>
         <!-- 内容头部 /-->
@@ -185,7 +187,7 @@
                                     <td>${user.email}</td>
                                     <td>${user.regdate}</td>
                                     <td class="text-center">
-                                        <button type="button" class="btn bg-olive btn-xs">详情</button>
+                                        <button type="button" class="btn bg-olive btn-xs" onclick="window.location.href='${pageContext.request.contextPath}/user/information?uid=${user.id}'">详情</button>
                                         <button type="button" class="btn bg-olive btn-xs">编辑</button>
                                         <button type="button" class="btn bg-olive btn-xs">注销</button>
                                     </td>

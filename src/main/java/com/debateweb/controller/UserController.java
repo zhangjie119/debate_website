@@ -11,6 +11,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Map;
 
 /**
  * (User)表控制层
@@ -96,4 +97,12 @@ public class UserController {
         return "front/video-search";
     }
 
+    //后台详细信息
+    @RequestMapping("information")
+    public String information(Map<String, Object> map,
+                              @RequestParam(name = "uid") Integer uid) {
+        User user = userService.queryById(uid);
+        map.put("user", user);
+        return "back/user-information";
+    }
 }

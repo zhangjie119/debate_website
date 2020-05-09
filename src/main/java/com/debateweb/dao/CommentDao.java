@@ -65,6 +65,7 @@ public interface CommentDao {
      * @param pid 主键
      * @return 影响行数
      */
+    @Delete("delete from comment where pid = #{pid}")
     int deleteById(Integer pid);
 
     /**

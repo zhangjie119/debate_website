@@ -65,8 +65,6 @@
                     <li id="article-list"><a href="${pageContext.request.contextPath}/article/findAll?page=1&size=1">
                         <i class="fa fa-circle-o"></i> 帖子列表
                     </a></li>
-                    <li id="comment-list"><a href="${pageContext.request.contextPath}/comment/findAll"> <i class="fa fa-circle-o"></i> 评论列表
-                    </a></li>
                     <li id="plate-list"><a href="${pageContext.request.contextPath}/plate/findAll?page=1&size=8">
                         <i class="fa fa-circle-o"></i> 板块列表
                     </a></li>
