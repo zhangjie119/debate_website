@@ -79,10 +79,10 @@
             </a>
                 <ul class="treeview-menu">
 
-                    <li id="user-manager"><a href="${pageContext.request.contextPath}/user/findAllUser?page=1&size=8">
+                    <li id="user-manager"><a href="${pageContext.request.contextPath}/user/findAll?page=1&size=8">
                         <i class="fa fa-circle-o"></i> 用户管理
                     </a></li>
-                    <li id="admin-manager"><a href="${pageContext.request.contextPath}/user/findAllAdmin?page=1&size=8"> <i class="fa fa-circle-o"></i> 管理员管理
+                    <li id="admin-manager"><a href="${pageContext.request.contextPath}/admin/findAll?page=1&size=8"> <i class="fa fa-circle-o"></i> 管理员管理
                     </a></li>
 
                 </ul>

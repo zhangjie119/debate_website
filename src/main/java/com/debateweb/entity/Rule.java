@@ -3,19 +3,19 @@ package com.debateweb.entity;
 import java.io.Serializable;
 
 /**
- * (Format)实体类
+ * (Rule)实体类
  *
  * @author makejava
- * @since 2020-04-28 22:50:03
+ * @since 2020-05-10 22:37:30
  */
-public class Format implements Serializable {
-    private static final long serialVersionUID = -83502253946266631L;
+public class Rule implements Serializable {
+    private static final long serialVersionUID = -72051135445739881L;
     /**
     * 赛制id
     */
     private Integer id;
     /**
-    * 赛制环节名
+    * 环节名
     */
     private String linkname;
     /**

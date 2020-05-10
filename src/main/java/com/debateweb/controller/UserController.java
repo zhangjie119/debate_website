@@ -45,23 +45,11 @@ public class UserController {
      * @return
      * @throws Exception
      */
-    @RequestMapping("/findAllUser")
+    @RequestMapping("/findAll")
     public ModelAndView findAllUser(@RequestParam(name = "page", required = true, defaultValue = "1") int page, @RequestParam(name = "size", required = true, defaultValue = "5") int size) throws Exception {
         ModelAndView mv = new ModelAndView();
-        List<User> users = userService.findAll(page, size, false);
-        PageInfo pageInfo = new PageInfo(users);
-        mv.addObject("pageInfo", pageInfo);
+        mv.addObject("pageInfo", this.userinfo(page,size));
         mv.setViewName("back/user-list");
-        return mv;
-    }
-
-    @RequestMapping("/findAllAdmin")
-    public ModelAndView findAllAdmin(@RequestParam(name = "page", required = true, defaultValue = "1") int page, @RequestParam(name = "size", required = true, defaultValue = "5") int size) throws Exception {
-        ModelAndView mv = new ModelAndView();
-        List<User> admins = userService.findAll(page, size, true);
-        PageInfo pageInfo = new PageInfo(admins);
-        mv.addObject("pageInfo", pageInfo);
-        mv.setViewName("back/admin-list");
         return mv;
     }
 
@@ -104,5 +92,54 @@ public class UserController {
         User user = userService.queryById(uid);
         map.put("user", user);
         return "back/user-information";
+    }
+
+    //切换到修改页面
+    @RequestMapping("revise")
+    public String revise(Map<String, Object> map,
+                         @RequestParam Integer uid) {
+        User user = userService.queryById(uid);
+        map.put("user", user);
+
+        return "back/user-revise";
+    }
+
+    //修改用户并跳转到该用户的用户详情页面
+    @RequestMapping("update")
+    public String update(Map<String, Object> map,
+                         @RequestParam Integer uid,
+                         @RequestParam String nickname,
+                         @RequestParam String sex,
+                         @RequestParam String phonenum,
+                         @RequestParam String email,
+                         @RequestParam String birthday,
+                         @RequestParam String address,
+                         @RequestParam String notes) {
+
+        //实例化一个用户，并添加上述属性
+        User user = new User(uid,nickname,sex,phonenum,email,birthday,notes,address);
+        //更新该用户
+        this.userService.update(user);
+        //重新获取该用户并加入map
+        map.put("user", this.userService.queryById(uid));
+        return "back/user-information";
+    }
+
+    //注销（删除）用户
+    @RequestMapping("delete")
+    public String delete(Map<String, Object> map,
+                         @RequestParam(name = "uid", required = true) Integer uid,
+                         @RequestParam(name = "page", required = true, defaultValue = "1") int page,
+                         @RequestParam(name = "size", required = true, defaultValue = "7") int size) {
+        this.userService.deleteById(uid);
+        map.put("pageInfo", this.userinfo(page,size));
+
+        return "back/user-list";
+    }
+
+    //查询所有用户并加分页bean
+    public PageInfo userinfo(int page, int size) {
+        //isAdmin默认为false
+        return new PageInfo(userService.findAll(page, size, false));
     }
 }

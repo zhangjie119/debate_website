@@ -1,8 +1,9 @@
 package com.debateweb.controller;
 
 import com.debateweb.entity.Event;
+import com.debateweb.entity.Rule;
 import com.debateweb.service.EventService;
-import com.debateweb.service.FormatService;
+import com.debateweb.service.RuleService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,12 +27,15 @@ public class RandSController {
     private EventService eventService;
 
     @Resource
-    private FormatService formatService;
+    private RuleService ruleService;
 
     @RequestMapping("findAll")
     public String findAll(Map<String, Object> map) {
-        List<Event> events = eventService.queryAll();
-        map.put("events", events);
+        List<Rule> ruleList = ruleService.queryAll();
+        List<Event> eventList = eventService.queryAll();
+
+        map.put("eventList", eventList);
+        map.put("ruleList", ruleList);
         return "front/ruleAndSkills";
     }
 }

@@ -4,7 +4,7 @@
   User: 92564
   Date: 2020/3/22
   Time: 15:13
-  To change this temuser use File | Settings | File Temusers.
+  To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html>
@@ -53,6 +53,12 @@
     <![endif]-->
 
 
+
+
+
+
+
+
     <!-- jQuery 2.2.3 -->
     <!-- jQuery UI 1.11.4 -->
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -99,24 +105,20 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/datepicker/datepicker3.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/daterangepicker/daterangepicker.css">
-    <link rel="stylesheet"
-          href="${pageContext.request.contextPath}/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/datatables/dataTables.bootstrap.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/treeTable/jquery.treetable.css">
-    <link rel="stylesheet"
-          href="${pageContext.request.contextPath}/plugins/treeTable/jquery.treetable.theme.default.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/treeTable/jquery.treetable.theme.default.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/select2/select2.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/colorpicker/bootstrap-colorpicker.min.css">
-    <link rel="stylesheet"
-          href="${pageContext.request.contextPath}/plugins/bootstrap-markdown/css/bootstrap-markdown.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/bootstrap-markdown/css/bootstrap-markdown.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/adminLTE/css/AdminLTE.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/adminLTE/css/skins/_all-skins.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/ionslider/ion.rangeSlider.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/ionslider/ion.rangeSlider.skinNice.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/bootstrap-slider/slider.css">
-    <link rel="stylesheet"
-          href="${pageContext.request.contextPath}/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css">
 </head>
 
 <body class="hold-transition skin-purple sidebar-mini">
@@ -135,131 +137,83 @@
     <!-- @@master = admin-layout.html-->
     <!-- @@block = content -->
     <div class="content-wrapper">
-        <!-- 内容头部 -->
-        <section class="content-header">
-            <h1>人员管理
-            <small>用户管理</small>
-            </h1>
-            <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
-                <li><a href="#">用户列表</a></li>
-            </ol>
-        </section>
-        <!-- 内容头部 /-->
-
-        <!-- 正文区域 -->
         <section class="content">
-            <!-- .box-body -->
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">列表</h3>
-                </div>
+            <div class="box-body">
+                <div class="nav-tabs-custom">
+                    <div class="row data-type">
+                        <form action="${pageContext.request.contextPath}/user/update" method="post">
+                            <div  class="col-md-12 data text-center" style="height:70px;">
+                                <div class="h3">用户详情</div>
+                            </div>
+                            <div class="col-md-2 title">用户ID</div>
+                            <div class="col-md-4 data">
+                                <input type="text" class="form-control" value="${user.id}" readonly="readonly" name="uid">
+                            </div>
 
-                <div class="box-body">
-                    <!-- 数据表格 -->
-                    <div class="table-box">
-                        <!--数据列表-->
-                        <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
-                            <thead>
-                            <tr>
-                                <th class="" style="padding-right:0px;">
-                                    <input id="selall" type="checkbox" class="icheckbox_square-blue">
-                                </th>
-                                <th>ID</th>
-                                <th>用户名</th>
-                                <th>昵称</th>
-                                <th>性别</th>
-                                <th>电话号码</th>
-                                <th>邮箱地址</th>
-                                <th>注册时间</th>
-                                <th>操作</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <c:forEach  items="${pageInfo.list}" var="user" >
-                                <tr>
-                                    <td><input name="ids" type="checkbox"></td>
-                                    <td>${user.id}</td>
-                                    <td>${user.username}</td>
-                                    <td>${user.nickname}</td>
-                                    <td>${user.sex}</td>
-                                    <td>${user.phonenum}</td>
-                                    <td>${user.email}</td>
-                                    <td>${user.regdate}</td>
-                                    <td class="text-center">
-                                        <button type="button" class="btn bg-olive btn-xs" onclick="window.open('${pageContext.request.contextPath}/user/information?uid=${user.id}')">详情</button>
-                                        <button type="button" class="btn bg-olive btn-xs" onclick="window.location.href='${pageContext.request.contextPath}/user/delete?uid=${user.id}&page=${pageInfo.pageNum}&size=${pageInfo.pageSize}'">注销</button>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                            </tbody>
-                        </table>
-                        <!--数据列表/-->
+                            <div class="col-md-2 title">用户名</div>
+                            <div class="col-md-4 data">
+                                <input type="text" class="form-control" value="${user.username}" readonly="readonly" name="username">
+                            </div>
+
+                            <div class="col-md-2 title">昵称</div>
+                            <div class="col-md-4 data">
+                                <input type="text" class="form-control" value="${user.nickname}"  name="nickname" required oninvalid="setCustomValidity('昵称不能为空')" oninput="setCustomValidity('')">
+                            </div>
+
+                            <div class="col-md-2 title">性别</div>
+                            <div class="col-md-4 data">
+                                <select id="sex" name="sex" class="form-control select2">
+                                    <option <c:if test="${user.sex eq '男'}"> selected="selected" </c:if> >男</option>
+                                    <option <c:if test="${user.sex eq '女'}"> selected="selected" </c:if> >女</option>
+                                    <option <c:if test="${user.sex eq '跨性别者'}"> selected="selected" </c:if> >跨性别者</option>
+                                    <option <c:if test="${user.sex eq '其他'}"> selected="selected" </c:if> >其他</option>
+                                    <option <c:if test="${user.sex eq '保密'}"> selected="selected" </c:if> >保密</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-2 title">电话</div>
+                            <div class="col-md-4 data">
+                                <input type="tel" maxlength="11" class="form-control" value="${user.phonenum}"  name="phonenum">
+                            </div>
+
+                            <div class="col-md-2 title">邮箱</div>
+                            <div class="col-md-4 data">
+                                <input type="email" class="form-control" value="${user.email}"  name="email">
+                            </div>
+
+                            <div class="col-md-2 title">生日</div>
+                            <div class="col-md-4 data">
+                                <input type="date" class="form-control" value="${user.birthday}"  name="birthday">
+                            </div>
+
+                            <div class="col-md-2 title">地址</div>
+                            <div class="col-md-4 data">
+                                <input type="text" class="form-control" value="${user.address}"  name="address">
+                            </div>
+
+                            <div class="col-md-2 title">简介</div>
+                            <div class="col-md-10 data">
+                                <input type="text" class="form-control" value="${user.notes}"  name="notes">
+                            </div>
+
+                            <div class="col-md-12 data text-center">
+                                <button type="submit" class="btn bg-maroon">保存</button>
+                                <button type="button" class="btn bg-default" onclick="history.back();">返回</button>
+                            </div>
+                        </form>
                     </div>
-                    <!-- 数据表格 /-->
                 </div>
-                <!-- /.box-body -->
-
-                <!-- .box-footer-->
-                <div class="box-footer">
-                    <div class="pull-left">
-                        <div class="form-group form-inline">
-                            总共 ${pageInfo.pages} 页，共条${pageInfo.total}数据。 每页
-                            <select class="form-control" id="changePageSize" onchange="changePageSize()">
-                                <option>${pageInfo.pageSize}</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </select> 条
-                        </div>
-                    </div>
-
-                    <div class="box-tools pull-right">
-                        <ul class="pagination">
-                            <li>
-                                <a href="${pageContext.request.contextPath}/user/findAll?page=1&size=${pageInfo.pageSize}"
-                                   aria-label="Previous">首页</a>
-                            </li>
-                            <li>
-                                <a href="${pageContext.request.contextPath}/user/findAll?page=${pageInfo.pageNum-1}&size=${pageInfo.pageSize}">上一页</a>
-                            </li>
-                            <c:forEach begin="1" end="${pageInfo.pages}" var="pageNum">
-                                <li>
-                                    <a href="${pageContext.request.contextPath}/user/findAll?page=${pageNum}&size=${pageInfo.pageSize}">${pageNum}</a>
-                                </li>
-                            </c:forEach>
-                            <li>
-                                <a href="${pageContext.request.contextPath}/user/findAll?page=${pageInfo.pageNum+1}&size=${pageInfo.pageSize}">下一页</a>
-                            </li>
-                            <li>
-                                <a href="${pageContext.request.contextPath}/user/findAll?page=${pageInfo.pages}&size=${pageInfo.pageSize}"
-                                   aria-label="Next">尾页</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                </div>
-                <!-- /.box-footer-->
-
-
             </div>
-
         </section>
-        <!-- 正文区域 /-->
+
+
+
+
     </div>
     <!-- @@close -->
     <!-- 内容区域 /-->
 
     <!-- 底部导航 -->
-    <%--    <footer class="main-footer">
-            <div class="pull-right hidden-xs">
-                <b>Version</b> 1.0.8
-            </div>
-            <strong>Copyright &copy; 2014-2017 <a href="http://www.itcast.cn">研究院研发部</a>.</strong> All rights reserved.
-        </footer>--%>
     <jsp:include page="${pageContext.request.contextPath}/pages/footer.jsp"/>
     <!-- 底部导航 /-->
 
@@ -311,26 +265,7 @@
 <script src="${pageContext.request.contextPath}/plugins/bootstrap-slider/bootstrap-slider.js"></script>
 <script src="${pageContext.request.contextPath}/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>
 <script src="${pageContext.request.contextPath}/plugins/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
-<script>
-    function changePageSize() {
-        //获取下拉框的值
-        var pageSize = $("#changePageSize").val();
-
-        //向服务器发送请求，改变每页显示条数
-        location.href = "${pageContext.request.contextPath}/user/findAll?page=1&size=" + pageSize;
-    }
-
-    $(document).ready(function () {
-        // 选择框
-        $(".select2").select2();
-
-        // WYSIHTML5编辑器
-        $(".textarea").wysihtml5({
-            locale: 'zh-CN'
-        });
-    });
-
-
+<%--<script>
     // 设置激活菜单
     function setSidebarActive(tagUri) {
         var liObj = $("#" + tagUri);
@@ -341,7 +276,7 @@
     }
 
 
-    $(document).ready(function () {
+    $(document).ready(function() {
 
         // 激活导航位置
         setSidebarActive("admin-datalist");
@@ -352,7 +287,7 @@
             increaseArea: '20%'
         });
         // 全选操作
-        $("#selall").click(function () {
+        $("#selall").click(function() {
             var clicks = $(this).is(':checked');
             if (!clicks) {
                 $("#dataList td input[type='checkbox']").iCheck("uncheck");
@@ -362,7 +297,7 @@
             $(this).data("clicks", !clicks);
         });
     });
-</script>
+</script>--%>
 </body>
 
 </html>

@@ -181,9 +181,8 @@
                                     <td>${admin.phonenum}</td>
                                     <td>${admin.regdate}</td>
                                     <td class="text-center">
-                                        <button type="button" class="btn bg-olive btn-xs">详情</button>
-                                        <button type="button" class="btn bg-olive btn-xs">编辑</button>
-                                        <button type="button" class="btn bg-olive btn-xs">注销</button>
+                                        <button type="button" class="btn bg-olive btn-xs" onclick="window.open('${pageContext.request.contextPath}/user/information?uid=${admin.id}')">详情</button>
+                                        <button type="button" class="btn bg-olive btn-xs" onclick="window.location.href='${pageContext.request.contextPath}/admin/delete?uid=${admin.id}&page=${pageInfo.pageNum}&size=${pageInfo.pageSize}'">注销</button>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -215,22 +214,22 @@
                     <div class="box-tools pull-right">
                         <ul class="pagination">
                             <li>
-                                <a href="${pageContext.request.contextPath}/user/findAllAdmin?page=1&size=${pageInfo.pageSize}"
+                                <a href="${pageContext.request.contextPath}/admin/findAll?page=1&size=${pageInfo.pageSize}"
                                    aria-label="Previous">首页</a>
                             </li>
                             <li>
-                                <a href="${pageContext.request.contextPath}/user/findAllAdmin?page=${pageInfo.pageNum-1}&size=${pageInfo.pageSize}">上一页</a>
+                                <a href="${pageContext.request.contextPath}/admin/findAll?page=${pageInfo.pageNum-1}&size=${pageInfo.pageSize}">上一页</a>
                             </li>
                             <c:forEach begin="1" end="${pageInfo.pages}" var="pageNum">
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/user/findAllAdmin?page=${pageNum}&size=${pageInfo.pageSize}">${pageNum}</a>
+                                    <a href="${pageContext.request.contextPath}/admin/findAll?page=${pageNum}&size=${pageInfo.pageSize}">${pageNum}</a>
                                 </li>
                             </c:forEach>
                             <li>
-                                <a href="${pageContext.request.contextPath}/user/findAllAdmin?page=${pageInfo.pageNum+1}&size=${pageInfo.pageSize}">下一页</a>
+                                <a href="${pageContext.request.contextPath}/admin/findAll?page=${pageInfo.pageNum+1}&size=${pageInfo.pageSize}">下一页</a>
                             </li>
                             <li>
-                                <a href="${pageContext.request.contextPath}/user/findAllAdmin?page=${pageInfo.pages}&size=${pageInfo.pageSize}"
+                                <a href="${pageContext.request.contextPath}/admin/findAll?page=${pageInfo.pages}&size=${pageInfo.pageSize}"
                                    aria-label="Next">尾页</a>
                             </li>
                         </ul>
@@ -245,12 +244,6 @@
     <!-- 内容区域 /-->
 
     <!-- 底部导航 -->
-    <%--    <footer class="main-footer">
-            <div class="pull-right hidden-xs">
-                <b>Version</b> 1.0.8
-            </div>
-            <strong>Copyright &copy; 2014-2017 <a href="http://www.itcast.cn">研究院研发部</a>.</strong> All rights reserved.
-        </footer>--%>
     <jsp:include page="${pageContext.request.contextPath}/pages/footer.jsp"/>
     <!-- 底部导航 /-->
 

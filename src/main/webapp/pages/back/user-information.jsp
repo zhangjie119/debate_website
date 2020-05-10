@@ -137,61 +137,68 @@
     <!-- @@master = admin-layout.html-->
     <!-- @@block = content -->
     <div class="content-wrapper">
-        <!-- 正文区域 -->
         <section class="content">
             <div class="box-body">
-                <strong>用户名</strong>
-                <i class="text-muted">
-                    &emsp;&emsp;
-                    ${user.username}
-                </i>
-                <hr>
-                <strong>昵称</strong>
-                <i class="text-muted">
-                    &emsp;&emsp;&emsp;
-                    ${user.nickname}
-                </i>
-                <hr>
-                <strong>性别</strong>
-                <i class="text-muted">
-                    &emsp;&emsp;&emsp;
-                    ${user.sex}
-                </i>
-                <hr>
-                <strong>电话</strong>
-                <i class="text-muted">
-                    &emsp;&emsp;&emsp;
-                    ${user.phonenum}
-                </i>
-                <hr>
-                <strong>邮箱</strong>
-                <i class="text-muted">
-                    &emsp;&emsp;&emsp;
-                    ${user.email}
-                </i>
-                <hr>
-                <strong>生日</strong>
-                <i class="text-muted">
-                    &emsp;&emsp;&emsp;
-                    ${user.birthday}
-                </i>
-                <hr>
-                <strong>简介</strong>
-                <i class="text-muted">
-                    &emsp;&emsp;&emsp;
-                    ${user.notes}
-                </i>
-                <hr>
-                <strong>住址</strong>
-                <i class="text-muted">
-                    &emsp;&emsp;&emsp;
-                    ${user.address}
-                </i>
-                <hr>
-                <button class="btn btn-danger" onclick="informationRefresh('${pageContext.request.contextPath}/userCenter/informationRevise')">修改</button>
+                <div class="nav-tabs-custom">
+                    <div class="row data-type">
+                        <form action="${pageContext.request.contextPath}/user/revise" method="post">
+                            <div  class="col-md-12 data text-center" style="height:70px;">
+                                <div class="h3">用户详情</div>
+                            </div>
+                            <div class="col-md-2 title">用户ID</div>
+                            <div class="col-md-4 data">
+                                <input type="text" class="form-control" value="${user.id}" readonly="readonly" name="uid">
+                            </div>
+
+                            <div class="col-md-2 title">用户名</div>
+                            <div class="col-md-4 data">
+                                <input type="text" class="form-control" value="${user.username}" readonly="readonly" name="userName">
+                            </div>
+
+                            <div class="col-md-2 title">昵称</div>
+                            <div class="col-md-4 data">
+                                <input type="text" class="form-control" value="${user.nickname}" readonly="readonly" name="nickname">
+                            </div>
+
+                            <div class="col-md-2 title">性别</div>
+                            <div class="col-md-4 data">
+                                <input type="text" class="form-control" value="${user.sex}" readonly="readonly" name="sex">
+                            </div>
+
+                            <div class="col-md-2 title">电话</div>
+                            <div class="col-md-4 data">
+                                <input type="text" class="form-control" value="${user.phonenum}" readonly="readonly" name="phonenum">
+                            </div>
+
+                            <div class="col-md-2 title">邮箱</div>
+                            <div class="col-md-4 data">
+                                <input type="text" class="form-control" value="${user.email}" readonly="readonly" name="email">
+                            </div>
+
+                            <div class="col-md-2 title">生日</div>
+                            <div class="col-md-4 data">
+                                <input type="text" class="form-control" value="${user.birthday}" readonly="readonly" name="birthday">
+                            </div>
+
+                            <div class="col-md-2 title">地址</div>
+                            <div class="col-md-4 data">
+                                <input type="text" class="form-control" value="${user.address}" readonly="readonly" name="address">
+                            </div>
+
+                            <div class="col-md-2 title">简介</div>
+                            <div class="col-md-10 data">
+                                <input type="text" class="form-control" value="${user.notes}" readonly="readonly" name="notes">
+                            </div>
+
+                            <div class="col-md-12 data text-center">
+                                <button type="submit" class="btn bg-maroon">修改</button>
+                                <button type="button" class="btn bg-default" onclick="window.close()">关闭</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </section>
-        <!-- 正文区域 /-->
 
 
 

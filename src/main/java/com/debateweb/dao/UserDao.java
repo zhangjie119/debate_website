@@ -1,10 +1,7 @@
 package com.debateweb.dao;
 
 import com.debateweb.entity.User;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -93,6 +90,7 @@ public interface UserDao {
      * @param id 主键
      * @return 影响行数
      */
+    @Delete("delete from user where ID = #{id}")
     int deleteById(Integer id);
 
     @Select("select count(*) from user where username = #{username}")
