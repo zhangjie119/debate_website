@@ -23,6 +23,16 @@ public class Rule implements Serializable {
     */
     private String linkrule;
 
+    public Rule(String linkname, String linkrule) {
+        this.linkname = linkname;
+        this.linkrule = linkrule;
+    }
+
+    public Rule(Integer id, String linkname, String linkrule) {
+        this.id = id;
+        this.linkname = linkname;
+        this.linkrule = linkrule;
+    }
 
     public Integer getId() {
         return id;

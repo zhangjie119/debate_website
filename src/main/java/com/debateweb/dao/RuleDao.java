@@ -45,7 +45,7 @@ public interface RuleDao {
      * @param rule 实例对象
      * @return 影响行数
      */
-    @Update("update  rule set linkName = #{linkname}, linkRule = #{linkrule} where id = {id}")
+    @Update("update rule set linkName = #{linkname},linkRule = #{linkrule} where id = #{id}")
     int update(Rule rule);
 
     /**

@@ -1,8 +1,7 @@
 package com.debateweb.dao;
 
 import com.debateweb.entity.Event;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -20,6 +19,7 @@ public interface EventDao {
      * @param id 主键
      * @return 实例对象
      */
+    @Select("select * from event where id = #{id}")
     Event queryById(Integer id);
 
     /**
@@ -37,6 +37,7 @@ public interface EventDao {
      * @param event 实例对象
      * @return 影响行数
      */
+    @Insert("insert into event (eventName, eventInfo, eventFormat) values (#{eventname}, #{eventinfo}, #{eventformat})")
     int insert(Event event);
 
     /**
@@ -45,6 +46,11 @@ public interface EventDao {
      * @param event 实例对象
      * @return 影响行数
      */
+    @Update("update event set " +
+            "eventName = #{eventname}, " +
+            "eventInfo = #{eventinfo}, " +
+            "eventFormat = #{eventformat} " +
+            "where id = #{id}")
     int update(Event event);
 
     /**
@@ -53,6 +59,7 @@ public interface EventDao {
      * @param id 主键
      * @return 影响行数
      */
+    @Delete("delete from event where id = #{id}")
     int deleteById(Integer id);
 
 }

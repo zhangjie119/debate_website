@@ -51,9 +51,17 @@
 								</span>
             </a>
                 <ul class="treeview-menu">
-
-                    <li id="#"><a href="#">
-                        <i class="fa fa-circle-o"></i> 待添加
+                    <li id="rule-list"><a href="${pageContext.request.contextPath}/rule/findAll">
+                        <i class="fa fa-circle-o"></i> 规则列表
+                    </a></li>
+                    <li id="event-list"><a href="${pageContext.request.contextPath}/event/findAll">
+                        <i class="fa fa-circle-o"></i> 赛事列表
+                    </a></li>
+                    <li id="rule-add"><a href="${pageContext.request.contextPath}/pages/back/rule-add.jsp">
+                        <i class="fa fa-circle-o"></i> 添加规则
+                    </a></li>
+                    <li id="event-add"><a href="${pageContext.request.contextPath}/pages/back/event-add.jsp">
+                        <i class="fa fa-circle-o"></i> 添加赛事
                     </a></li>
                 </ul>
             </li>
@@ -89,12 +97,11 @@
             </li>
             <li class="treeview"><a href="#"> <i class="fa fa-cogs"></i>
                 <span>系统管理</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i>
-								</span>
-            </a>
-                <ul class="treeview-menu">
+								</span></a>
 
-                    <li id="system-setting"><a href="#">
-                        <i class="fa fa-circle-o"></i> 待添加
+                <ul class="treeview-menu">
+                    <li id="system-setting"><a href="${pageContext.request.contextPath}/rule/findAll">
+                        <i class="fa fa-circle-o"></i> 规则列表
                     </a></li>
                 </ul>
             </li>

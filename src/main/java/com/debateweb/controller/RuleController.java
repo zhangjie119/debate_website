@@ -2,9 +2,12 @@ package com.debateweb.controller;
 
 import com.debateweb.entity.Rule;
 import com.debateweb.service.RuleService;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
+import java.util.Map;
 
 /**
  * (Rule)表控制层
@@ -12,7 +15,7 @@ import javax.annotation.Resource;
  * @author makejava
  * @since 2020-05-10 22:37:30
  */
-@RestController
+@Controller
 @RequestMapping("rule")
 public class RuleController {
     /**
@@ -21,15 +24,50 @@ public class RuleController {
     @Resource
     private RuleService ruleService;
 
-    /**
-     * 通过主键查询单条数据
-     *
-     * @param id 主键
-     * @return 单条数据
-     */
-    @GetMapping("selectOne")
-    public Rule selectOne(Integer id) {
-        return this.ruleService.queryById(id);
+    //查询所有规则
+    @RequestMapping("findAll")
+    public String findAll(Map<String, Object> map) {
+        List<Rule> ruleList = ruleService.queryAll();
+        map.put("ruleList", ruleList);
+
+        return "back/rule-list";
     }
 
+    //添加规则
+    @RequestMapping("add")
+    public String add(@RequestParam String linkName,
+                      @RequestParam String linkRule) {
+
+        //添加新的规则
+        this.ruleService.insert(new Rule(linkName, linkRule));
+        return "SorF/ruleAdd-success";
+    }
+
+    //修改规则页面
+    @RequestMapping("revise")
+    public String revise(Map<String, Object> map,
+                         @RequestParam(name = "rid", required = true) Integer rid) {
+
+        map.put("rule", this.ruleService.queryById(rid));
+        return "back/rule-revise";
+    }
+
+    //对规则进行修改
+    @RequestMapping("update")
+    public String update(@RequestParam Integer rid,
+                         @RequestParam String linkName,
+                         @RequestParam String linkRule) {
+
+        this.ruleService.update(new Rule(rid, linkName, linkRule));
+        return "SorF/ruleUpdate-success";
+    }
+
+    //删除某条规则
+    @RequestMapping("delete")
+    public String delete(Map<String,Object> map,
+                         @RequestParam(name = "rid", required = true) Integer rid) {
+        this.ruleService.deleteById(rid);
+
+        return findAll(map);
+    }
 }

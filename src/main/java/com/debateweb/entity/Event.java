@@ -27,6 +27,12 @@ public class Event implements Serializable {
     */
     private String eventformat;
 
+    public Event(Integer id, String eventname, String eventinfo, String eventformat) {
+        this.id = id;
+        this.eventname = eventname;
+        this.eventinfo = eventinfo;
+        this.eventformat = eventformat;
+    }
 
     public Integer getId() {
         return id;

@@ -1,12 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: 92564
-  Date: 2020/3/22
-  Time: 14:55
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html>
 
@@ -15,11 +7,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-
-    <title>数据 - 三狗一男</title>
-    <meta name="description" content="三狗一男">
-    <meta name="keywords" content="三狗一男">
-
+    <title>三狗一男辩论网</title>
+    <meta name="description" content="三狗一男辩论网">
+    <meta name="keywords" content="三狗一男辩论网">
 
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
@@ -32,7 +22,7 @@
     <!-- Date Picker -->
     <!-- Daterange picker -->
     <!-- Bootstrap time Picker -->
-    <!--<link rel="stylesheet" href="${pageContext.request.contextPath}/${pageContext.request.contextPath}/${pageContext.request.contextPath}/plugins/timepicker/bootstrap-timepicker.min.css">-->
+    <!--<link rel="stylesheet" href="${pageContext.request.contextPath}/${pageContext.request.contextPath}/plugins/timepicker/bootstrap-timepicker.min.css">-->
     <!-- bootstrap wysihtml5 - text editor -->
     <!--数据表格-->
     <!-- 表格树 -->
@@ -42,7 +32,7 @@
     <!--bootstrap-markdown-->
     <!-- Theme style -->
     <!-- AdminLTE Skins. Choose a skin from the css/skins
-folder instead of downloading all of them to reduce the load. -->
+       folder instead of downloading all of them to reduce the load. -->
     <!-- Ion Slider -->
     <!-- ion slider Nice -->
     <!-- bootstrap slider -->
@@ -53,8 +43,8 @@ folder instead of downloading all of them to reduce the load. -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-
     <![endif]-->
+
 
     <!-- jQuery 2.2.3 -->
     <!-- jQuery UI 1.11.4 -->
@@ -75,7 +65,7 @@ folder instead of downloading all of them to reduce the load. -->
     <!-- select2 -->
     <!-- bootstrap color picker -->
     <!-- bootstrap time picker -->
-    <!--<script src="${pageContext.request.contextPath}/${pageContext.request.contextPath}/${pageContext.request.contextPath}/plugins/timepicker/bootstrap-timepicker.min.js"></script>-->
+    <!--<script src="${pageContext.request.contextPath}/${pageContext.request.contextPath}/plugins/timepicker/bootstrap-timepicker.min.js"></script>-->
     <!-- Bootstrap WYSIHTML5 -->
     <!--bootstrap-markdown-->
     <!-- CK Editor -->
@@ -127,69 +117,132 @@ folder instead of downloading all of them to reduce the load. -->
 <div class="wrapper">
 
     <!-- 页面头部 -->
-    <jsp:include page="${pageContext.request.contextPath}/pages/front-header.jsp"/>
+    <jsp:include page="${pageContext.request.contextPath}/pages/back_header.jsp"/>
     <!-- 页面头部 /-->
 
-    <!-- 页面头部 /-->
+    <!-- 导航侧栏 -->
+    <jsp:include page="${pageContext.request.contextPath}/pages/aside.jsp"/>
+    <!-- 导航侧栏 /-->
+
     <!-- 内容区域 -->
     <!-- @@master = admin-layout.html-->
     <!-- @@block = content -->
-
-    <div class="content-wrapper" style="margin-left: 0px;">
-        <section class="content">
-            <div class="row">
-                <div style="width: 70%; margin-left: 15%; margin-top: 1%;">
-                    <!-- Form Element sizes -->
-                    <form action="${pageContext.request.contextPath}/article/upload" method="post">
-                        <div class="box box-info">
-                            <div class="box-body">
-                                <h4><b>标题</b></h4>
-                                <input class="form-control input-lg" type="text" name="title"
-                                       style="margin-left: 15px; width: 97%;">
-                                <h4><b>板块</b></h4>
-                                <div class="form-group" style="margin-left: 15px; width: 96%;">
-                                    <select class="form-control select2" name="plate">
-                                        <c:forEach items="${plates}" var="plate">
-                                            <option <c:if test="${plate.bid} == 1">selected="selected"</c:if>>${plate.bname}</option>
-                                        </c:forEach>
-                                    </select>
-                                </div>
-
-                                <h4><b>内容</b></h4>
-                                <div class="tab-pane" id="tab-editer" style="width: 122%; margin-top: 15px;">
-                                    <div class="col-md-10 data editer">
-                                        <textarea class="textarea" name="fcontent"
-                                                  style="width: 98%; height: 265px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                                    </div>
-                                </div>
-
-                                <div style="margin-left: 1.5%;">
-                                    <a href="javascript:;" class="a-upload">
-                                        <input type="file" name="photo">点击上传图片</input>
-                                    </a>
-                                    <br><br>
-                                </div>
-
-                                <button type="submit" class="btn btn-block btn-info"
-                                        style="margin-left: 1.5%;width: 8%;">发帖
-                                </button>
-
-                            </div>
-                            <!-- /.box-body -->
-                        </div>
-                        <!-- /.box -->
-                    </form>
-                </div>
-            </div>
-            <!-- /.row -->
+    <div class="content-wrapper">
+        <!-- 内容头部 -->
+        <section class="content-header">
+            <h1>规则技巧
+                <small>规则管理</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+                <li><a href="#">规则管理</a></li>
+            </ol>
         </section>
+        <!-- 内容头部 /-->
+
+        <!-- 正文区域 -->
+        <section class="content">
+            <!-- .box-body -->
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">列表</h3>
+                </div>
+
+                <div class="box-body">
+                    <!-- 数据表格 -->
+                    <div class="table-box">
+                        <!--数据列表-->
+                        <table id="dataList" class="table table-bordered table-striped table-hover dataTable"
+                               style="text-align: center">
+                            <thead>
+                            <tr>
+                                <th class="" style="padding-right:0px;">
+                                    <input id="selall" type="checkbox" class="icheckbox_square-blue">
+                                </th>
+                                <th>ID</th>
+                                <th>赛事名</th>
+                                <th>赛事简介</th>
+                                <th>赛制</th>>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach items="${eventList}" var="event">
+                                <tr>
+                                    <td><input name="ids" type="checkbox"></td>
+                                    <td>${event.id}</td>
+                                    <td>${event.eventname}</td>
+                                    <td><a data-toggle="modal" data-target="#myModalInfo${event.id}">查看简介</a></td>
+                                    <div id="myModalInfo${event.id}" class="modal modal-primary" role="dialog">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span></button>
+                                                    <h4 class="modal-title">${event.eventname}-简介</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="box-body">
+                                                        ${event.eventinfo}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /.modal-content -->
+                                        </div>
+                                        <!-- /.modal-dialog -->
+                                    </div>
+                                    <!-- /.modal -->
+
+                                    <td><a data-toggle="modal" data-target="#myModalFormat${event.id}">查看赛制</a></td>
+                                    <div id="myModalFormat${event.id}" class="modal modal-primary" role="dialog">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span></button>
+                                                    <h4 class="modal-title">${event.eventname}-赛制</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="box-body">
+                                                            ${event.eventformat}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /.modal-content -->
+                                        </div>
+                                        <!-- /.modal-dialog -->
+                                    </div>
+                                    <!-- /.modal -->
+
+                                    <td class="text-center">
+                                        <button type="button" class="btn bg-olive btn-xs" onclick="window.open('${pageContext.request.contextPath}/event/revise?eid=${event.id}')">修改</button>
+                                        <button type="button" class="btn bg-olive btn-xs" onclick="window.location.href='${pageContext.request.contextPath}/event/delete?eid=${event.id}'">删除</button>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                        <!--数据列表/-->
+                    </div>
+                    <!-- 数据表格 /-->
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </section>
+        <!-- 正文区域 /-->
     </div>
     <!-- @@close -->
     <!-- 内容区域 /-->
 
     <!-- 底部导航 -->
-    <jsp:include page="${pageContext.request.contextPath}/pages/front/footer.jsp"/>
+    <%--    <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <b>Version</b> 1.0.8
+            </div>
+            <strong>Copyright &copy; 2014-2017 <a href="http://www.itcast.cn">研究院研发部</a>.</strong> All rights reserved.
+        </footer>--%>
+    <jsp:include page="${pageContext.request.contextPath}/pages/footer.jsp"/>
     <!-- 底部导航 /-->
+
 </div>
 
 
@@ -239,6 +292,14 @@ folder instead of downloading all of them to reduce the load. -->
 <script src="${pageContext.request.contextPath}/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>
 <script src="${pageContext.request.contextPath}/plugins/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 <script>
+    function changePageSize() {
+        //获取下拉框的值
+        var pageSize = $("#changePageSize").val();
+
+        //向服务器发送请求，改变每页显示条数
+        location.href = "${pageContext.request.contextPath}/article/findAll?page=1&size=" + pageSize;
+    }
+
     $(document).ready(function () {
         // 选择框
         $(".select2").select2();
@@ -248,6 +309,7 @@ folder instead of downloading all of them to reduce the load. -->
             locale: 'zh-CN'
         });
     });
+
 
     // 设置激活菜单
     function setSidebarActive(tagUri) {
@@ -281,7 +343,6 @@ folder instead of downloading all of them to reduce the load. -->
         });
     });
 </script>
-<script src="${pageContext.request.contextPath}/js/images.js"></script>
 </body>
 
 </html>

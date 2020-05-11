@@ -38,4 +38,5 @@ public class RandSController {
         map.put("ruleList", ruleList);
         return "front/ruleAndSkills";
     }
+
 }
