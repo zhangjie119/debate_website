@@ -246,12 +246,6 @@ folder instead of downloading all of them to reduce the load. -->
 
                             <div class="col-md-12" style="position: relative; background-color: #f6f6f6; height: 10px;"></div>
 
-                            <div class="row">
-                                <div class="col-md-12" style="position: relative; padding-top: 10px;padding-left: 25px;">
-                                    <b>热门文章</b>
-                                    <hr>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

@@ -79,6 +79,13 @@ public class VideoController {
         return "back/video-list";
     }
 
+    //跳转到播放页面
+    @RequestMapping("play")
+    public String play(Map<String, Object> map, @RequestParam(name = "vid", required = true) Integer vid) {
+        map.put("video", videoService.queryById(vid));
+        return "front/video-play";
+    }
+
     //跳转到修改页面
     @RequestMapping("revise")
     public String revise(Map<String, Object> map, @RequestParam(name = "vid", required = true, defaultValue = "1") int vid) {

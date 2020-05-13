@@ -1,11 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: 92564
-  Date: 2020/3/22
-  Time: 14:55
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html>
 
@@ -139,59 +132,12 @@ folder instead of downloading all of them to reduce the load. -->
     <!-- @@master = admin-layout.html-->
     <!-- @@block = content -->
     <div class="content-wrapper" style="margin-left: 0px">
-
-        <!-- 内容头部 -->
-        <section class="content-header">
-            <h1>
-                辩论稿
-            </h1>
-        </section>
-        <!-- 内容头部 /-->
-
         <!-- 正文区域 -->
-        <section class="content">
-            <!-- .box-body -->
-            <div class="box box-primary">
-
-                <div class="box-body">
-                    <!-- 数据表格 -->
-                    <div class="table-box">
-                        <!--数据列表-->
-                        <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
-                            <thead>
-                            <tr>
-                                <th class="" style="padding-right:0px;">
-                                    <input id="selall" type="checkbox" class="icheckbox_square-blue">
-                                </th>
-                                <th class="sorting_desc">辩题</th>
-                                <th class="sorting_asc sorting_asc_disabled">学校</th>
-                                <th class="sorting_desc sorting_desc_disabled">类型</th>
-                                <th class="sorting">上传者</th>
-                                <th class="text-center sorting">上传时间</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <c:forEach items="${drafts}" var="draft">
-                                <tr>
-                                    <td><input name="ids" type="checkbox"></td>
-                                    <td><a href="javascript: window.open('${pageContext.request.contextPath}/draft/reading?did=${draft.did}')">${draft.draftname}</a></td>
-                                    <td>${draft.draftschool}</td>
-                                    <td>${draft.drafttype}</td>
-                                    <td>${draft.uploder}</td>
-                                    <td>${draft.uploadtime}</td>
-                                    <td class="text-center">
-                                        <button type="button" class="btn bg-olive btn-xs" onclick="window.location.href='${draft.address}'">下载</button>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                            </tbody>
-                        </table>
-                        <!--数据列表/-->
-                    </div>
-                    <!-- 数据表格 /-->
-                </div>
-                <!-- /.box-body -->
-            </div>
+        <section class="content" style=" text-align: center;">
+            <video src="${video.address}" controls="controls" style="width: auto; height: 74%;"></video><br>
+            <h4><b>${video.debatesubject}</b></h4>
+            <b>正方:${video.pros}</b>&nbsp;&nbsp;
+            <b>反方:${video.cons}</b>
         </section>
         <!-- 正文区域 /-->
     </div>

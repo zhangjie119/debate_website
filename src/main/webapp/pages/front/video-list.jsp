@@ -143,12 +143,8 @@ folder instead of downloading all of them to reduce the load. -->
         <!-- 内容头部 -->
         <section class="content-header">
             <h1>
-                辩论稿
+                辩论视频
             </h1>
-            <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
-                <li><a href="#">辩论视频</a></li>
-            </ol>
         </section>
         <!-- 内容头部 /-->
 
@@ -156,10 +152,6 @@ folder instead of downloading all of them to reduce the load. -->
         <section class="content">
             <!-- .box-body -->
             <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">列表</h3>
-                </div>
-
                 <div class="box-body">
                     <!-- 数据表格 -->
                     <div class="table-box">
@@ -167,9 +159,6 @@ folder instead of downloading all of them to reduce the load. -->
                         <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
                             <thead>
                             <tr>
-                                <th class="" style="padding-right:0px;">
-                                    <input id="selall" type="checkbox" class="icheckbox_square-blue">
-                                </th>
                                 <th>辩题</th>
                                 <th>赛事</th>
                                 <th>正方</th>
@@ -181,7 +170,6 @@ folder instead of downloading all of them to reduce the load. -->
                             <tbody>
                             <c:forEach items="${videoList}" var="video">
                                 <tr>
-                                    <td><input name="ids" type="checkbox"></td>
                                     <td><a href="${video.address}">${video.debatesubject}</a></td>
                                     <td>${video.racename}</td>
                                     <td>${video.pros}</td>
@@ -189,7 +177,7 @@ folder instead of downloading all of them to reduce the load. -->
                                     <td>${video.stardebater}</td>
                                     <td>${video.uploader}</td>
                                     <td class="text-center">
-                                        <button type="button" class="btn bg-olive btn-xs" onclick="window.location.href='${video.address}'">播放</button>
+                                        <button type="button" class="btn bg-olive btn-xs" onclick="window.open('${pageContext.request.contextPath}/video/play?vid=${video.vid}')">播放</button>
                                     </td>
                                 </tr>
                             </c:forEach>
