@@ -128,7 +128,7 @@ folder instead of downloading all of them to reduce the load. -->
 <script type="text/javascript">
     function checkUpload() {
         if (${not empty loginUser}) {
-            window.location.href="${pageContext.request.contextPath}/pages/front/video-upload.jsp"
+            window.location.href="video-upload.jsp"
         } else {
             alert("请先登录");
         }
@@ -140,7 +140,7 @@ folder instead of downloading all of them to reduce the load. -->
 <div class="wrapper">
 
     <!-- 页面头部 -->
-    <jsp:include page="${pageContext.request.contextPath}/pages/front-header.jsp" />
+    <jsp:include page="${pageContext.request.contextPath}/pages/front/front-header.jsp" />
     <!-- 页面头部 /-->
 
     <!-- 内容区域 -->

@@ -40,7 +40,7 @@ public class ForumController {
         //添加所有板块信息
         List<Plate> listPlate = plateService.queryAll();
         map.put("plates", listPlate);
-        return "front/forum";
+        return "front/forumPages/forum";
     }
 
     @RequestMapping("/uploadArticle")
@@ -48,7 +48,7 @@ public class ForumController {
         //添加所有板块信息
         List<Plate> listPlate = plateService.queryAll();
         map.put("plates", listPlate);
-        return "front/article-upload";
+        return "front/forumPages/article-upload";
     }
 
     @PostMapping("/searchByKeyword")
@@ -60,7 +60,7 @@ public class ForumController {
         //添加所有板块信息
         List<Plate> listPlate = plateService.queryAll();
         map.put("plates", listPlate);
-        return "front/forum";
+        return "front/forumPages/forum";
     }
 
     @RequestMapping("/lookingArticle")
@@ -73,7 +73,7 @@ public class ForumController {
         List<Comment> comments = commentService.queryByArticle(fid);
         map.put("comments", comments);
 
-        return "front/article-looking";
+        return "front/forumPages/article-looking";
     }
 
     @PostMapping("/reply")
@@ -83,7 +83,7 @@ public class ForumController {
 
         lookingArticle(map, fid);
 
-        return "front/article-looking";
+        return "front/forumPages/article-looking";
 
     }
 

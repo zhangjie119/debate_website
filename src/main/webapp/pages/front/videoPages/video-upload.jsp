@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 92564
@@ -128,79 +127,78 @@ folder instead of downloading all of them to reduce the load. -->
 </head>
 
 <body class="hold-transition skin-purple sidebar-mini">
-
 <div class="wrapper">
+<!-- 页面头部 -->
+<jsp:include page="${pageContext.request.contextPath}/pages/front/front-header.jsp" />
+<!-- 页面头部 /-->
+    <div class="content-wrapper" style="margin-left: 0px;">
 
-    <!-- 页面头部 -->
-    <jsp:include page="${pageContext.request.contextPath}/pages/front-header.jsp" />
-    <!-- 页面头部 /-->
-
-    <!-- 内容区域 -->
-    <!-- @@master = admin-layout.html-->
-    <!-- @@block = content -->
-    <div class="content-wrapper" style="margin-left: 0px">
-
-        <!-- 内容头部 -->
-        <section class="content-header">
-            <h1>
-                辩论视频
-            </h1>
-        </section>
-        <!-- 内容头部 /-->
-
-        <!-- 正文区域 -->
+        <!-- 内容区域 -->
+        <!-- @@master = admin-layout.html-->
+        <!-- @@block = content -->
+        <!--基础控件-->
         <section class="content">
-            <!-- .box-body -->
-            <div class="box box-primary">
-                <div class="box-body">
-                    <!-- 数据表格 -->
-                    <div class="table-box">
-                        <!--数据列表-->
-                        <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
-                            <thead>
-                            <tr>
-                                <th>辩题</th>
-                                <th>赛事</th>
-                                <th>正方</th>
-                                <th>反方</th>
-                                <th>明星辩手</th>
-                                <th>上传者</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <c:forEach items="${videoList}" var="video">
-                                <tr>
-                                    <td><a href="${video.address}">${video.debatesubject}</a></td>
-                                    <td>${video.racename}</td>
-                                    <td>${video.pros}</td>
-                                    <td>${video.cons}</td>
-                                    <td>${video.stardebater}</td>
-                                    <td>${video.uploader}</td>
-                                    <td class="text-center">
-                                        <button type="button" class="btn bg-olive btn-xs" onclick="window.open('${pageContext.request.contextPath}/video/play?vid=${video.vid}')">播放</button>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                            </tbody>
-                        </table>
-                        <!--数据列表/-->
-                    </div>
-                    <!-- 数据表格 /-->
+            <div class="box-body">
+                <div class="nav-tabs-custom">
+                    <div class="row data-type">
+                    <form action=" ${pageContext.request.contextPath}/video/upload"
+                          method="post" enctype="multipart/form-data">
+                        <div class="col-md-12 data text-center" style="height:70px;">
+                            <div class="h3">辩论视频上传</div>
+                        </div>
+                        <div class="col-md-2 title">辩题</div>
+                        <div class="col-md-4 data">
+                            <input type="text" class="form-control" placeholder="辩题" name="debateSubject" required oninvalid="setCustomValidity('辩题不能为空')"
+                                   oninput="setCustomValidity('')">
+                        </div>
+
+                        <div class="col-md-2 title">赛事名称</div>
+                        <div class="col-md-4 data">
+                            <input type="text" class="form-control" placeholder="赛事名称" name="raceName" required oninvalid="setCustomValidity('赛事名称不能为空')"
+                                   oninput="setCustomValidity('')">
+                        </div>
+
+                        <div class="col-md-2 title">正方</div>
+                        <div class="col-md-4 data">
+                            <input type="text" class="form-control" name="pros" placeholder="正方" required oninvalid="setCustomValidity('正方不能为空')"
+                                   oninput="setCustomValidity('')">
+                        </div>
+                        <div class="col-md-2 title">反方</div>
+                        <div class="col-md-4 data">
+                            <input type="text" class="form-control" name="cons" placeholder="反方" required oninvalid="setCustomValidity('反方不能为空')"
+                                   oninput="setCustomValidity('')">
+                        </div>
+                        <div class="col-md-2 title">明星辩手</div>
+                        <div class="col-md-4 data">
+                            <input type="text" class="form-control" name="starDebater" placeholder="明星辩手">
+                        </div>
+                        <div class="col-md-2 title">视频</div>
+                        <div class="col-md-4 data">
+                            <a href="javascript:;" class="a-upload">
+                                <input type="file" name="video" id="video" required oninvalid="setCustomValidity('请上传稿件')" oninput="setCustomValidity('')">点击这里上传稿件
+                            </a>
+                        </div>
+                        <div class="col-md-12 data text-center">
+                            <button type="submit" class="btn bg-maroon" >保存</button>
+                            <button type="button" class="btn bg-default" onclick="history.back(-1);">返回</button>
+                        </div>
+                    </form>
                 </div>
-                <!-- /.box-body -->
             </div>
-        </section>
-        <!-- 正文区域 /-->
-
     </div>
-    <!-- 内容区域 /-->
+        </section>
+</div>
+</div>
 
-    <!-- 底部导航 -->
-    <jsp:include page="${pageContext.request.contextPath}/pages/front/footer.jsp" />
-    <!-- 底部导航 /-->
+<!--基础控件/-->
+<!-- 内容区域 /-->
+
 </div>
 
 
+<!-- 底部导航 -->
+<jsp:include page="${pageContext.request.contextPath}/pages/front/footer.jsp" />
+<!-- 底部导航 /-->
 <script src="${pageContext.request.contextPath}/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <script src="${pageContext.request.contextPath}/plugins/jQueryUI/jquery-ui.min.js"></script>
 <script>

@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: 92564
@@ -16,9 +15,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 
+
+
     <title>数据 - 三狗一男</title>
     <meta name="description" content="三狗一男">
     <meta name="keywords" content="三狗一男">
+
+
 
 
     <!-- Tell the browser to be responsive to screen width -->
@@ -53,8 +56,14 @@ folder instead of downloading all of them to reduce the load. -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-
     <![endif]-->
+
+
+
+
+
+
+
 
     <!-- jQuery 2.2.3 -->
     <!-- jQuery UI 1.11.4 -->
@@ -102,32 +111,36 @@ folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/datepicker/datepicker3.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/daterangepicker/daterangepicker.css">
-    <link rel="stylesheet"
-          href="${pageContext.request.contextPath}/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/datatables/dataTables.bootstrap.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/treeTable/jquery.treetable.css">
-    <link rel="stylesheet"
-          href="${pageContext.request.contextPath}/plugins/treeTable/jquery.treetable.theme.default.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/treeTable/jquery.treetable.theme.default.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/select2/select2.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/colorpicker/bootstrap-colorpicker.min.css">
-    <link rel="stylesheet"
-          href="${pageContext.request.contextPath}/plugins/bootstrap-markdown/css/bootstrap-markdown.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/bootstrap-markdown/css/bootstrap-markdown.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/adminLTE/css/AdminLTE.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/adminLTE/css/skins/_all-skins.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/ionslider/ion.rangeSlider.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/ionslider/ion.rangeSlider.skinNice.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/bootstrap-slider/slider.css">
-    <link rel="stylesheet"
-          href="${pageContext.request.contextPath}/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css">
 </head>
-
+<script type="text/javascript">
+    function checkUpload() {
+        if (${not empty loginUser}) {
+            window.location.href="${pageContext.request.contextPath}/forum/uploadArticle"
+        } else {
+            alert("请先登录");
+        }
+    }
+</script>
 <body class="hold-transition skin-purple sidebar-mini">
 
 <div class="wrapper">
 
     <!-- 页面头部 -->
-    <jsp:include page="${pageContext.request.contextPath}/pages/front-header.jsp"/>
+    <jsp:include page="${pageContext.request.contextPath}/pages/front/front-header.jsp" />
     <!-- 页面头部 /-->
 
     <!-- 页面头部 /-->
@@ -138,57 +151,110 @@ folder instead of downloading all of them to reduce the load. -->
     <div class="content-wrapper" style="margin-left: 0px;">
         <section class="content">
             <div class="row">
-                <div style="width: 70%; margin-left: 15%; margin-top: 1%;">
-                    <!-- Form Element sizes -->
-                    <form action="${pageContext.request.contextPath}/article/upload" method="post">
-                        <div class="box box-info">
+                <div style="width: 100%; margin-left: 15%;">
+                    <div class="col-md-6">
+                        <form action="${pageContext.request.contextPath}/forum/searchByKeyword" style="width:100%;height:5%;" method="post">
+                            <div class="input-group margin">
+                                <input type="text" class="form-control" name="keyword" id="keyword" style="height: 40%;">
+                                <span class="input-group-btn">
+                            <button type="submit" class="btn btn-info btn-flat" style="padding:5px 7px;" name="search" id="search">搜索</button>
+                            <button onclick="checkUpload(); return false;" class="btn btn-info btn-flat" name="upload" id="upload" style="padding:5px 7px;">发帖</button>
+                        </span>
+                            </div>
+                        </form>
+                        <c:forEach items="${articles}" var="article">
+                            <c:if test="${empty param.bname || param.bname eq article.bname}">
+                                <c:if test="${article.status == 1}">
+                                <div class="box box-solid">
+                            <div class="box-header with-border">
+                                <div class="row">
+                                    <div class="col-xs-7 col-md-9" style="position: relative; padding-top: 10px;">
+                                        来自：${article.bname}
+                                    </div>
+                                    <div class="col-xs-5 col-md-3" style="position: relative; padding-top: 10px;">
+                                        ${article.time}
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.box-header -->
                             <div class="box-body">
-                                <h4><b>标题</b></h4>
-                                <input class="form-control input-lg" type="text" name="title"
-                                       style="margin-left: 15px; width: 97%;">
-                                <h4><b>板块</b></h4>
-                                <div class="form-group" style="margin-left: 15px; width: 96%;">
-                                    <select class="form-control select2" name="plate">
-                                        <c:forEach items="${plates}" var="plate">
-                                            <option <c:if test="${plate.bid} == 1">selected="selected"</c:if>>${plate.bname}</option>
-                                        </c:forEach>
-                                    </select>
+
+                                <div class="col-xs-6 col-md-8">
+                                    <a href="#">
+                                        <h5 class="bottom_left_name">
+                                            <!-- 发帖人名字 -->
+                                            <b>${article.username}</b>
+                                        </h5>
+                                    </a>
                                 </div>
 
-                                <h4><b>内容</b></h4>
-                                <div class="tab-pane" id="tab-editer" style="width: 122%; margin-top: 15px;">
-                                    <div class="col-md-10 data editer">
-                                        <textarea class="textarea" name="fcontent"
-                                                  style="width: 98%; height: 265px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                            <h4>
+                                                <a href="${pageContext.request.contextPath}/forum/lookingArticle?fid=${article.fid}" class="bottom_left_aaa a_b" >
+                                                    <!-- 帖子标题 -->
+                                                    <b style="color: #000000;">${article.titles}</b>
+                                                </a>
+                                            </h4>
                                     </div>
                                 </div>
 
-                                <div style="margin-left: 1.5%;">
-                                    <a href="javascript:;" class="a-upload">
-                                        <input type="file" name="photo">点击上传图片</input>
-                                    </a>
-                                    <br><br>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <!-- 帖子内容 -->
+                                        <p>${article.fcontent}</p>
+                                    </div>
                                 </div>
-
-                                <button type="submit" class="btn btn-block btn-info"
-                                        style="margin-left: 1.5%;width: 8%;">发帖
-                                </button>
-
+                                <c:if test="${not empty article.photo}">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <img style="width: 70%; height: 40%;" src="${article.photo}">
+                                    </div>
+                                </div>
+                                </c:if>
+                                <br>
+                                <!-- /.box -->
                             </div>
-                            <!-- /.box-body -->
                         </div>
-                        <!-- /.box -->
-                    </form>
+                                </c:if>
+                            </c:if>
+                        </c:forEach>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+                <!--右边板块-->
+                <div style="width: 50%; margin-left: 65%; margin-top: 4%">
+                    <div class="col-md-6">
+                        <div class="box box-solid">
+                            <div class="box-header with-border">
+                                <b>所有板块</b>
+                            </div>
+
+                            <!-- 所有板块-开始循环 -->
+                            <div class="box-body">
+                                <c:forEach items="${plates}" var="plate">
+                                <div class="col-xs-4 col-md-4" style="text-align: center;">
+                                    <a href="?bname=${plate.bname}" style="color: #000000;">
+                                        <img src="../../../img/zzuli_debateTeam_icon.jpg" style="height: 40px; width: 40px;"/>
+                                        <p>${plate.bname}</p>
+                                    </a>
+                                </div>
+                                </c:forEach>
+                            </div>
+                            <!-- 所有板块-结束循环 -->
+                            <div class="col-md-12" style="position: relative; background-color: #f6f6f6; height: 10px;"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <!-- /.row -->
         </section>
     </div>
     <!-- @@close -->
     <!-- 内容区域 /-->
 
     <!-- 底部导航 -->
-    <jsp:include page="${pageContext.request.contextPath}/pages/front/footer.jsp"/>
+    <jsp:include page="${pageContext.request.contextPath}/pages/front/footer.jsp" />
     <!-- 底部导航 /-->
 </div>
 
@@ -239,7 +305,7 @@ folder instead of downloading all of them to reduce the load. -->
 <script src="${pageContext.request.contextPath}/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>
 <script src="${pageContext.request.contextPath}/plugins/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         // 选择框
         $(".select2").select2();
 
@@ -259,7 +325,7 @@ folder instead of downloading all of them to reduce the load. -->
     }
 
 
-    $(document).ready(function () {
+    $(document).ready(function() {
 
         // 激活导航位置
         setSidebarActive("admin-datalist");
@@ -270,7 +336,7 @@ folder instead of downloading all of them to reduce the load. -->
             increaseArea: '20%'
         });
         // 全选操作
-        $("#selall").click(function () {
+        $("#selall").click(function() {
             var clicks = $(this).is(':checked');
             if (!clicks) {
                 $("#dataList td input[type='checkbox']").iCheck("uncheck");
@@ -281,7 +347,6 @@ folder instead of downloading all of them to reduce the load. -->
         });
     });
 </script>
-<script src="${pageContext.request.contextPath}/js/images.js"></script>
 </body>
 
 </html>

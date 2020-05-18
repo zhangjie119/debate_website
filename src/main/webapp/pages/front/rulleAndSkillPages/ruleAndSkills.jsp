@@ -1,4 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--
+  Created by IntelliJ IDEA.
+  User: 92564
+  Date: 2020/3/22
+  Time: 14:55
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html>
 
@@ -8,13 +15,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 
-
-
     <title>数据 - 三狗一男</title>
     <meta name="description" content="三狗一男">
     <meta name="keywords" content="三狗一男">
-
-
 
 
     <!-- Tell the browser to be responsive to screen width -->
@@ -50,12 +53,6 @@ folder instead of downloading all of them to reduce the load. -->
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
-
-
-
-
-
 
 
     <!-- jQuery 2.2.3 -->
@@ -104,47 +101,159 @@ folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/datepicker/datepicker3.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/daterangepicker/daterangepicker.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/datatables/dataTables.bootstrap.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/treeTable/jquery.treetable.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/treeTable/jquery.treetable.theme.default.css">
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/plugins/treeTable/jquery.treetable.theme.default.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/select2/select2.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/colorpicker/bootstrap-colorpicker.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/bootstrap-markdown/css/bootstrap-markdown.min.css">
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/plugins/bootstrap-markdown/css/bootstrap-markdown.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/adminLTE/css/AdminLTE.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/adminLTE/css/skins/_all-skins.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/ionslider/ion.rangeSlider.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/ionslider/ion.rangeSlider.skinNice.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/bootstrap-slider/slider.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css">
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css">
 </head>
+<script type="text/javascript">
+    function checkUpload() {
+        if (<%= session.getAttribute("user") != null  || session.getAttribute("admin") != null%>) {
+            window.location.href = "../videoPages/video-upload.jsp"
+        } else {
+            alert("请先登录");
+        }
+    }
+</script>
 
 <body class="hold-transition skin-purple sidebar-mini">
 
 <div class="wrapper">
 
     <!-- 页面头部 -->
-    <jsp:include page="${pageContext.request.contextPath}/pages/front-header.jsp" />
+    <jsp:include page="${pageContext.request.contextPath}/pages/front/front-header.jsp"/>
     <!-- 页面头部 /-->
 
     <!-- 内容区域 -->
     <!-- @@master = admin-layout.html-->
     <!-- @@block = content -->
-    <div class="content-wrapper" style="margin-left: 0px">
+
+    <div class="content-wrapper" style="margin-left: 0;">
+
+
         <!-- 正文区域 -->
-        <section class="content" style=" text-align: center;">
-            <video src="${video.address}" controls="controls" style="width: auto; height: 74%;"></video><br>
-            <h4><b>${video.debatesubject}</b></h4>
-            <b>正方:${video.pros}</b>&nbsp;&nbsp;
-            <b>反方:${video.cons}</b>
+        <section class="content">
+
+
+            <!--tab页-->
+            <div class="nav-tabs-custom" style="height: 600px">
+
+                <!--tab头-->
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#tab-rule" data-toggle="tab">规则</a>
+                    </li>
+                    <li>
+                        <a href="#tab-skill" data-toggle="tab">技巧</a>
+                    </li>
+                    <li>
+                        <a href="#tab-race" data-toggle="tab">赛事</a>
+                    </li>
+                </ul>
+                <!--tab头/-->
+
+                <div class="tab-content">
+                    <!--tab内容-->
+
+                    <!--规则-->
+                    <div class="tab-pane active" id="tab-rule">
+                        <!-- START ACCORDION & CAROUSEL-->
+                        <div class="row" align="center">
+                            <div class="col-md-6" style="margin: 0 25%;">
+                                <div class="box box-solid">
+                                    <div class="box-header with-border">
+                                        <h3>各环节规则</h3>
+                                    </div>
+                                    <!-- /.box-header -->
+                                    <div class="box-body">
+                                        <div class="box-group" id="accordion">
+                                            <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
+                                            <c:forEach items="${ruleList}" var="rule">
+                                                <div class="panel box box-primary">
+                                                    <div class="box-header with-border">
+                                                        <h4 class="box-title">
+                                                            <a data-toggle="collapse" data-parent="#accordion"
+                                                               href="#collapse${rule.id}">
+                                                                    ${rule.linkname}
+                                                            </a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="collapse${rule.id}" class="panel-collapse collapse">
+                                                        <div class="box-body">
+                                                                ${rule.linkrule}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </c:forEach>
+                                        </div>
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                                <!-- /.box -->
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                        <!-- END ACCORDION & CAROUSEL-->
+                    </div>
+                    <!--规则/-->
+
+                    <!--技巧-->
+                    <div class="tab-pane" id="tab-skill">
+                    </div>
+                    <!--技巧/-->
+
+                    <!--赛事-->
+                    <div class="tab-pane" id="tab-race">
+                        <c:forEach items="${eventList}" var="event">
+                        <div class="nav-tabs-custom">
+                            <ul class="nav nav-tabs pull-right">
+                                <li><a href="#tab_${event.id}-1" data-toggle="tab">赛制</a></li>
+                                <li class="active"><a href="#tab_${event.id}-2" data-toggle="tab">简介</a></li>
+                                <li class="pull-left header"><i class="fa fa-th"></i> ${event.eventname}</li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane" id="tab_${event.id}-1"  style="text-align: center">
+                                    ${event.eventformat}
+                                </div>
+                                <!-- /.tab-pane -->
+                                <div class="tab-pane active" id="tab_${event.id}-2">
+                                    ${event.eventinfo}
+                                </div>
+                                <!-- /.tab-pane -->
+                            </div>
+                            <!-- /.tab-content -->
+                        </div>
+                        <!-- nav-tabs-custom -->
+                        </c:forEach>
+                    </div>
+                    <!--赛事/-->
+                </div>
+                <!--tab内容/-->
+            </div>
+            <!--tab页/-->
         </section>
         <!-- 正文区域 /-->
+
     </div>
+    <!-- @@close -->
     <!-- 内容区域 /-->
 
     <!-- 底部导航 -->
-    <jsp:include page="${pageContext.request.contextPath}/pages/front/footer.jsp" />
+    <jsp:include page="${pageContext.request.contextPath}/pages/front/footer.jsp"/>
     <!-- 底部导航 /-->
 </div>
 
@@ -195,7 +304,7 @@ folder instead of downloading all of them to reduce the load. -->
 <script src="${pageContext.request.contextPath}/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>
 <script src="${pageContext.request.contextPath}/plugins/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         // 选择框
         $(".select2").select2();
 
@@ -215,7 +324,7 @@ folder instead of downloading all of them to reduce the load. -->
     }
 
 
-    $(document).ready(function() {
+    $(document).ready(function () {
 
         // 激活导航位置
         setSidebarActive("admin-datalist");
@@ -226,7 +335,7 @@ folder instead of downloading all of them to reduce the load. -->
             increaseArea: '20%'
         });
         // 全选操作
-        $("#selall").click(function() {
+        $("#selall").click(function () {
             var clicks = $(this).is(':checked');
             if (!clicks) {
                 $("#dataList td input[type='checkbox']").iCheck("uncheck");

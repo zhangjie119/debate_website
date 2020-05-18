@@ -30,7 +30,7 @@ public class RuleController {
         List<Rule> ruleList = ruleService.queryAll();
         map.put("ruleList", ruleList);
 
-        return "back/rule-list";
+        return "back/rulePages/rule-list";
     }
 
     //添加规则
@@ -49,7 +49,7 @@ public class RuleController {
                          @RequestParam(name = "rid", required = true) Integer rid) {
 
         map.put("rule", this.ruleService.queryById(rid));
-        return "back/rule-revise";
+        return "back/rulePages/rule-revise";
     }
 
     //对规则进行修改

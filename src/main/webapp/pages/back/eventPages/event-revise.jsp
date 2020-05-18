@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html>
 
@@ -46,8 +46,8 @@ folder instead of downloading all of them to reduce the load. -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
 
+    <![endif]-->
 
     <!-- jQuery 2.2.3 -->
     <!-- jQuery UI 1.11.4 -->
@@ -114,230 +114,63 @@ folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css">
 </head>
-<script type="text/javascript">
-
-    function videoRefresh(url){
-        sendRequest(url,'video');
-    }
-
-    function draftRefresh(url) {
-        sendRequest(url,'draft')
-    }
-
-    function articleRefresh(url) {
-        sendRequest(url,'article')
-    }
-
-    function informationRefresh(url) {
-        sendRequest(url,"information")
-    }
-
-    var XMLHttpReq = false;
-    //创建XMLHttpRequest对象
-    function createXMLHttpRequest() {
-        if(window.XMLHttpRequest) { //Mozilla 浏览器
-            XMLHttpReq = new XMLHttpRequest();
-        }
-        else if (window.ActiveXObject) { // IE浏览器
-            try {
-                XMLHttpReq = new ActiveXObject("Msxml2.XMLHTTP");
-            } catch (e) {
-                try {
-                    XMLHttpReq = new ActiveXObject("Microsoft.XMLHTTP");
-                } catch (e) {}
-            }
-        }
-    }
-    //发送请求函数
-    function sendRequest(url,type) {
-        createXMLHttpRequest();
-        XMLHttpReq.open("POST", url, true);
-        if(type == "video") {
-            XMLHttpReq.onreadystatechange = videoProcessResponse;//指定响应函数
-        }
-        if (type == "draft") {
-            XMLHttpReq.onreadystatechange = draftProcessResponse;
-        }
-        if (type == "article") {
-            XMLHttpReq.onreadystatechange = articleProcessResponse;
-        }
-        if (type == "information") {
-            XMLHttpReq.onreadystatechange = informationProcessResponse;
-        }
-        XMLHttpReq.send(null);  // 发送请求
-    }
-    // 处理返回信息函数
-    function videoProcessResponse() {
-        if (XMLHttpReq.readyState == 4) { // 判断对象状态
-            if (XMLHttpReq.status == 200) { // 信息已经成功返回，开始处理信息
-                var result = XMLHttpReq.responseText;
-                document.getElementById('video').innerHTML = result;
-            } else { //页面不正常
-                window.alert("您所请求的页面有异常。");
-            }
-        }
-    }
-
-    function draftProcessResponse() {
-        if (XMLHttpReq.readyState == 4) { // 判断对象状态
-            if (XMLHttpReq.status == 200) { // 信息已经成功返回，开始处理信息
-                var result = XMLHttpReq.responseText;
-                document.getElementById('draft').innerHTML = result;
-            } else { //页面不正常
-                window.alert("您所请求的页面有异常。");
-            }
-        }
-    }
-
-    function articleProcessResponse() {
-        if (XMLHttpReq.readyState == 4) { // 判断对象状态
-            if (XMLHttpReq.status == 200) { // 信息已经成功返回，开始处理信息
-                var result = XMLHttpReq.responseText;
-                document.getElementById('article').innerHTML = result;
-            } else { //页面不正常
-                window.alert("您所请求的页面有异常。");
-            }
-        }
-    }
-
-    function informationProcessResponse() {
-        if (XMLHttpReq.readyState == 4) { // 判断对象状态
-            if (XMLHttpReq.status == 200) { // 信息已经成功返回，开始处理信息
-                var result = XMLHttpReq.responseText;
-                document.getElementById('information').innerHTML = result;
-            } else { //页面不正常
-                window.alert("您所请求的页面有异常。");
-            }
-        }
-    }
-</script>
 
 <body class="hold-transition skin-purple sidebar-mini">
 
 <div class="wrapper">
 
     <!-- 页面头部 -->
-    <jsp:include page="${pageContext.request.contextPath}/pages/front-header.jsp"/>
+    <jsp:include page="${pageContext.request.contextPath}/pages/back/back_header.jsp"/>
     <!-- 页面头部 /-->
 
+    <!-- 侧导航栏 -->
+    <jsp:include page="${pageContext.request.contextPath}/pages/back/aside.jsp"/>
+    <!-- 侧导航栏 -->
+
     <!-- 内容区域 -->
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper" style="margin-left: 0px;">
+    <!-- @@master = admin-layout.html-->
+    <!-- @@block = content -->
 
-        <!-- Main content -->
+    <div class="content-wrapper">
         <section class="content">
+            <div class="row" style="margin-left: 15%;">
+                <!-- Form Element sizes -->
+                <form action="${pageContext.request.contextPath}/event/update" method="post">
+                        <div class="box box-info" style="width: 80%; height: 75%; margin-top: 3%;">
+                            <div class="box-body">
+                                <h4><b>赛事名称</b></h4>
+                                <input class="form-control input-lg" type="text" name="eventName"
+                                       value="${event.eventname}" style="margin-left: 15px; width: 97%;">
 
-            <div class="row">
-                <%--<c:forEach items="${loginUser}" var="user">--%>
-                <div class="col-md-4">
-                    <!-- Widget: user widget style 1 -->
-                    <div class="box box-widget widget-user">
-                        <!-- Add the bg color to the header using any of the bg-* classes -->
-                        <div class="widget-user-header bg-black"
-                             style="background: url('${pageContext.request.contextPath}/img/photo1.png') center center;">
-                            <h3 class="widget-user-username">${loginUser.nickname}</h3>
-                        </div>
-                        <div class="widget-user-image">
-                            <img class="img-circle" src="${pageContext.request.contextPath}/img/user${loginUser.headpicture}.jpg"
-                                 alt="User Avatar">
-                        </div>
-                        <div class="box-footer">
-                            <div class="row">
-                                <div class="col-sm-4 border-right">
-                                    <div class="description-block">
-                                        <h5 class="description-header">${loginUser.uploadvideonum}</h5>
-                                        <span class="description-text">视 频</span>
+                                <h4><b>赛事简介</b></h4>
+                                <div class="tab-pane" style="width: 122%; height: 27%; margin-top: 15px;">
+                                    <div class="col-md-10">
+                                        <textarea name="eventInfo" style="width: 98%; height: 150px; border: 1px solid #dddddd;">${event.eventinfo}</textarea>
                                     </div>
-                                    <!-- /.description-block -->
                                 </div>
-                                <!-- /.col -->
-                                <div class="col-sm-4 border-right">
-                                    <div class="description-block">
-                                        <h5 class="description-header">${loginUser.uploaddraftnum}</h5>
-                                        <span class="description-text">稿 件</span>
+                                <h4><b>赛制</b></h4>
+                                <div class="tab-pane" style="width: 122%; margin-top: 15px;">
+                                    <div class="col-md-10">
+                                        <textarea name="eventFormat" style="width: 98%; height: 150px; border: 1px solid #dddddd;">${event.eventinfo}</textarea>
                                     </div>
-                                    <!-- /.description-block -->
                                 </div>
-                                <!-- /.col -->
-                                <div class="col-sm-4">
-                                    <div class="description-block">
-                                        <h5 class="description-header">${loginUser.uploadarticlenum}</h5>
-                                        <span class="description-text">帖 子</span>
-                                    </div>
-                                    <!-- /.description-block -->
-                                </div>
-                                <!-- /.col -->
+                                <%--不显示，作传输赛事id之用--%>
+                                <input type="hidden" name="eid" value="${event.id}">
                             </div>
-                            <!-- /.row -->
+                            <button type="submit" class="btn btn-info" style="margin-left: 3%;width: 8%;">保存</button>
+                            <!-- /.box-body -->
                         </div>
-                    </div>
-                    <!-- /.widget-user -->
-                    <!-- About Me Box -->
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">About Me</h3>
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body">
-                            <strong><i class="fa fa-book margin-r-5"></i> 个人简介</strong>
-
-                            <p class="text-muted">&nbsp;${loginUser.notes}</p>
-
-                            <hr>
-
-                            <strong><i class="fa fa-map-marker margin-r-5"></i> 地址</strong>
-
-                            <p class="text-muted">&nbsp;${loginUser.address}</p>
-
-                            <hr>
-
-                            <strong><i class="fa fa-pencil margin-r-5"></i> 生日</strong>
-
-                            <p>&nbsp;${loginUser.birthday}</p>
-
-                            <hr>
-
-                            <strong><i class="fa fa-file-text-o margin-r-5"></i> 邮箱</strong>
-
-                            <p>&nbsp;${loginUser.email}</p>
-                        </div>
-                        <!-- /.box-body -->
-                    </div>
-                    <!-- /.box -->
-                </div>
-                <%--</c:forEach>--%>
-                <!-- /.col -->
-                <div class="col-md-8">
-                    <div class="nav-tabs-custom">
-                        <ul class="nav nav-tabs">
-                            <li class="active"><a href="#video" data-toggle="tab">上传视频</a></li>
-                            <li><a href="#draft" data-toggle="tab">上传辩稿</a></li>
-                            <li><a href="#article" data-toggle="tab">发布帖子</a></li>
-                            <li><a href="#information" data-toggle="tab">修改信息</a></li>
-                        </ul>
-                        <div class="tab-content">
-                            <jsp:include page="userCenter-video.jsp"/>
-                            <jsp:include page="userCenter-draft.jsp"/>
-                            <jsp:include page="userCenter-article.jsp"/>
-                            <jsp:include page="userCenter-information.jsp"/>
-                            <!-- /.tab-pane -->
-                        </div>
-                        <!-- /.tab-content -->
-                    </div>
-                    <!-- /.nav-tabs-custom -->
-                </div>
-                <!-- /.col -->
+                        <!-- /.box -->
+                    </form>
             </div>
             <!-- /.row -->
-
         </section>
-        <!-- /.content -->
     </div>
-    <!-- /.content-wrapper -->
+    <!-- @@close -->
     <!-- 内容区域 /-->
 
     <!-- 底部导航 -->
-    <jsp:include page="${pageContext.request.contextPath}/pages/front/footer.jsp"/>
+    <jsp:include page="${pageContext.request.contextPath}/pages/back/footer.jsp"/>
     <!-- 底部导航 /-->
 </div>
 

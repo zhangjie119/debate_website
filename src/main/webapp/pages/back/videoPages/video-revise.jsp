@@ -1,11 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: 92564
-  Date: 2020/3/22
-  Time: 14:55
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html>
 
@@ -131,22 +124,38 @@ folder instead of downloading all of them to reduce the load. -->
 
 <div class="wrapper">
     <!-- 页面头部 -->
-    <jsp:include page="${pageContext.request.contextPath}/pages/front-header.jsp" />
+    <jsp:include page="${pageContext.request.contextPath}/pages/back_header.jsp" />
     <!-- 页面头部 /-->
+
+    <!-- 侧导航栏 -->
+    <jsp:include page="${pageContext.request.contextPath}/pages/aside.jsp"/>
+    <!-- 侧导航栏 -->
 
     <!-- 内容区域 -->
     <!-- @@block = content -->
-    <div class="content-wrapper" style="margin-left: 0px">
+    <div class="content-wrapper">
+        <!-- 内容头部 -->
+        <section class="content-header">
+            <h1>视频管理
+                <small>视频添加</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+                <li><a href="#">辩论视频</a></li>
+            </ol>
+        </section>
+        <!-- 内容头部 /-->
+
 
         <!--基础控件-->
         <section class="content">
             <div class="box-body">
                 <div class="nav-tabs-custom">
                     <div class="row data-type">
-                        <form action=" ${pageContext.request.contextPath}/userCenter/videoUpdate"
-                              method="post">
+                        <form action=" ${pageContext.request.contextPath}/video/update"
+                              method="post" enctype="multipart/form-data">
                             <div class="col-md-12 data text-center" style="height:70px;">
-                                <div class="h3">辩论视频修改</div>
+                                <div class="h3">辩论视频上传</div>
                             </div>
                             <div class="col-md-2 title">视频ID</div>
                             <div class="col-md-4 data">
@@ -180,7 +189,7 @@ folder instead of downloading all of them to reduce the load. -->
                             </div>
                             <div class="col-md-12 data text-center">
                                 <button type="submit" class="btn bg-maroon" >修改</button>
-                                <button type="button" class="btn bg-default" onclick="history.back();">返回</button>
+                                <button type="button" class="btn bg-default" onclick="history.back(-1);">返回</button>
                             </div>
                         </form>
                     </div>
@@ -197,7 +206,7 @@ folder instead of downloading all of them to reduce the load. -->
 
 
 <!-- 底部导航 -->
-<jsp:include page="${pageContext.request.contextPath}/pages/front/footer.jsp" />
+<jsp:include page="${pageContext.request.contextPath}/pages/footer.jsp" />
 <!-- 底部导航 /-->
 <script src="${pageContext.request.contextPath}/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <script src="${pageContext.request.contextPath}/plugins/jQueryUI/jquery-ui.min.js"></script>

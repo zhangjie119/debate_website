@@ -12,7 +12,7 @@
 </head>
 <body>
 <p>
-    登录失败 , 你可以返回到 <a href="../pages/login.jsp">登录页面</a>
+    登录失败 , 你可以返回到 <a href="../login.jsp">登录页面</a>
     重新登录
 </p>
 </body>

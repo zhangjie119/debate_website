@@ -1,6 +1,5 @@
 package com.debateweb.controller;
 
-import com.debateweb.entity.User;
 import com.debateweb.service.UserService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Controller;
@@ -30,7 +29,7 @@ public class AdminController {
     public ModelAndView findAllAdmin(@RequestParam(name = "page", required = true, defaultValue = "1") int page, @RequestParam(name = "size", required = true, defaultValue = "5") int size) throws Exception {
         ModelAndView mv = new ModelAndView();
         mv.addObject("pageInfo", this.userinfo(page,size));
-        mv.setViewName("back/admin-list");
+        mv.setViewName("back/userPages/admin-list");
         return mv;
     }
 
@@ -43,7 +42,7 @@ public class AdminController {
         this.userService.deleteById(uid);
         map.put("pageInfo", this.userinfo(page,size));
 
-        return "back/admin-list";
+        return "back/userPages/admin-list";
     }
 
 

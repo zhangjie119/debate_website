@@ -1,10 +1,8 @@
 package com.debateweb.controller;
 
-import com.debateweb.entity.Article;
 import com.debateweb.entity.Plate;
 import com.debateweb.service.ArticleService;
 import com.debateweb.service.PlateService;
-import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +32,7 @@ public class PlateController {
     @RequestMapping("findAll")
     public String findAll(Map<String, Object> map, @RequestParam(name = "page", required = true, defaultValue = "1") int page, @RequestParam(name = "size", required = true, defaultValue = "5") int size) {
         map.put("pageInfo", this.plateInfo(page,size));
-        return "back/plate-list";
+        return "back/forumPages/plate-list";
     }
 
     //为新建帖子页面获取板块信息
@@ -52,7 +50,7 @@ public class PlateController {
         this.articleService.updatePlate(bname);
         this.plateService.deleteById(bid);
         map.put("pageInfo", this.plateInfo(1,8));
-        return "back/plate-list";
+        return "back/forumPages/plate-list";
     }
 
     //获取板块分页信息

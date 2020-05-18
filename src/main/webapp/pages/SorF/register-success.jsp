@@ -11,6 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-<h2>注册成功，<a href="../pages/login.jsp">点击登录</a> </h2>
+<h2>注册成功，<a href="../login.jsp">点击登录</a> </h2>
 </body>
 </html>

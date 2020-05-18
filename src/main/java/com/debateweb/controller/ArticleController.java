@@ -1,17 +1,13 @@
 package com.debateweb.controller;
 
 import com.debateweb.entity.Article;
-import com.debateweb.entity.Draft;
-import com.debateweb.entity.Plate;
 import com.debateweb.entity.User;
 import com.debateweb.service.ArticleService;
 import com.debateweb.service.CommentService;
-import com.debateweb.service.PlateService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -74,15 +70,15 @@ public class ArticleController {
             address = "../../../img/article/" + filename;
         }
         if (articleService.upload(title, plate, fcontent, uploader.getId(), uploader.getNickname(), address)) {
-            return "success";
+            return "SorF/success";
         }
-        return "fail";
+        return "SorF/fail";
     }
 
     @RequestMapping("findAll")
     public String findAll(Map<String, Object> map, @RequestParam(name = "page",required = true,defaultValue = "1") int page, @RequestParam(name = "size", required = true,defaultValue = "5") int size) {
         map.put("pageInfo", this.articleInfo(page,size));
-        return "back/article-list";
+        return "back/forumPages/article-list";
     }
 
     //审核帖子
@@ -91,7 +87,7 @@ public class ArticleController {
         List<Article> articles = articleService.queryUnApproval(page, 8);
         PageInfo pageInfo = new PageInfo(articles);
         map.put("pageInfo", pageInfo);
-        return "back/article-check";
+        return "back/forumPages/article-check";
     }
 
     //删除帖子
@@ -102,7 +98,7 @@ public class ArticleController {
         //根据帖子id删除回复
         this.commentService.deleteByFid(fid);
         map.put("pageInfo", this.articleInfo(1, 8));
-        return "back/article-list";
+        return "back/forumPages/article-list";
     }
 
     //审核通过帖子
@@ -112,7 +108,7 @@ public class ArticleController {
         article.setStatus(1);
         this.articleService.update(article);
         map.put("pageInfo", this.articleInfo(1, 5));
-        return "back/article-check";
+        return "back/forumPages/article-check";
     }
 
     //审核不通过帖子
@@ -122,7 +118,7 @@ public class ArticleController {
         article.setStatus(2);
         this.articleService.update(article);
         map.put("pageInfo", this.articleInfo(1, 5));
-        return "back/article-check";
+        return "back/forumPages/article-check";
     }
 
     public PageInfo articleInfo(int page, int size) {

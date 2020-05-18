@@ -30,7 +30,7 @@ public class EventController {
         List<Event> eventList = eventService.queryAll();
         map.put("eventList", eventList);
 
-        return "back/event-list";
+        return "back/eventPages/event-list";
     }
 
     //添加规则
@@ -50,7 +50,7 @@ public class EventController {
                          @RequestParam(name = "eid", required = true) Integer eid) {
 
         map.put("event", this.eventService.queryById(eid));
-        return "back/event-revise";
+        return "back/eventPages/event-revise";
     }
 
     //对规则进行修改

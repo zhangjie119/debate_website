@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -72,7 +71,7 @@ public class UserCenterController {
         //更新session中的登陆用户
         //session.setAttribute("loginUser", user);
 
-        return "front/user-center";
+        return "front/userCenterPages/user-center";
     }
 
     //跳向修改界面
@@ -80,7 +79,7 @@ public class UserCenterController {
     public String videoRevise(Map<String, Object> map, @RequestParam(name = "vid", required = true) Integer vid) {
         Video video = videoService.queryById(vid);
         map.put("video", video);
-        return "front/video-revise";
+        return "front/videoPages/video-revise";
     }
 
     //执行视频修改
@@ -109,7 +108,7 @@ public class UserCenterController {
     public String videoDelete(HttpSession session, Map<String, Object> map, @RequestParam(name = "vid", required = true) Integer vid) {
         this.videoService.deleteById(vid);
         map.put("videoList", this.videoService.queryByUid(getUserId(session)));
-        return "front/userCenter-video";
+        return "front/userCenterPages/userCenter-video";
     }
 
     //修改稿件
@@ -117,7 +116,7 @@ public class UserCenterController {
     public String draftRevise(Map<String, Object> map, @RequestParam(name = "did", required = true) Integer did) {
         Draft draft = draftService.queryById(did);
         map.put("draft", draft);
-        return "front/draft-revise";
+        return "front/draftPages/draft-revise";
     }
 
     //更新稿件
@@ -142,7 +141,7 @@ public class UserCenterController {
     public String draftDelete(HttpSession session, Map<String, Object> map, @RequestParam(name = "did", required = true) Integer did) {
         this.draftService.deleteById(did);
         map.put("draftList", this.draftService.queryByUid(getUserId(session)));
-        return "front/userCenter-draft";
+        return "front/userCenterPages/userCenter-draft";
     }
 
     //删除稿件
@@ -155,20 +154,20 @@ public class UserCenterController {
         
         //获得新的帖子列表
         map.put("articleList", this.articleService.queryByUid(getUserId(session)));
-        return "front/userCenter-article";
+        return "front/userCenterPages/userCenter-article";
     }
 
     //修改用户详细信息
     @RequestMapping("informationRevise")
     public String informationRevise() {
         //跳转修改页面，数据从session获取
-        return "front/userCenter-setting";
+        return "front/userCenterPages/userCenter-setting";
     }
 
     //返回个人信息界面，作放弃修改之用
     @RequestMapping("information")
     public String informatione(){
-        return "front/userCenter-information";
+        return "front/userCenterPages/userCenter-information";
     }
 
     //更新个人信息

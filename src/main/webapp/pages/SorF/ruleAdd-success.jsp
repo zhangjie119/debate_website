@@ -11,6 +11,6 @@
     <title>添加成功</title>
 </head>
 <body>
-<h2>添加成功，点击<a href="${pageContext.request.contextPath}/rule/findAll"><small>浏览规则列表</small></a>或<a href="${pageContext.request.contextPath}/pages/back/rule-add.jsp"><small>继续添加</small></a> </h2>
+<h2>添加成功，点击<a href="${pageContext.request.contextPath}/rule/findAll"><small>浏览规则列表</small></a>或<a href="${pageContext.request.contextPath}/pages/back/rulePages/rule-add.jsp"><small>继续添加</small></a> </h2>
 </body>
 </html>

@@ -140,7 +140,7 @@ folder instead of downloading all of them to reduce the load. -->
 <div class="wrapper">
 
     <!-- 页面头部 -->
-    <jsp:include page="${pageContext.request.contextPath}/pages/front-header.jsp" />
+    <jsp:include page="${pageContext.request.contextPath}/pages/front/front-header.jsp" />
     <!-- 页面头部 /-->
 
     <!-- 页面头部 /-->

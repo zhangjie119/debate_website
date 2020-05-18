@@ -2,7 +2,6 @@ package com.debateweb.controller;
 
 import com.debateweb.entity.Draft;
 import com.debateweb.entity.User;
-import com.debateweb.entity.Video;
 import com.debateweb.service.DraftService;
 import com.github.pagehelper.PageInfo;
 import org.apache.poi.hwpf.extractor.WordExtractor;
@@ -19,8 +18,6 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -45,7 +42,7 @@ public class DraftController {
         ModelAndView mv = new ModelAndView();
         List<Draft> drafts = draftService.queryByKeyword(keyword);
         mv.addObject("drafts", drafts);
-        mv.setViewName("front/draft-list");
+        mv.setViewName("front/draftPages/draft-list");
         return mv;
     }
 
@@ -75,16 +72,16 @@ public class DraftController {
         Integer Uid = uploader.getId();
         String address = "../../../drafts/" + filename;
         if (draftService.upload(draftName, draftSchool, draftType, nickname, address, Uid)) {
-            return "success";
+            return "SorF/success";
         }
-        return "fail";
+        return "SorF/fail";
     }
 
     //分页查询所有稿件
     @RequestMapping("findAll")
     public String findAll(Map<String, Object> map, @RequestParam(name = "page",required = true,defaultValue = "1") int page, @RequestParam(name = "size", required = true,defaultValue = "5") int size) {
         map.put("pageInfo", this.draftInfo(page,size));
-        return "back/draft-list";
+        return "back/draftPages/draft-list";
     }
 
     //跳转到修改页面
@@ -92,7 +89,7 @@ public class DraftController {
     public String revise(Map<String, Object> map, @RequestParam(name = "did", required = true, defaultValue = "1") int did) {
         Draft draft = draftService.queryById(did);
         map.put("draft", draft);
-        return "back/draft-revise";
+        return "back/draftPages/draft-revise";
     }
 
     @RequestMapping("update")
@@ -118,7 +115,7 @@ public class DraftController {
         this.draftService.deleteById(did);
         //加载数据重新跳转到视频列表页面
         map.put("pageInfo", this.draftInfo(1, 5));
-        return "back/draft-list";
+        return "back/draftPages/draft-list";
     }
 
     /**
@@ -173,6 +170,6 @@ public class DraftController {
                 is.close();
             }
         }
-        return "front/draft-reading";
+        return "front/draftPages/draft-reading";
     }
 }

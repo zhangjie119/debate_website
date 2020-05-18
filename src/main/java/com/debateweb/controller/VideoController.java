@@ -36,7 +36,7 @@ public class VideoController {
         ModelAndView mv = new ModelAndView();
         List<Video> videos = videoService.queryByKeyword(keyword);
         mv.addObject("videoList", videos);
-        mv.setViewName("front/video-list");
+        mv.setViewName("front/videoPages/video-list");
         return mv;
     }
 
@@ -66,9 +66,9 @@ public class VideoController {
         Integer uploaderId = user.getId();
         String address = "../../../videos/" + filename;
         if (videoService.upload(debateSubject, raceName, pros, cons, starDebater, uploaderId, uploader, address)) {
-            return "success";
+            return "SorF/success";
         }
-        return "fail";
+        return "SorF/fail";
     }
 
     //分页查询所有视频
@@ -76,14 +76,14 @@ public class VideoController {
     public String findAll(Map<String, Object> map, @RequestParam(name = "page", required = true, defaultValue = "1") int page, @RequestParam(name = "size", required = true, defaultValue = "5") int size) {
         //调用videoInfo方法分页得到视频数据
         map.put("pageInfo", this.videoInfo(page, size));
-        return "back/video-list";
+        return "back/videoPages/video-list";
     }
 
     //跳转到播放页面
     @RequestMapping("play")
     public String play(Map<String, Object> map, @RequestParam(name = "vid", required = true) Integer vid) {
         map.put("video", videoService.queryById(vid));
-        return "front/video-play";
+        return "front/videoPages/video-play";
     }
 
     //跳转到修改页面
@@ -92,7 +92,7 @@ public class VideoController {
         Video video = videoService.queryById(vid);
         map.put("video", video);
 
-        return "back/video-revise";
+        return "back/video/video-revise";
     }
 
     //删除相关数据
@@ -104,7 +104,7 @@ public class VideoController {
         //加载数据重新跳转到视频列表页面
         map.put("pageInfo", this.videoInfo(1, 5));
         
-        return "back/video-list";
+        return "back/video/video-list";
     }
 
     @RequestMapping("update")

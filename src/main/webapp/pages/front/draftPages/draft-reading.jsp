@@ -126,83 +126,46 @@ folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/bootstrap-slider/slider.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css">
 </head>
+<script type="text/javascript">
+    function checkUpload() {
+        if (${not empty loginUser}) {
+            window.location.href="../videoPages/video-upload.jsp"
+        } else {
+            alert("请先登录");
+        }
+    }
+</script>
 
 <body class="hold-transition skin-purple sidebar-mini">
+
 <div class="wrapper">
+
     <!-- 页面头部 -->
-    <jsp:include page="${pageContext.request.contextPath}/pages/front-header.jsp" />
+    <jsp:include page="${pageContext.request.contextPath}/pages/front/front-header.jsp" />
     <!-- 页面头部 /-->
-    <div class="content-wrapper" style="margin-left: 0">
-        <!-- 内容头部 -->
-        <section class="content-header">
-            <h1>辩稿管理
-                <small>辩论稿添加</small>
-            </h1>
-            <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
-                <li><a href="#">辩稿添加</a></li>
-            </ol>
-        </section>
-        <!-- 内容头部 /-->
 
-        <!-- 内容区域 -->
-        <!-- @@master = admin-layout.html-->
-        <!-- @@block = content -->
-        <!--基础控件-->
+    <!-- 内容区域 -->
+    <!-- @@master = admin-layout.html-->
+    <!-- @@block = content -->
+    <div class="content-wrapper" style="margin-left: 0px;">
         <section class="content">
-            <div class="box-body">
-                <div class="nav-tabs-custom">
-                    <div class="row data-type">
-                        <form action="${pageContext.request.contextPath}/userCenter/draftUpdate" method="post" enctype="multipart/form-data">
-                            <div class="col-md-12 data text-center" style="height:70px;">
-                                <div class="h3">辩稿信息修改</div>
-                            </div>
-                            <div class="col-md-2 title">辩稿ID</div>
-                            <div class="col-md-4 data">
-                                <input type="text" class="form-control" value="${draft.did}" readonly="readonly" name="did">
-                            </div>
-                            <div class="col-md-2 title">辩题</div>
-                            <div class="col-md-4 data">
-                                <input type="text" class="form-control" value="${draft.draftname}" name="draftName" required oninvalid="setCustomValidity('辩题不能为空')" oninput="setCustomValidity('')">
-                            </div>
-
-                            <div class="col-md-2 title">学校</div>
-                            <div class="col-md-4 data">
-                                <input type="text" class="form-control" value="${draft.draftschool}" name="draftSchool">
-                            </div>
-
-                            <div class="col-md-2 title">辩稿类型</div>
-                            <div class="col-md-4 data">
-                                <select class="form-control select2" name="draftType">
-                                    <option <c:if test="${draft.drafttype eq '一辩稿'}"> selected="selected"</c:if> >一辩稿</option>
-                                    <option <c:if test="${draft.drafttype eq '结辩稿'}"> selected="selected"</c:if> >结辩稿</option>
-                                    <option <c:if test="${draft.drafttype eq '攻辩稿'}"> selected="selected"</c:if> >攻辩稿</option>
-                                    <option <c:if test="${draft.drafttype eq '资料'}"> selected="selected"</c:if> >资料</option>
-                                    <option <c:if test="${draft.drafttype eq '其他'}"> selected="selected"</c:if> >其他</option>
-                                </select>
-                            </div>
-
-                            <div class="col-md-12 data text-center">
-                                <button type="submit" class="btn bg-maroon">修改</button>
-                                <button type="button" class="btn bg-default" onclick="history.back();">返回</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+            <%--<c:forEach items="${draftContent}" var="draft">
+                <p>${draft}</p>
+            </c:forEach>--%>
+            <h1 style="text-align: center"><b>${draftName}</b></h1>
+            <pre style="white-space: pre-wrap; word-wrap: break-word;"><h4>
+                ${draftContent}
+            </h4></pre>
         </section>
     </div>
-</div>
-
-    <!--基础控件/-->
     <!-- 内容区域 /-->
 
+    <!-- 底部导航 -->
+    <jsp:include page="${pageContext.request.contextPath}/pages/front/footer.jsp" />
+    <!-- 底部导航 /-->
 </div>
 
 
-<!-- 底部导航 -->
-<jsp:include page="${pageContext.request.contextPath}/pages/front/footer.jsp" />
-<!-- 底部导航 /-->
 <script src="${pageContext.request.contextPath}/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <script src="${pageContext.request.contextPath}/plugins/jQueryUI/jquery-ui.min.js"></script>
 <script>

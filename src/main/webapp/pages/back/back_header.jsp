@@ -29,7 +29,7 @@
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="${pageContext.request.contextPath}/pages/front/video-search.jsp" class="btn btn-default btn-flat">用户页面</a>
+                                <a href="${pageContext.request.contextPath}/pages/front/videoPages/video-search.jsp" class="btn btn-default btn-flat">用户页面</a>
                             </div>
                             <div class="pull-right">
                                 <a href="${pageContext.request.contextPath}/user/logout" class="btn btn-default btn-flat">注销</a>

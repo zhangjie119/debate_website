@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: 92564
@@ -52,8 +53,8 @@ folder instead of downloading all of them to reduce the load. -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
 
+    <![endif]-->
 
     <!-- jQuery 2.2.3 -->
     <!-- jQuery UI 1.11.4 -->
@@ -120,140 +121,56 @@ folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css">
 </head>
-<script type="text/javascript">
-    function checkUpload() {
-        if (<%= session.getAttribute("user") != null  || session.getAttribute("admin") != null%>) {
-            window.location.href = "${pageContext.request.contextPath}/pages/front/video-upload.jsp"
-        } else {
-            alert("请先登录");
-        }
-    }
-</script>
 
 <body class="hold-transition skin-purple sidebar-mini">
 
 <div class="wrapper">
 
     <!-- 页面头部 -->
-    <jsp:include page="${pageContext.request.contextPath}/pages/front-header.jsp"/>
+    <jsp:include page="${pageContext.request.contextPath}/pages/back/back_header.jsp"/>
     <!-- 页面头部 /-->
+
+    <!-- 侧导航栏 -->
+    <jsp:include page="${pageContext.request.contextPath}/pages/back/aside.jsp"/>
+    <!-- 侧导航栏 -->
 
     <!-- 内容区域 -->
     <!-- @@master = admin-layout.html-->
     <!-- @@block = content -->
 
-    <div class="content-wrapper" style="margin-left: 0;">
-
-
-        <!-- 正文区域 -->
+    <div class="content-wrapper">
         <section class="content">
+            <div class="row" style="margin-left: 15%;">
+                <!-- Form Element sizes -->
+                <form action="${pageContext.request.contextPath}/rule/add" method="post">
+                        <div class="box box-info" style="width: 80%; height: 70%; margin-top: 3%;">
+                            <div class="box-body">
+                                <h4><b>环节名</b></h4>
+                                <input class="form-control input-lg" type="text" name="linkName"
+                                       style="margin-left: 15px; width: 97%;">
 
-
-            <!--tab页-->
-            <div class="nav-tabs-custom" style="height: 600px">
-
-                <!--tab头-->
-                <ul class="nav nav-tabs">
-                    <li class="active">
-                        <a href="#tab-rule" data-toggle="tab">规则</a>
-                    </li>
-                    <li>
-                        <a href="#tab-skill" data-toggle="tab">技巧</a>
-                    </li>
-                    <li>
-                        <a href="#tab-race" data-toggle="tab">赛事</a>
-                    </li>
-                </ul>
-                <!--tab头/-->
-
-                <div class="tab-content">
-                    <!--tab内容-->
-
-                    <!--规则-->
-                    <div class="tab-pane active" id="tab-rule">
-                        <!-- START ACCORDION & CAROUSEL-->
-                        <div class="row" align="center">
-                            <div class="col-md-6" style="margin: 0 25%;">
-                                <div class="box box-solid">
-                                    <div class="box-header with-border">
-                                        <h3>各环节规则</h3>
+                                <h4><b>环节规则</b></h4>
+                                <div class="tab-pane" style="width: 122%; margin-top: 15px;">
+                                    <div class="col-md-10">
+                                        <textarea name="linkRule"
+                                                  style="width: 98%; height: 265px; border: 1px solid #dddddd;"></textarea>
                                     </div>
-                                    <!-- /.box-header -->
-                                    <div class="box-body">
-                                        <div class="box-group" id="accordion">
-                                            <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
-                                            <c:forEach items="${ruleList}" var="rule">
-                                                <div class="panel box box-primary">
-                                                    <div class="box-header with-border">
-                                                        <h4 class="box-title">
-                                                            <a data-toggle="collapse" data-parent="#accordion"
-                                                               href="#collapse${rule.id}">
-                                                                    ${rule.linkname}
-                                                            </a>
-                                                        </h4>
-                                                    </div>
-                                                    <div id="collapse${rule.id}" class="panel-collapse collapse">
-                                                        <div class="box-body">
-                                                                ${rule.linkrule}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </c:forEach>
-                                        </div>
-                                    </div>
-                                    <!-- /.box-body -->
                                 </div>
-                                <!-- /.box -->
                             </div>
+                            <button type="submit" class="btn btn-info" style="margin-left: 3%;width: 8%;">添加</button>
+                            <!-- /.box-body -->
                         </div>
-                        <!-- /.row -->
-                        <!-- END ACCORDION & CAROUSEL-->
-                    </div>
-                    <!--规则/-->
-
-                    <!--技巧-->
-                    <div class="tab-pane" id="tab-skill">
-                    </div>
-                    <!--技巧/-->
-
-                    <!--赛事-->
-                    <div class="tab-pane" id="tab-race">
-                        <c:forEach items="${eventList}" var="event">
-                        <div class="nav-tabs-custom">
-                            <ul class="nav nav-tabs pull-right">
-                                <li><a href="#tab_${event.id}-1" data-toggle="tab">赛制</a></li>
-                                <li class="active"><a href="#tab_${event.id}-2" data-toggle="tab">简介</a></li>
-                                <li class="pull-left header"><i class="fa fa-th"></i> ${event.eventname}</li>
-                            </ul>
-                            <div class="tab-content">
-                                <div class="tab-pane" id="tab_${event.id}-1"  style="text-align: center">
-                                    ${event.eventformat}
-                                </div>
-                                <!-- /.tab-pane -->
-                                <div class="tab-pane active" id="tab_${event.id}-2">
-                                    ${event.eventinfo}
-                                </div>
-                                <!-- /.tab-pane -->
-                            </div>
-                            <!-- /.tab-content -->
-                        </div>
-                        <!-- nav-tabs-custom -->
-                        </c:forEach>
-                    </div>
-                    <!--赛事/-->
-                </div>
-                <!--tab内容/-->
+                        <!-- /.box -->
+                    </form>
             </div>
-            <!--tab页/-->
+            <!-- /.row -->
         </section>
-        <!-- 正文区域 /-->
-
     </div>
     <!-- @@close -->
     <!-- 内容区域 /-->
 
     <!-- 底部导航 -->
-    <jsp:include page="${pageContext.request.contextPath}/pages/front/footer.jsp"/>
+    <jsp:include page="${pageContext.request.contextPath}/pages/back/footer.jsp"/>
     <!-- 底部导航 /-->
 </div>
 

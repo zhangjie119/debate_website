@@ -42,7 +42,7 @@ public class CommentController {
     public String findAll(Map<String, Object> map) {
         List<Comment> comments = commentService.queryAll();
         map.put("comments", comments);
-        return "back/comment-list";
+        return "back/forumPages/comment-list";
     }
 
     //根据帖子id查询该帖子的回复
@@ -56,7 +56,7 @@ public class CommentController {
         map.put("pageInfo", this.commentInfo(fid,page,size));
         //加入主贴id以供翻页使用
         map.put("articleId", fid);
-        return "back/comment-list";
+        return "back/forumPages/comment-list";
     }
 
     @RequestMapping("delete")
@@ -74,7 +74,7 @@ public class CommentController {
         //加入主贴id以供翻页使用
         map.put("articleId", fid);
 
-        return "back/comment-list";
+        return "back/forumPages/comment-list";
     }
 
     //根据帖子id获取帖子列表并加入分页bin

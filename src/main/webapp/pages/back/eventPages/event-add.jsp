@@ -120,11 +120,11 @@ folder instead of downloading all of them to reduce the load. -->
 <div class="wrapper">
 
     <!-- 页面头部 -->
-    <jsp:include page="${pageContext.request.contextPath}/pages/back_header.jsp"/>
+    <jsp:include page="${pageContext.request.contextPath}/pages/back/back_header.jsp"/>
     <!-- 页面头部 /-->
 
     <!-- 侧导航栏 -->
-    <jsp:include page="${pageContext.request.contextPath}/pages/aside.jsp"/>
+    <jsp:include page="${pageContext.request.contextPath}/pages/back/aside.jsp"/>
     <!-- 侧导航栏 -->
 
     <!-- 内容区域 -->
@@ -135,29 +135,27 @@ folder instead of downloading all of them to reduce the load. -->
         <section class="content">
             <div class="row" style="margin-left: 15%;">
                 <!-- Form Element sizes -->
-                <form action="${pageContext.request.contextPath}/event/update" method="post">
+                <form action="${pageContext.request.contextPath}/event/add" method="post">
                         <div class="box box-info" style="width: 80%; height: 75%; margin-top: 3%;">
                             <div class="box-body">
                                 <h4><b>赛事名称</b></h4>
                                 <input class="form-control input-lg" type="text" name="eventName"
-                                       value="${event.eventname}" style="margin-left: 15px; width: 97%;">
+                                       style="margin-left: 15px; width: 97%;">
 
                                 <h4><b>赛事简介</b></h4>
                                 <div class="tab-pane" style="width: 122%; height: 27%; margin-top: 15px;">
                                     <div class="col-md-10">
-                                        <textarea name="eventInfo" style="width: 98%; height: 150px; border: 1px solid #dddddd;">${event.eventinfo}</textarea>
+                                        <textarea name="eventInfo" style="width: 98%; height: 150px; border: 1px solid #dddddd;"></textarea>
                                     </div>
                                 </div>
                                 <h4><b>赛制</b></h4>
                                 <div class="tab-pane" style="width: 122%; margin-top: 15px;">
                                     <div class="col-md-10">
-                                        <textarea name="eventFormat" style="width: 98%; height: 150px; border: 1px solid #dddddd;">${event.eventinfo}</textarea>
+                                        <textarea name="eventFormat" style="width: 98%; height: 150px; border: 1px solid #dddddd;"></textarea>
                                     </div>
                                 </div>
-                                <%--不显示，作传输赛事id之用--%>
-                                <input type="hidden" name="eid" value="${event.id}">
                             </div>
-                            <button type="submit" class="btn btn-info" style="margin-left: 3%;width: 8%;">保存</button>
+                            <button type="submit" class="btn btn-info" style="margin-left: 3%;width: 8%;">添加</button>
                             <!-- /.box-body -->
                         </div>
                         <!-- /.box -->
@@ -170,7 +168,7 @@ folder instead of downloading all of them to reduce the load. -->
     <!-- 内容区域 /-->
 
     <!-- 底部导航 -->
-    <jsp:include page="${pageContext.request.contextPath}/pages/footer.jsp"/>
+    <jsp:include page="${pageContext.request.contextPath}/pages/back/footer.jsp"/>
     <!-- 底部导航 /-->
 </div>
 

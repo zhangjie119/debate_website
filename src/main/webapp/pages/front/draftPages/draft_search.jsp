@@ -14,13 +14,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 
-
-
     <title>数据 - 三狗一男</title>
     <meta name="description" content="三狗一男">
     <meta name="keywords" content="三狗一男">
-
-
 
 
     <!-- Tell the browser to be responsive to screen width -->
@@ -56,12 +52,6 @@ folder instead of downloading all of them to reduce the load. -->
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
-
-
-
-
-
 
 
     <!-- jQuery 2.2.3 -->
@@ -125,80 +115,52 @@ folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/bootstrap-slider/slider.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css">
 </head>
+<script type="text/javascript">
+    function checkUpload() {
+        if (${not empty loginUser}) {
+            window.location.href = "draft-upload.jsp"
+        } else {
+            alert("请先登录");
+        }
+    }
+</script>
 
 <body class="hold-transition skin-purple sidebar-mini">
+
 <div class="wrapper">
-<!-- 页面头部 -->
-<jsp:include page="${pageContext.request.contextPath}/pages/front-header.jsp" />
-<!-- 页面头部 /-->
+
+    <!-- 页面头部 -->
+    <jsp:include page="${pageContext.request.contextPath}/pages/front/front-header.jsp" />
+    <!-- 页面头部 /-->
+
+    <!-- 内容区域 -->
+    <!-- @@master = admin-layout.html-->
+    <!-- @@block = content -->
     <div class="content-wrapper" style="margin-left: 0px;">
-
-        <!-- 内容区域 -->
-        <!-- @@master = admin-layout.html-->
-        <!-- @@block = content -->
-        <!--基础控件-->
         <section class="content">
-            <div class="box-body">
-                <div class="nav-tabs-custom">
-                    <div class="row data-type">
-                    <form action=" ${pageContext.request.contextPath}/video/upload"
-                          method="post" enctype="multipart/form-data">
-                        <div class="col-md-12 data text-center" style="height:70px;">
-                            <div class="h3">辩论视频上传</div>
-                        </div>
-                        <div class="col-md-2 title">辩题</div>
-                        <div class="col-md-4 data">
-                            <input type="text" class="form-control" placeholder="辩题" name="debateSubject" required oninvalid="setCustomValidity('辩题不能为空')"
-                                   oninput="setCustomValidity('')">
-                        </div>
-
-                        <div class="col-md-2 title">赛事名称</div>
-                        <div class="col-md-4 data">
-                            <input type="text" class="form-control" placeholder="赛事名称" name="raceName" required oninvalid="setCustomValidity('赛事名称不能为空')"
-                                   oninput="setCustomValidity('')">
-                        </div>
-
-                        <div class="col-md-2 title">正方</div>
-                        <div class="col-md-4 data">
-                            <input type="text" class="form-control" name="pros" placeholder="正方" required oninvalid="setCustomValidity('正方不能为空')"
-                                   oninput="setCustomValidity('')">
-                        </div>
-                        <div class="col-md-2 title">反方</div>
-                        <div class="col-md-4 data">
-                            <input type="text" class="form-control" name="cons" placeholder="反方" required oninvalid="setCustomValidity('反方不能为空')"
-                                   oninput="setCustomValidity('')">
-                        </div>
-                        <div class="col-md-2 title">明星辩手</div>
-                        <div class="col-md-4 data">
-                            <input type="text" class="form-control" name="starDebater" placeholder="明星辩手">
-                        </div>
-                        <div class="col-md-2 title">视频</div>
-                        <div class="col-md-4 data">
-                            <a href="javascript:;" class="a-upload">
-                                <input type="file" name="video" id="video" required oninvalid="setCustomValidity('请上传稿件')" oninput="setCustomValidity('')">点击这里上传稿件
-                            </a>
-                        </div>
-                        <div class="col-md-12 data text-center">
-                            <button type="submit" class="btn bg-maroon" >保存</button>
-                            <button type="button" class="btn bg-default" onclick="history.back(-1);">返回</button>
-                        </div>
-                    </form>
-                </div>
+            <div style=" margin-top: 8%;">
+                <h1 style="text-align: center;">辩论稿搜索</h1></br></br>
+                <form action="${pageContext.request.contextPath}/draft/search" style="width:45%;height:50%; margin-left: 30%;"
+                      method="post">
+                    <div class="input-group margin">
+                        <input type="text" class="form-control" name="keyword" id="keyword" style="height: 50px;">
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-info btn-flat" style="padding:15px 20px;" name="search" id="search">搜索</button>
+                            <button onclick="checkUpload(); return false;" class="btn btn-info btn-flat" name="upload" id="upload" style="padding:15px 20px;">上传</button>
+                        </span>
+                    </div>
+                </form>
             </div>
-    </div>
         </section>
+    </div>
+    <!-- 内容区域 /-->
+
+    <!-- 底部导航 -->
+    <jsp:include page="${pageContext.request.contextPath}/pages/front/footer.jsp" />
+    <!-- 底部导航 /-->
 </div>
-</div>
-
-<!--基础控件/-->
-<!-- 内容区域 /-->
-
-</div>
 
 
-<!-- 底部导航 -->
-<jsp:include page="${pageContext.request.contextPath}/pages/front/footer.jsp" />
-<!-- 底部导航 /-->
 <script src="${pageContext.request.contextPath}/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <script src="${pageContext.request.contextPath}/plugins/jQueryUI/jquery-ui.min.js"></script>
 <script>

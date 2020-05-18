@@ -14,10 +14,10 @@
         <ul>
             <div  class="nav navbar-nav">
             <li>
-                <a href="${pageContext.request.contextPath}/pages/front/video-search.jsp">辩论赛视频</a>
+                <a href="${pageContext.request.contextPath}/pages/front/videoPages/video-search.jsp">辩论赛视频</a>
             </li>
             <li>
-                <a href="${pageContext.request.contextPath}/pages/front/draft_search.jsp">辩论稿搜索</a>
+                <a href="${pageContext.request.contextPath}/pages/front/draftPages/draft_search.jsp">辩论稿搜索</a>
             </li>
             <li>
                 <a href="${pageContext.request.contextPath}/RandS/findAll">辩论规则技巧</a>

@@ -126,46 +126,79 @@ folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/bootstrap-slider/slider.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css">
 </head>
-<script type="text/javascript">
-    function checkUpload() {
-        if (${not empty loginUser}) {
-            window.location.href="${pageContext.request.contextPath}/pages/front/video-upload.jsp"
-        } else {
-            alert("请先登录");
-        }
-    }
-</script>
 
 <body class="hold-transition skin-purple sidebar-mini">
 
 <div class="wrapper">
-
     <!-- 页面头部 -->
-    <jsp:include page="${pageContext.request.contextPath}/pages/front-header.jsp" />
+    <jsp:include page="${pageContext.request.contextPath}/pages/front/front-header.jsp" />
     <!-- 页面头部 /-->
 
     <!-- 内容区域 -->
-    <!-- @@master = admin-layout.html-->
     <!-- @@block = content -->
-    <div class="content-wrapper" style="margin-left: 0px;">
+    <div class="content-wrapper" style="margin-left: 0px">
+
+        <!--基础控件-->
         <section class="content">
-            <%--<c:forEach items="${draftContent}" var="draft">
-                <p>${draft}</p>
-            </c:forEach>--%>
-            <h1 style="text-align: center"><b>${draftName}</b></h1>
-            <pre style="white-space: pre-wrap; word-wrap: break-word;"><h4>
-                ${draftContent}
-            </h4></pre>
+            <div class="box-body">
+                <div class="nav-tabs-custom">
+                    <div class="row data-type">
+                        <form action=" ${pageContext.request.contextPath}/userCenter/videoUpdate"
+                              method="post">
+                            <div class="col-md-12 data text-center" style="height:70px;">
+                                <div class="h3">辩论视频修改</div>
+                            </div>
+                            <div class="col-md-2 title">视频ID</div>
+                            <div class="col-md-4 data">
+                                <input type="text" class="form-control" value="${video.vid}" readonly="readonly" name="vid">
+                            </div>
+                            <div class="col-md-2 title">辩题</div>
+                            <div class="col-md-4 data">
+                                <input type="text" class="form-control" value="${video.debatesubject}" name="debateSubject" required oninvalid="setCustomValidity('辩题不能为空')"
+                                       oninput="setCustomValidity('')">
+                            </div>
+
+                            <div class="col-md-2 title">赛事名称</div>
+                            <div class="col-md-4 data">
+                                <input type="text" class="form-control" value="${video.racename}" name="raceName" required oninvalid="setCustomValidity('赛事名称不能为空')"
+                                       oninput="setCustomValidity('')">
+                            </div>
+
+                            <div class="col-md-2 title">正方</div>
+                            <div class="col-md-4 data">
+                                <input type="text" class="form-control" name="pros" value="${video.pros}" required oninvalid="setCustomValidity('正方不能为空')"
+                                       oninput="setCustomValidity('')">
+                            </div>
+                            <div class="col-md-2 title">反方</div>
+                            <div class="col-md-4 data">
+                                <input type="text" class="form-control" name="cons" value="${video.cons}" required oninvalid="setCustomValidity('反方不能为空')"
+                                       oninput="setCustomValidity('')">
+                            </div>
+                            <div class="col-md-2 title">明星辩手</div>
+                            <div class="col-md-4 data">
+                                <input type="text" class="form-control" name="starDebater" value="${video.stardebater}">
+                            </div>
+                            <div class="col-md-12 data text-center">
+                                <button type="submit" class="btn bg-maroon" >修改</button>
+                                <button type="button" class="btn bg-default" onclick="history.back();">返回</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </section>
     </div>
-    <!-- 内容区域 /-->
+</div>
 
-    <!-- 底部导航 -->
-    <jsp:include page="${pageContext.request.contextPath}/pages/front/footer.jsp" />
-    <!-- 底部导航 /-->
+<!--基础控件/-->
+<!-- 内容区域 /-->
+
 </div>
 
 
+<!-- 底部导航 -->
+<jsp:include page="${pageContext.request.contextPath}/pages/front/footer.jsp" />
+<!-- 底部导航 /-->
 <script src="${pageContext.request.contextPath}/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <script src="${pageContext.request.contextPath}/plugins/jQueryUI/jquery-ui.min.js"></script>
 <script>

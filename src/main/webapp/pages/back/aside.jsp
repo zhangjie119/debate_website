@@ -30,7 +30,7 @@
                 <ul class="treeview-menu">
                     <li id="vedio-list"><a href="${pageContext.request.contextPath}/video/findAll?page=1&size=1"> <i class="fa fa-circle-o"></i> 视频列表
                     </a></li>
-                    <li id="vedio-add"><a href="${pageContext.request.contextPath}/pages/back/video-add.jsp"> <i class="fa fa-circle-o"></i> 添加视频
+                    <li id="vedio-add"><a href="${pageContext.request.contextPath}/pages/back/videoPages/video-add.jsp"> <i class="fa fa-circle-o"></i> 添加视频
                     </a></li>
                 </ul>
             </li>
@@ -42,7 +42,7 @@
 
                     <li id="draft-list"><a href="${pageContext.request.contextPath}/draft/findAll?page=1&size=1"> <i class="fa fa-circle-o"></i> 稿件列表
                     </a></li>
-                    <li id="draft-add"><a href="${pageContext.request.contextPath}/pages/back/draft-add.jsp"> <i class="fa fa-circle-o"></i> 稿件添加
+                    <li id="draft-add"><a href="${pageContext.request.contextPath}/pages/back/draftPages/draft-add.jsp"> <i class="fa fa-circle-o"></i> 稿件添加
                     </a></li>
                 </ul>
             </li>
@@ -57,10 +57,10 @@
                     <li id="event-list"><a href="${pageContext.request.contextPath}/event/findAll">
                         <i class="fa fa-circle-o"></i> 赛事列表
                     </a></li>
-                    <li id="rule-add"><a href="${pageContext.request.contextPath}/pages/back/rule-add.jsp">
+                    <li id="rule-add"><a href="${pageContext.request.contextPath}/pages/back/rulePages/rule-add.jsp">
                         <i class="fa fa-circle-o"></i> 添加规则
                     </a></li>
-                    <li id="event-add"><a href="${pageContext.request.contextPath}/pages/back/event-add.jsp">
+                    <li id="event-add"><a href="${pageContext.request.contextPath}/pages/back/eventPages/event-add.jsp">
                         <i class="fa fa-circle-o"></i> 添加赛事
                     </a></li>
                 </ul>

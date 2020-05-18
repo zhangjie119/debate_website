@@ -10,7 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -36,7 +35,7 @@ public class UserController {
      */
     @RequestMapping("/index")
     public String index(HttpServletRequest request) {
-        return "main";
+        return "front/main";
     }
 
     /**
@@ -49,7 +48,7 @@ public class UserController {
     public ModelAndView findAllUser(@RequestParam(name = "page", required = true, defaultValue = "1") int page, @RequestParam(name = "size", required = true, defaultValue = "5") int size) throws Exception {
         ModelAndView mv = new ModelAndView();
         mv.addObject("pageInfo", this.userinfo(page,size));
-        mv.setViewName("back/user-list");
+        mv.setViewName("back/userPages/user-list");
         return mv;
     }
 
@@ -60,10 +59,10 @@ public class UserController {
             User user = userService.queryByUsername(username);
             session.setAttribute("loginUser", user);
             //修改数据的时候要重定向
-            return "front/video-search";
+            return "front/videoPages/video-search";
         } else {
             //转发才能接收到request
-            return "failer";
+            return "SorF/failer";
         }
     }
 
@@ -71,18 +70,18 @@ public class UserController {
     public String register(@RequestParam String username, @RequestParam String nickname, @RequestParam String password1, @RequestParam String email) {
         if (this.userService.checkUsername(username)) {
             System.err.println("用户注册失败,该用户名已存在");
-            return "failer";
+            return "SorF/failer";
         }
         if (this.userService.register(username, nickname, password1, email)) {
-            return "register-success";
+            return "SorF/register-success";
         }
-        return "failer";
+        return "SorF/failer";
     }
 
     @RequestMapping("logout")
     public String logout(HttpSession session) {
         session.setAttribute("loginUser", null);
-        return "front/video-search";
+        return "front/videoPages/video-search";
     }
 
     //后台详细信息
@@ -91,7 +90,7 @@ public class UserController {
                               @RequestParam(name = "uid") Integer uid) {
         User user = userService.queryById(uid);
         map.put("user", user);
-        return "back/user-information";
+        return "back/userPages/user-information";
     }
 
     //切换到修改页面
@@ -101,7 +100,7 @@ public class UserController {
         User user = userService.queryById(uid);
         map.put("user", user);
 
-        return "back/user-revise";
+        return "back/userPages/user-revise";
     }
 
     //修改用户并跳转到该用户的用户详情页面
@@ -122,7 +121,7 @@ public class UserController {
         this.userService.update(user);
         //重新获取该用户并加入map
         map.put("user", this.userService.queryById(uid));
-        return "back/user-information";
+        return "back/userPages/user-information";
     }
 
     //注销（删除）用户
@@ -134,7 +133,7 @@ public class UserController {
         this.userService.deleteById(uid);
         map.put("pageInfo", this.userinfo(page,size));
 
-        return "back/user-list";
+        return "back/userPages/user-list";
     }
 
     //查询所有用户并加分页bean

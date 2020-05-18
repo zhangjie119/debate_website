@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html>
 
@@ -9,9 +8,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 
+
+
     <title>数据 - 三狗一男</title>
     <meta name="description" content="三狗一男">
     <meta name="keywords" content="三狗一男">
+
+
 
 
     <!-- Tell the browser to be responsive to screen width -->
@@ -46,8 +49,14 @@ folder instead of downloading all of them to reduce the load. -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-
     <![endif]-->
+
+
+
+
+
+
+
 
     <!-- jQuery 2.2.3 -->
     <!-- jQuery UI 1.11.4 -->
@@ -95,24 +104,20 @@ folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/datepicker/datepicker3.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/daterangepicker/daterangepicker.css">
-    <link rel="stylesheet"
-          href="${pageContext.request.contextPath}/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/datatables/dataTables.bootstrap.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/treeTable/jquery.treetable.css">
-    <link rel="stylesheet"
-          href="${pageContext.request.contextPath}/plugins/treeTable/jquery.treetable.theme.default.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/treeTable/jquery.treetable.theme.default.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/select2/select2.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/colorpicker/bootstrap-colorpicker.min.css">
-    <link rel="stylesheet"
-          href="${pageContext.request.contextPath}/plugins/bootstrap-markdown/css/bootstrap-markdown.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/bootstrap-markdown/css/bootstrap-markdown.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/adminLTE/css/AdminLTE.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/adminLTE/css/skins/_all-skins.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/ionslider/ion.rangeSlider.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/ionslider/ion.rangeSlider.skinNice.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/bootstrap-slider/slider.css">
-    <link rel="stylesheet"
-          href="${pageContext.request.contextPath}/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css">
 </head>
 
 <body class="hold-transition skin-purple sidebar-mini">
@@ -120,55 +125,26 @@ folder instead of downloading all of them to reduce the load. -->
 <div class="wrapper">
 
     <!-- 页面头部 -->
-    <jsp:include page="${pageContext.request.contextPath}/pages/back_header.jsp"/>
+    <jsp:include page="${pageContext.request.contextPath}/pages/front/front-header.jsp" />
     <!-- 页面头部 /-->
-
-    <!-- 侧导航栏 -->
-    <jsp:include page="${pageContext.request.contextPath}/pages/aside.jsp"/>
-    <!-- 侧导航栏 -->
 
     <!-- 内容区域 -->
     <!-- @@master = admin-layout.html-->
     <!-- @@block = content -->
-
-    <div class="content-wrapper">
-        <section class="content">
-            <div class="row" style="margin-left: 15%;">
-                <!-- Form Element sizes -->
-                <form action="${pageContext.request.contextPath}/event/add" method="post">
-                        <div class="box box-info" style="width: 80%; height: 75%; margin-top: 3%;">
-                            <div class="box-body">
-                                <h4><b>赛事名称</b></h4>
-                                <input class="form-control input-lg" type="text" name="eventName"
-                                       style="margin-left: 15px; width: 97%;">
-
-                                <h4><b>赛事简介</b></h4>
-                                <div class="tab-pane" style="width: 122%; height: 27%; margin-top: 15px;">
-                                    <div class="col-md-10">
-                                        <textarea name="eventInfo" style="width: 98%; height: 150px; border: 1px solid #dddddd;"></textarea>
-                                    </div>
-                                </div>
-                                <h4><b>赛制</b></h4>
-                                <div class="tab-pane" style="width: 122%; margin-top: 15px;">
-                                    <div class="col-md-10">
-                                        <textarea name="eventFormat" style="width: 98%; height: 150px; border: 1px solid #dddddd;"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-info" style="margin-left: 3%;width: 8%;">添加</button>
-                            <!-- /.box-body -->
-                        </div>
-                        <!-- /.box -->
-                    </form>
-            </div>
-            <!-- /.row -->
+    <div class="content-wrapper" style="margin-left: 0px">
+        <!-- 正文区域 -->
+        <section class="content" style=" text-align: center;">
+            <video src="${video.address}" controls="controls" style="width: auto; height: 74%;"></video><br>
+            <h4><b>${video.debatesubject}</b></h4>
+            <b>正方:${video.pros}</b>&nbsp;&nbsp;
+            <b>反方:${video.cons}</b>
         </section>
+        <!-- 正文区域 /-->
     </div>
-    <!-- @@close -->
     <!-- 内容区域 /-->
 
     <!-- 底部导航 -->
-    <jsp:include page="${pageContext.request.contextPath}/pages/footer.jsp"/>
+    <jsp:include page="${pageContext.request.contextPath}/pages/front/footer.jsp" />
     <!-- 底部导航 /-->
 </div>
 
@@ -219,7 +195,7 @@ folder instead of downloading all of them to reduce the load. -->
 <script src="${pageContext.request.contextPath}/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>
 <script src="${pageContext.request.contextPath}/plugins/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         // 选择框
         $(".select2").select2();
 
@@ -239,7 +215,7 @@ folder instead of downloading all of them to reduce the load. -->
     }
 
 
-    $(document).ready(function () {
+    $(document).ready(function() {
 
         // 激活导航位置
         setSidebarActive("admin-datalist");
@@ -250,7 +226,7 @@ folder instead of downloading all of them to reduce the load. -->
             increaseArea: '20%'
         });
         // 全选操作
-        $("#selall").click(function () {
+        $("#selall").click(function() {
             var clicks = $(this).is(':checked');
             if (!clicks) {
                 $("#dataList td input[type='checkbox']").iCheck("uncheck");

@@ -36,7 +36,7 @@ public class RandSController {
 
         map.put("eventList", eventList);
         map.put("ruleList", ruleList);
-        return "front/ruleAndSkills";
+        return "front/rulleAndSkillPages/ruleAndSkills";
     }
 
 }

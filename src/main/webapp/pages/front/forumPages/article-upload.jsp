@@ -127,41 +127,59 @@ folder instead of downloading all of them to reduce the load. -->
 <div class="wrapper">
 
     <!-- 页面头部 -->
-    <jsp:include page="${pageContext.request.contextPath}/pages/back_header.jsp"/>
+    <jsp:include page="${pageContext.request.contextPath}/pages/front/front-header.jsp"/>
     <!-- 页面头部 /-->
 
-    <!-- 侧导航栏 -->
-    <jsp:include page="${pageContext.request.contextPath}/pages/aside.jsp"/>
-    <!-- 侧导航栏 -->
-
+    <!-- 页面头部 /-->
     <!-- 内容区域 -->
     <!-- @@master = admin-layout.html-->
     <!-- @@block = content -->
 
-    <div class="content-wrapper">
+    <div class="content-wrapper" style="margin-left: 0px;">
         <section class="content">
-            <div class="row" style="margin-left: 15%;">
-                <!-- Form Element sizes -->
-                <form action="${pageContext.request.contextPath}/rule/add" method="post">
-                        <div class="box box-info" style="width: 80%; height: 70%; margin-top: 3%;">
+            <div class="row">
+                <div style="width: 70%; margin-left: 15%; margin-top: 1%;">
+                    <!-- Form Element sizes -->
+                    <form action="${pageContext.request.contextPath}/article/upload" method="post">
+                        <div class="box box-info">
                             <div class="box-body">
-                                <h4><b>环节名</b></h4>
-                                <input class="form-control input-lg" type="text" name="linkName"
+                                <h4><b>标题</b></h4>
+                                <input class="form-control input-lg" type="text" name="title"
                                        style="margin-left: 15px; width: 97%;">
+                                <h4><b>板块</b></h4>
+                                <div class="form-group" style="margin-left: 15px; width: 96%;">
+                                    <select class="form-control select2" name="plate">
+                                        <c:forEach items="${plates}" var="plate">
+                                            <option <c:if test="${plate.bid} == 1">selected="selected"</c:if>>${plate.bname}</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
 
-                                <h4><b>环节规则</b></h4>
-                                <div class="tab-pane" style="width: 122%; margin-top: 15px;">
-                                    <div class="col-md-10">
-                                        <textarea name="linkRule"
-                                                  style="width: 98%; height: 265px; border: 1px solid #dddddd;"></textarea>
+                                <h4><b>内容</b></h4>
+                                <div class="tab-pane" id="tab-editer" style="width: 122%; margin-top: 15px;">
+                                    <div class="col-md-10 data editer">
+                                        <textarea class="textarea" name="fcontent"
+                                                  style="width: 98%; height: 265px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                                     </div>
                                 </div>
+
+                                <div style="margin-left: 1.5%;">
+                                    <a href="javascript:;" class="a-upload">
+                                        <input type="file" name="photo">点击上传图片</input>
+                                    </a>
+                                    <br><br>
+                                </div>
+
+                                <button type="submit" class="btn btn-block btn-info"
+                                        style="margin-left: 1.5%;width: 8%;">发帖
+                                </button>
+
                             </div>
-                            <button type="submit" class="btn btn-info" style="margin-left: 3%;width: 8%;">添加</button>
                             <!-- /.box-body -->
                         </div>
                         <!-- /.box -->
                     </form>
+                </div>
             </div>
             <!-- /.row -->
         </section>
@@ -170,7 +188,7 @@ folder instead of downloading all of them to reduce the load. -->
     <!-- 内容区域 /-->
 
     <!-- 底部导航 -->
-    <jsp:include page="${pageContext.request.contextPath}/pages/footer.jsp"/>
+    <jsp:include page="${pageContext.request.contextPath}/pages/front/footer.jsp"/>
     <!-- 底部导航 /-->
 </div>
 
@@ -263,6 +281,7 @@ folder instead of downloading all of them to reduce the load. -->
         });
     });
 </script>
+<script src="${pageContext.request.contextPath}/js/images.js"></script>
 </body>
 
 </html>

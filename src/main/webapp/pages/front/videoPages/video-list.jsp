@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 92564
@@ -14,9 +15,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 
+
+
     <title>数据 - 三狗一男</title>
     <meta name="description" content="三狗一男">
     <meta name="keywords" content="三狗一男">
+
+
 
 
     <!-- Tell the browser to be responsive to screen width -->
@@ -52,6 +57,12 @@ folder instead of downloading all of them to reduce the load. -->
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+
+
+
+
+
 
 
     <!-- jQuery 2.2.3 -->
@@ -115,43 +126,72 @@ folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/bootstrap-slider/slider.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css">
 </head>
-<script type="text/javascript">
-    function checkUpload() {
-        if (${not empty loginUser}) {
-            window.location.href = "${pageContext.request.contextPath}/pages/front/draft-upload.jsp"
-        } else {
-            alert("请先登录");
-        }
-    }
-</script>
 
 <body class="hold-transition skin-purple sidebar-mini">
 
 <div class="wrapper">
 
     <!-- 页面头部 -->
-    <jsp:include page="${pageContext.request.contextPath}/pages/front-header.jsp" />
+    <jsp:include page="${pageContext.request.contextPath}/pages/front/front-header.jsp" />
     <!-- 页面头部 /-->
 
     <!-- 内容区域 -->
     <!-- @@master = admin-layout.html-->
     <!-- @@block = content -->
-    <div class="content-wrapper" style="margin-left: 0px;">
+    <div class="content-wrapper" style="margin-left: 0px">
+
+        <!-- 内容头部 -->
+        <section class="content-header">
+            <h1>
+                辩论视频
+            </h1>
+        </section>
+        <!-- 内容头部 /-->
+
+        <!-- 正文区域 -->
         <section class="content">
-            <div style=" margin-top: 8%;">
-                <h1 style="text-align: center;">辩论稿搜索</h1></br></br>
-                <form action="${pageContext.request.contextPath}/draft/search?page=1&size=3" style="width:45%;height:50%; margin-left: 30%;"
-                      method="post">
-                    <div class="input-group margin">
-                        <input type="text" class="form-control" name="keyword" id="keyword" style="height: 50px;">
-                        <span class="input-group-btn">
-                            <button type="submit" class="btn btn-info btn-flat" style="padding:15px 20px;" name="search" id="search">搜索</button>
-                            <button onclick="checkUpload(); return false;" class="btn btn-info btn-flat" name="upload" id="upload" style="padding:15px 20px;">上传</button>
-                        </span>
+            <!-- .box-body -->
+            <div class="box box-primary">
+                <div class="box-body">
+                    <!-- 数据表格 -->
+                    <div class="table-box">
+                        <!--数据列表-->
+                        <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
+                            <thead>
+                            <tr>
+                                <th>辩题</th>
+                                <th>赛事</th>
+                                <th>正方</th>
+                                <th>反方</th>
+                                <th>明星辩手</th>
+                                <th>上传者</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach items="${videoList}" var="video">
+                                <tr>
+                                    <td><a href="${video.address}">${video.debatesubject}</a></td>
+                                    <td>${video.racename}</td>
+                                    <td>${video.pros}</td>
+                                    <td>${video.cons}</td>
+                                    <td>${video.stardebater}</td>
+                                    <td>${video.uploader}</td>
+                                    <td class="text-center">
+                                        <button type="button" class="btn bg-olive btn-xs" onclick="window.open('${pageContext.request.contextPath}/video/play?vid=${video.vid}')">播放</button>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                        <!--数据列表/-->
                     </div>
-                </form>
+                    <!-- 数据表格 /-->
+                </div>
+                <!-- /.box-body -->
             </div>
         </section>
+        <!-- 正文区域 /-->
+
     </div>
     <!-- 内容区域 /-->
 
