@@ -77,6 +77,15 @@ public class DraftController {
         return "SorF/fail";
     }
 
+    //无法正常运行，重定向稿件路径错误
+/*    @RequestMapping("download")
+    public String download(@RequestParam(name = "did", required = true) Integer did) {
+        Draft draft = this.draftService.queryById(did);
+        draft.setDowntimes(draft.getDowntimes() + 1);
+        this.draftService.update(draft);
+        return "redirect:"+draft.getAddress();
+    }*/
+
     //分页查询所有稿件
     @RequestMapping("findAll")
     public String findAll(Map<String, Object> map, @RequestParam(name = "page",required = true,defaultValue = "1") int page, @RequestParam(name = "size", required = true,defaultValue = "5") int size) {

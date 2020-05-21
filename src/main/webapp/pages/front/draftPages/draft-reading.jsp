@@ -149,9 +149,6 @@ folder instead of downloading all of them to reduce the load. -->
     <!-- @@block = content -->
     <div class="content-wrapper" style="margin-left: 0px;">
         <section class="content">
-            <%--<c:forEach items="${draftContent}" var="draft">
-                <p>${draft}</p>
-            </c:forEach>--%>
             <h1 style="text-align: center"><b>${draftName}</b></h1>
             <pre style="white-space: pre-wrap; word-wrap: break-word;"><h4>
                 ${draftContent}

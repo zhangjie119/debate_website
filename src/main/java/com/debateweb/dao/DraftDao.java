@@ -56,7 +56,7 @@ public interface DraftDao {
      * @return 影响行数
      */
     @Update("update draft set " +
-            "draftName = #{draftname}, draftSchool = #{draftschool}, draftType = #{drafttype}" +
+            "draftName = #{draftname}, draftSchool = #{draftschool}, draftType = #{drafttype}, downTimes = #{downtimes} " +
             "where dId = #{did}")
     int update(Draft draft);
 

@@ -129,10 +129,10 @@ folder instead of downloading all of them to reduce the load. -->
 <body class="hold-transition skin-purple sidebar-mini">
 <div class="wrapper">
     <!-- 页面头部 -->
-    <jsp:include page="${pageContext.request.contextPath}/pages/back_header.jsp" />
+    <jsp:include page="${pageContext.request.contextPath}/pages/back/back_header.jsp" />
     <!-- 页面头部 /-->
     <!--侧导航栏-->
-    <jsp:include page="${pageContext.request.contextPath}/pages/aside.jsp"/>
+    <jsp:include page="${pageContext.request.contextPath}/pages/back/aside.jsp"/>
     <!--侧导航栏-->
     <div class="content-wrapper">
         <!-- 内容头部 -->
