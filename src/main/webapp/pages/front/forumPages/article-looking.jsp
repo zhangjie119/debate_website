@@ -152,7 +152,6 @@ folder instead of downloading all of them to reduce the load. -->
         <section class="content">
             <div class="row">
                 <div style="width: 140%; margin-left: 15%;">
-                    <c:forEach items="${articles}" var="article">
                     <div class="col-md-6">
                         <div class="box box-solid">
                             <div class="box-header with-border">
@@ -236,7 +235,6 @@ folder instead of downloading all of them to reduce the load. -->
                             </div>
                         </div>
                     </div>
-                    </c:forEach>
                 </div>
                 <!-- /.row -->
             </div>

@@ -35,14 +35,6 @@ public class ArticleController {
     @Resource
     private CommentService commentService;
 
-    /**
-     * 查询发帖数量和信息
-     */
-    public void getArticle(Map<Object, Object> map) {
-        List<Article> lisetArticle = articleService.queryAll();
-        map.put("listArticle", lisetArticle);
-    }
-
     @PostMapping("/upload")
     public String articleUpload(HttpServletRequest request, MultipartFile photo, @RequestParam String title, @RequestParam String plate, @RequestParam String fcontent) throws Exception {
         System.out.println("正在进行springMVC文件上传");
@@ -104,7 +96,7 @@ public class ArticleController {
     //审核通过帖子
     @RequestMapping("pass")
     public String pass(Map<String, Object> map, @RequestParam(name = "fid", required = true) int fid) {
-        Article article = articleService.queryById(fid).get(0);
+        Article article = articleService.queryById(fid);
         article.setStatus(1);
         this.articleService.update(article);
         map.put("pageInfo", this.articleInfo(1, 5));
@@ -114,7 +106,7 @@ public class ArticleController {
     //审核不通过帖子
     @RequestMapping("refuse")
     public String refuse(Map<String, Object> map, @RequestParam(name = "fid", required = true) int fid) {
-        Article article = articleService.queryById(fid).get(0);
+        Article article = articleService.queryById(fid);
         article.setStatus(2);
         this.articleService.update(article);
         map.put("pageInfo", this.articleInfo(1, 5));

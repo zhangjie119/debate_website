@@ -29,7 +29,7 @@ public class Video implements Serializable {
     
     private String address;
     
-    private Integer downtimes;
+    private Integer playtimes;
     
     private String uploadtime;
 
@@ -106,12 +106,12 @@ public class Video implements Serializable {
         this.address = address;
     }
 
-    public Integer getDowntimes() {
-        return downtimes;
+    public Integer getPlaytimes() {
+        return playtimes;
     }
 
-    public void setDowntimes(Integer downtimes) {
-        this.downtimes = downtimes;
+    public void setPlaytimes(Integer playtimes) {
+        this.playtimes = playtimes;
     }
 
     public String getUploadtime() {

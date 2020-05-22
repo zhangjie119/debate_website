@@ -43,6 +43,10 @@ public class Article implements Serializable {
     */
     private String username;
     /**
+     * 点击量
+     */
+    private Integer hits;
+    /**
     * 帖子审核状态(0为待审核，1为通过审核，2为未通过审核，默认为0)
     */
     private Integer status;
@@ -112,6 +116,14 @@ public class Article implements Serializable {
         this.username = username;
     }
 
+    public Integer getHits() {
+        return hits;
+    }
+
+    public void setHits(Integer hits) {
+        this.hits = hits;
+    }
+
     public Integer getStatus() {
         return status;
     }
@@ -131,6 +143,7 @@ public class Article implements Serializable {
                 ", time='" + time + '\'' +
                 ", userid=" + userid +
                 ", username='" + username + '\'' +
+                ", hits=" + hits +
                 ", status=" + status +
                 '}';
     }

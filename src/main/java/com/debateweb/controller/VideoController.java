@@ -82,7 +82,11 @@ public class VideoController {
     //跳转到播放页面
     @RequestMapping("play")
     public String play(Map<String, Object> map, @RequestParam(name = "vid", required = true) Integer vid) {
-        map.put("video", videoService.queryById(vid));
+        //根据id查询视频
+        Video video = videoService.queryById(vid);
+        //添加播放次数
+        this.videoService.addPlaytimes(video);
+        map.put("video", video);
         return "front/videoPages/video-play";
     }
 

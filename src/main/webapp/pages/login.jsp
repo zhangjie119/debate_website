@@ -22,8 +22,7 @@
     <link rel="stylesheet" href="../plugins/adminLTE/css/AdminLTE.css">
     <link rel="stylesheet" href="../plugins/iCheck/square/blue.css">
 </head>
-
-<body class="hold-transition login-page">
+<body class="hold-transition login-page" style="height: auto;background-size: cover; background: url('${pageContext.request.contextPath}/img/background1.jpg') no-repeat center;">
 <div class="login-box">
     <div class="login-logo">
         <a href="all-admin-index.html"><b>三狗一男</b>辩论网</a>

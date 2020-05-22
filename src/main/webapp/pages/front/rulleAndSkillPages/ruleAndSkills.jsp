@@ -157,9 +157,9 @@ folder instead of downloading all of them to reduce the load. -->
                     <li class="active">
                         <a href="#tab-rule" data-toggle="tab">规则</a>
                     </li>
-                    <li>
+<%--                    <li>
                         <a href="#tab-skill" data-toggle="tab">技巧</a>
-                    </li>
+                    </li>--%>
                     <li>
                         <a href="#tab-race" data-toggle="tab">赛事</a>
                     </li>
@@ -194,7 +194,7 @@ folder instead of downloading all of them to reduce the load. -->
                                                     </div>
                                                     <div id="collapse${rule.id}" class="panel-collapse collapse">
                                                         <div class="box-body">
-                                                                ${rule.linkrule}
+                                                            ${rule.linkrule}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -211,10 +211,10 @@ folder instead of downloading all of them to reduce the load. -->
                     </div>
                     <!--规则/-->
 
-                    <!--技巧-->
+           <%--         <!--技巧-->
                     <div class="tab-pane" id="tab-skill">
                     </div>
-                    <!--技巧/-->
+                    <!--技巧/-->--%>
 
                     <!--赛事-->
                     <div class="tab-pane" id="tab-race">

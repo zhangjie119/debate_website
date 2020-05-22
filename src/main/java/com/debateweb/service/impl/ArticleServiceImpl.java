@@ -28,7 +28,7 @@ public class ArticleServiceImpl implements ArticleService {
      * @return 实例对象
      */
     @Override
-    public List<Article> queryById(Integer fid) {
+    public Article queryById(Integer fid) {
         return this.articleDao.queryById(fid);
     }
 
@@ -161,5 +161,27 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public boolean updatePlate(String bname) {
         return this.articleDao.updatePlate(bname) > 0;
+    }
+
+    /**
+     * 修改帖子点击量
+     *
+     * @param hits 原板块名
+     * @return 被影响行数
+     */
+    @Override
+    public boolean click(Integer fid, Integer hits) {
+        hits += 1;
+        return this.articleDao.updateHits(fid,hits) > 0;
+    }
+
+    /**
+     * 查询热门帖子（5条）
+     *
+     * @return 对象列表
+     */
+    @Override
+    public List<Article> queryHotArticles() {
+        return this.articleDao.queryHotArticles();
     }
 }

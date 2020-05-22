@@ -15,13 +15,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 
-
-
     <title>数据 - 三狗一男</title>
     <meta name="description" content="三狗一男">
     <meta name="keywords" content="三狗一男">
-
-
 
 
     <!-- Tell the browser to be responsive to screen width -->
@@ -57,12 +53,6 @@ folder instead of downloading all of them to reduce the load. -->
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
-
-
-
-
-
 
 
     <!-- jQuery 2.2.3 -->
@@ -111,25 +101,29 @@ folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/datepicker/datepicker3.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/daterangepicker/daterangepicker.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/datatables/dataTables.bootstrap.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/treeTable/jquery.treetable.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/treeTable/jquery.treetable.theme.default.css">
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/plugins/treeTable/jquery.treetable.theme.default.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/select2/select2.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/colorpicker/bootstrap-colorpicker.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/bootstrap-markdown/css/bootstrap-markdown.min.css">
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/plugins/bootstrap-markdown/css/bootstrap-markdown.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/adminLTE/css/AdminLTE.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/adminLTE/css/skins/_all-skins.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/ionslider/ion.rangeSlider.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/ionslider/ion.rangeSlider.skinNice.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/bootstrap-slider/slider.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css">
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css">
 </head>
 <script type="text/javascript">
     function checkUpload() {
         if (${not empty loginUser}) {
-            window.location.href="${pageContext.request.contextPath}/forum/uploadArticle"
+            window.location.href = "${pageContext.request.contextPath}/forum/uploadArticle"
         } else {
             alert("请先登录");
         }
@@ -140,7 +134,7 @@ folder instead of downloading all of them to reduce the load. -->
 <div class="wrapper">
 
     <!-- 页面头部 -->
-    <jsp:include page="${pageContext.request.contextPath}/pages/front/front-header.jsp" />
+    <jsp:include page="${pageContext.request.contextPath}/pages/front/front-header.jsp"/>
     <!-- 页面头部 /-->
 
     <!-- 页面头部 /-->
@@ -153,69 +147,76 @@ folder instead of downloading all of them to reduce the load. -->
             <div class="row">
                 <div style="width: 100%; margin-left: 15%;">
                     <div class="col-md-6">
-                        <form action="${pageContext.request.contextPath}/forum/searchByKeyword" style="width:100%;height:5%;" method="post">
+                        <form action="${pageContext.request.contextPath}/forum/searchByKeyword"
+                              style="width:100%;height:5%;" method="post">
                             <div class="input-group margin">
-                                <input type="text" class="form-control" name="keyword" id="keyword" style="height: 40%;">
+                                <input type="text" class="form-control" name="keyword" id="keyword"
+                                       style="height: 40%;">
                                 <span class="input-group-btn">
-                            <button type="submit" class="btn btn-info btn-flat" style="padding:5px 7px;" name="search" id="search">搜索</button>
-                            <button onclick="checkUpload(); return false;" class="btn btn-info btn-flat" name="upload" id="upload" style="padding:5px 7px;">发帖</button>
+                            <button type="submit" class="btn btn-info btn-flat" style="padding:5px 7px;" name="search"
+                                    id="search">搜索</button>
+                            <button onclick="checkUpload(); return false;" class="btn btn-info btn-flat" name="upload"
+                                    id="upload" style="padding:5px 7px;">发帖</button>
                         </span>
                             </div>
                         </form>
                         <c:forEach items="${articles}" var="article">
                             <c:if test="${empty param.bname || param.bname eq article.bname}">
                                 <c:if test="${article.status == 1}">
-                                <div class="box box-solid">
-                            <div class="box-header with-border">
-                                <div class="row">
-                                    <div class="col-xs-7 col-md-9" style="position: relative; padding-top: 10px;">
-                                        来自：${article.bname}
-                                    </div>
-                                    <div class="col-xs-5 col-md-3" style="position: relative; padding-top: 10px;">
-                                        ${article.time}
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                                    <div class="box box-solid">
+                                        <div class="box-header with-border">
+                                            <div class="row">
+                                                <div class="col-xs-7 col-md-9"
+                                                     style="position: relative; padding-top: 10px;">
+                                                    来自：${article.bname}
+                                                </div>
+                                                <div class="col-xs-5 col-md-3"
+                                                     style="position: relative; padding-top: 10px;">
+                                                        ${article.time}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /.box-header -->
+                                        <div class="box-body">
 
-                                <div class="col-xs-6 col-md-8">
-                                    <a href="#">
-                                        <h5 class="bottom_left_name">
-                                            <!-- 发帖人名字 -->
-                                            <b>${article.username}</b>
-                                        </h5>
-                                    </a>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                            <h4>
-                                                <a href="${pageContext.request.contextPath}/forum/lookingArticle?fid=${article.fid}" class="bottom_left_aaa a_b" >
-                                                    <!-- 帖子标题 -->
-                                                    <b style="color: #000000;">${article.titles}</b>
+                                            <div class="col-xs-6 col-md-8">
+                                                <a href="#">
+                                                    <h5 class="bottom_left_name">
+                                                        <!-- 发帖人名字 -->
+                                                        <b>${article.username}</b>
+                                                    </h5>
                                                 </a>
-                                            </h4>
-                                    </div>
-                                </div>
+                                            </div>
 
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <!-- 帖子内容 -->
-                                        <p>${article.fcontent}</p>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <h4>
+                                                        <a href="${pageContext.request.contextPath}/forum/lookingArticle?fid=${article.fid}"
+                                                           class="bottom_left_aaa a_b">
+                                                            <!-- 帖子标题 -->
+                                                            <b style="color: #000000;">${article.titles}</b>
+                                                        </a>
+                                                    </h4>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <!-- 帖子内容 -->
+                                                    <p>${article.fcontent}</p>
+                                                </div>
+                                            </div>
+                                            <c:if test="${not empty article.photo}">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <img style="width: 70%; height: 40%;" src="${article.photo}">
+                                                    </div>
+                                                </div>
+                                            </c:if>
+                                            <br>
+                                            <!-- /.box -->
+                                        </div>
                                     </div>
-                                </div>
-                                <c:if test="${not empty article.photo}">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <img style="width: 70%; height: 40%;" src="${article.photo}">
-                                    </div>
-                                </div>
-                                </c:if>
-                                <br>
-                                <!-- /.box -->
-                            </div>
-                        </div>
                                 </c:if>
                             </c:if>
                         </c:forEach>
@@ -228,24 +229,43 @@ folder instead of downloading all of them to reduce the load. -->
                     <div class="col-md-6">
                         <div class="box box-solid">
                             <div class="box-header with-border">
-                                <b>所有板块</b>
+                                <b>所有版块</b>
                             </div>
 
                             <!-- 所有板块-开始循环 -->
                             <div class="box-body">
                                 <c:forEach items="${plates}" var="plate">
-                                <div class="col-xs-4 col-md-4" style="text-align: center;">
-                                    <a href="?bname=${plate.bname}" style="color: #000000;">
-                                        <img src="../../../img/zzuli_debateTeam_icon.jpg" style="height: 40px; width: 40px;"/>
-                                        <p>${plate.bname}</p>
-                                    </a>
-                                </div>
+                                    <div class="col-xs-4 col-md-4" style="text-align: center;">
+                                        <a href="?bname=${plate.bname}" style="color: #000000;">
+                                            <img src="../../../img/zzuli_debateTeam_icon.jpg"
+                                                 style="height: 40px; width: 40px;"/>
+                                            <p>${plate.bname}</p>
+                                        </a>
+                                    </div>
                                 </c:forEach>
                             </div>
                             <!-- 所有板块-结束循环 -->
-                            <div class="col-md-12" style="position: relative; background-color: #f6f6f6; height: 10px;"></div>
+                            <div class="col-md-12"
+                                 style="position: relative; background-color: #f6f6f6; height: 10px;"></div>
                         </div>
+
+                        <div class="box box-solid">
+                            <div class="box-header with-border">
+                                <b>热门帖子</b>
+                            </div>
+                            <div class="box-body">
+                                <c:forEach items="${hotArticleList}" var="hotArticle">
+                                    <a href="${pageContext.request.contextPath}/forum/lookingArticle?fid=${hotArticle.fid}" style="margin-left: 3%">${hotArticle.titles}</a><br>
+                                </c:forEach>
+                            </div>
+                            <div class="col-md-12"
+                                 style="position: relative; background-color: #f6f6f6; height: 10px;"></div>
+                        </div>
+
                     </div>
+
+
+
                 </div>
             </div>
         </section>
@@ -254,7 +274,7 @@ folder instead of downloading all of them to reduce the load. -->
     <!-- 内容区域 /-->
 
     <!-- 底部导航 -->
-    <jsp:include page="${pageContext.request.contextPath}/pages/front/footer.jsp" />
+    <jsp:include page="${pageContext.request.contextPath}/pages/front/footer.jsp"/>
     <!-- 底部导航 /-->
 </div>
 
@@ -305,7 +325,7 @@ folder instead of downloading all of them to reduce the load. -->
 <script src="${pageContext.request.contextPath}/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>
 <script src="${pageContext.request.contextPath}/plugins/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         // 选择框
         $(".select2").select2();
 
@@ -325,7 +345,7 @@ folder instead of downloading all of them to reduce the load. -->
     }
 
 
-    $(document).ready(function() {
+    $(document).ready(function () {
 
         // 激活导航位置
         setSidebarActive("admin-datalist");
@@ -336,7 +356,7 @@ folder instead of downloading all of them to reduce the load. -->
             increaseArea: '20%'
         });
         // 全选操作
-        $("#selall").click(function() {
+        $("#selall").click(function () {
             var clicks = $(this).is(':checked');
             if (!clicks) {
                 $("#dataList td input[type='checkbox']").iCheck("uncheck");

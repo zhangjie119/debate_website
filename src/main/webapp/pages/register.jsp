@@ -44,7 +44,7 @@
 
 </script>
 
-<body class="hold-transition register-page">
+<body class="hold-transition register-page" style="height: auto;background-size: cover; background: url('${pageContext.request.contextPath}/img/background1.jpg') no-repeat center;">
 <div class="register-box">
     <div class="register-logo">
 

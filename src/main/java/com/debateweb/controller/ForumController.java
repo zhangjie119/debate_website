@@ -40,6 +40,11 @@ public class ForumController {
         //添加所有板块信息
         List<Plate> listPlate = plateService.queryAll();
         map.put("plates", listPlate);
+
+        //获取热门帖子
+        List<Article> hotArticleList = this.articleService.queryHotArticles();
+        map.put("hotArticleList", hotArticleList);
+
         return "front/forumPages/forum";
     }
 
@@ -66,12 +71,14 @@ public class ForumController {
     @RequestMapping("/lookingArticle")
     public String lookingArticle(Map<String, Object> map, @RequestParam(name = "fid", required = true) Integer fid) {
         //根据帖子id获取帖子信息
-        List<Article> articles = articleService.queryById(fid);
-        map.put("articles", articles);
+        Article article = articleService.queryById(fid);
+        this.articleService.click(article.getFid(), article.getHits());
+        map.put("article", article);
 
         //添加帖子的id获取帖子评论
         List<Comment> comments = commentService.queryByArticle(fid);
         map.put("comments", comments);
+
 
         return "front/forumPages/article-looking";
     }

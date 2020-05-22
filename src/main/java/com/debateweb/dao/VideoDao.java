@@ -79,4 +79,15 @@ public interface VideoDao {
     @Select("select * from video where debateSubject like #{keyword} or raceName like #{keyword} or pros like #{keyword}" +
             "or cons like #{keyword} or starDebater like #{keyword} order by (length(raceName)-length(#{keyword}))" )
     List<Video> queryByKeyword(String keyword);
+
+    /**
+     * 刷新播放数
+     *
+     * @param video 实例对象
+     * @return 影响行数
+     */
+    @Update("update video set " +
+            "playTimes = #{playtimes} " +
+            "where vId = #{vid}")
+    int addPlaytimes(Video video);
 }

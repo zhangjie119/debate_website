@@ -1,10 +1,10 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div class="layout-top-nav">
-    <footer class="main-footer">
+
+    <footer class="main-footer" style="margin-left: 0px">
         <div class="pull-right hidden-xs">
             <b>Version</b> 1.0.8
         </div>
         <strong>Copyright &copy; 2014-2020 <a href="http://www.itcast.cn">郑州轻工业大学校辩论队</a>.</strong> All rights reserved.
     </footer>
-</div>
+

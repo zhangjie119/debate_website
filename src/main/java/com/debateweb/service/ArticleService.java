@@ -17,7 +17,7 @@ public interface ArticleService {
      * @param fid 主键
      * @return 实例对象
      */
-    List<Article> queryById(Integer fid);
+    Article queryById(Integer fid);
 
     /**
      * 通过用户ID查询多条数据
@@ -114,4 +114,19 @@ public interface ArticleService {
      */
     boolean updatePlate(String bname);
 
+    /**
+     * 帖子点击量加 1
+     *
+     * @param fid 帖子id
+     * @param hits 点击量
+     * @return 是否成功
+     */
+    boolean click(Integer fid, Integer hits);
+
+    /**
+     * 查询热门帖子（5条）
+     *
+     * @return 对象列表
+     */
+    List<Article> queryHotArticles();
 }

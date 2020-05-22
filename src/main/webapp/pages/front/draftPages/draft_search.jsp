@@ -125,7 +125,7 @@ folder instead of downloading all of them to reduce the load. -->
     }
 </script>
 
-<body class="hold-transition skin-purple sidebar-mini">
+<body class="hold-transition skin-purple sidebar-mini" style="height: auto;background-size: cover; background: url('${pageContext.request.contextPath}/img/background3.jpg') no-repeat center;">
 
 <div class="wrapper">
 

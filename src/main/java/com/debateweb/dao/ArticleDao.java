@@ -20,7 +20,7 @@ public interface ArticleDao {
      * @return 实例对象
      */
     @Select("select * from article where fid = #{fid}")
-    List<Article> queryById(Integer fid);
+    Article queryById(Integer fid);
 
     /**
      * 通过ID查询单条数据
@@ -104,4 +104,16 @@ public interface ArticleDao {
      */
     @Update("update article set bname = '随便聊聊' where bname = #{bname}")
     int updatePlate(String bname);
+
+    /**
+     * 修改帖子点击量
+     *
+     * @param hits 原板块名
+     * @return 被影响行数
+     */
+    @Update("update article set hits = #{hits} where fid = #{fid}")
+    int updateHits(@Param("fid") int fid, @Param("hits") int hits);
+
+    @Select("select * from article order by hits desc limit 5")
+    List<Article> queryHotArticles();
 }

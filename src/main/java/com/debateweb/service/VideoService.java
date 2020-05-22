@@ -83,4 +83,12 @@ public interface VideoService {
      * @return 对象列表
      */
     List<Video> queryAll(int page, int size);
+
+    /**
+     * 刷新播放数
+     *
+     * @param video 实例对象
+     * @return 是否成功
+     */
+    boolean addPlaytimes(Video video);
 }

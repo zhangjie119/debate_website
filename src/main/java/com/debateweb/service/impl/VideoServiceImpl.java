@@ -131,4 +131,10 @@ public class VideoServiceImpl implements VideoService {
         PageHelper.startPage(page,size);
         return this.videoDao.queryAll();
     }
+
+    @Override
+    public boolean addPlaytimes(Video video) {
+        video.setPlaytimes(video.getPlaytimes() + 1);
+        return this.videoDao.addPlaytimes(video) > 0;
+    }
 }
