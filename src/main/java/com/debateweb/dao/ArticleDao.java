@@ -71,21 +71,21 @@ public interface ArticleDao {
     int deleteById(Integer fid);
 
     /**
-     * 查询所有文章，并按id倒序排列
+     * 查询所有文章，并根据发帖时间倒序排列
      *
      * @return
      */
-    @Select("select * from article")
+    @Select("select * from article order by time desc")
     List<Article> queryAll();
 
     /**
-     * 根据关键字模糊查找帖子
+     * 根据关键字模糊查找帖子，并根据发帖时间倒序排列
      *
      * @param keyword 带查找关键字
      * @return
      */
     @Select("select * from article where titles like #{keyword} or fcontent like #{keyword} or username like #{keyword}" +
-            "order by (length(titles)-length(#{keyword}))" )
+            "order by (length(titles)-length(#{keyword})),time desc" )
     List<Article> queryByKeyword(String keyword);
 
     /**
@@ -114,6 +114,11 @@ public interface ArticleDao {
     @Update("update article set hits = #{hits} where fid = #{fid}")
     int updateHits(@Param("fid") int fid, @Param("hits") int hits);
 
+    /**
+     * 获取点击量最高的五个帖子
+     *
+     * @return 对象列表
+     */
     @Select("select * from article order by hits desc limit 5")
     List<Article> queryHotArticles();
 }

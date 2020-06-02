@@ -42,7 +42,7 @@ public class ForumController {
         map.put("plates", listPlate);
 
         //获取热门帖子
-        List<Article> hotArticleList = this.articleService.queryHotArticles();
+        List<Article> hotArticleList = articleService.queryHotArticles();
         map.put("hotArticleList", hotArticleList);
 
         return "front/forumPages/forum";
@@ -65,6 +65,9 @@ public class ForumController {
         //添加所有板块信息
         List<Plate> listPlate = plateService.queryAll();
         map.put("plates", listPlate);
+
+        //添加原始关键字
+        map.put("keyword", keyword);
         return "front/forumPages/forum";
     }
 
@@ -84,13 +87,12 @@ public class ForumController {
     }
 
     @PostMapping("/reply")
-    public String reply(Map<String, Object> map,  @RequestParam Integer fid, @RequestParam Integer uid, @RequestParam String nickname, @RequestParam String pcontent) {
+    public String reply(@RequestParam Integer fid, @RequestParam Integer uid, @RequestParam String nickname, @RequestParam String pcontent) {
         //添加回帖信息
         this.commentService.reply(fid, uid, nickname, pcontent);
 
-        lookingArticle(map, fid);
-
-        return "front/forumPages/article-looking";
+        //重定向到浏览帖子方法
+        return "redirect:/forum/lookingArticle?fid=" + fid;
 
     }
 

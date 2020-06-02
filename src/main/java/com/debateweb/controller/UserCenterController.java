@@ -44,11 +44,9 @@ public class UserCenterController {
     //加载用户信息
     @RequestMapping("main")
     public String userCenter(HttpSession session, Map<String, Object> map) {
-        //获取当前登录的用户的id
+        //获取当前登录用户的id
         User user = (User) session.getAttribute("loginUser");
         Integer uid = user.getId();
-        //从数据库获取登录用户的最新信息
-        //user = userService.queryById(uid);
 
         //获取该用户上传的视频列表
         List<Video> videoList = videoService.queryByUid(uid);
@@ -67,9 +65,6 @@ public class UserCenterController {
         //统计该用户发表的帖子数量
         user.setUploadarticlenum(articleList.size());
         map.put("articleList", articleList);
-
-        //更新session中的登陆用户
-        //session.setAttribute("loginUser", user);
 
         return "front/userCenterPages/user-center";
     }

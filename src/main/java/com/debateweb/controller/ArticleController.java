@@ -37,7 +37,6 @@ public class ArticleController {
 
     @PostMapping("/upload")
     public String articleUpload(HttpServletRequest request, MultipartFile photo, @RequestParam String title, @RequestParam String plate, @RequestParam String fcontent) throws Exception {
-        System.out.println("正在进行springMVC文件上传");
         HttpSession session = request.getSession();
         User uploader = (User) session.getAttribute("loginUser");
         String address = null;

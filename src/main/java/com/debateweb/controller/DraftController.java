@@ -48,7 +48,6 @@ public class DraftController {
 
     @PostMapping("/upload")
     public String draftUpload(HttpServletRequest request, MultipartFile draft, @RequestParam String draftName, @RequestParam String draftSchool, @RequestParam String draftType) throws Exception {
-        System.out.println("正在进行springMVC文件上传");
         //使用fileupload组件完成文件上传
         //上传的位置
         String path = request.getSession().getServletContext().getRealPath("/drafts/");
@@ -66,9 +65,12 @@ public class DraftController {
         filename = uuid + "_" + filename;
         //完成文件上传
         draft.transferTo(new File(path, filename));
+        //获取当前用户
         HttpSession session = request.getSession();
         User uploader = (User) session.getAttribute("loginUser");
+        //获取当前用户名
         String nickname = uploader.getNickname();
+        //获取当前用户id
         Integer Uid = uploader.getId();
         String address = "../../../drafts/" + filename;
         if (draftService.upload(draftName, draftSchool, draftType, nickname, address, Uid)) {
@@ -145,33 +147,34 @@ public class DraftController {
     @RequestMapping("reading")
     public String reading(Map<String, Object> map, @RequestParam(name = "did", required = true) int did) throws IOException {
         Draft draft = draftService.queryById(did);
+        //获取稿件路径
         String address = draft.getAddress();
+        //删除路径前面的相对路径部分，得到文件名
         address = address.substring(8, address.length());
+        //将文件名改为绝对路径
         address = "F:\\IDEAproject\\debate_website\\target\\debate_website"+address;
-
         //检测后缀名
         String addressFormat = address.substring(address.length() - 4, address.length());
-
         File file = new File(address);
         String buffer = "";
-        FileInputStream is = null;
+        FileInputStream is = new FileInputStream(file);
         try {
-            is = new FileInputStream(file);
+            //doc格式文件
             if (addressFormat.equals(".doc")) {
-                //doc格式文件
                 WordExtractor ex = new WordExtractor(is);
                 buffer = ex.getText();
                 ex.close();
+            //docx格式文件
             } else if (addressFormat.equals("docx")) {
-                //docx格式文件
                 XWPFDocument xdoc = new XWPFDocument(is);
                 XWPFWordExtractor ex = new XWPFWordExtractor(xdoc);
                 buffer = ex.getText();
                 ex.close();
             }
+            //添加稿件名
             map.put("draftName", draft.getDraftname());
+            //添加稿件内容
             map.put("draftContent", buffer);
-
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Map;
 
@@ -52,14 +53,26 @@ public class UserController {
         return mv;
     }
 
-    @PostMapping("/login")
-    public String login(HttpServletRequest request, HttpSession session, @RequestParam String username, @RequestParam String password) {
+    @GetMapping("login")
+    public String login(HttpServletRequest request, Map<String, Object> map) {
+        //获取登录前的当前页
+        String preUrl = request.getHeader("referer");
+        map.put("preUrl", preUrl);
 
+        return "login";
+    }
+
+    @PostMapping("/login")
+    public String login(HttpSession session, @RequestParam String username, @RequestParam String password, @RequestParam String preUrl) {
         if (userService.loginCheck(username, password)) {
             User user = userService.queryByUsername(username);
             session.setAttribute("loginUser", user);
             //修改数据的时候要重定向
-            return "front/videoPages/video-search";
+            if ("".equals(preUrl)) {
+                return "front/videoPages/video-search";
+            } else {
+                return "redirect:" + preUrl;
+            }
         } else {
             //转发才能接收到request
             return "SorF/failer";
@@ -78,10 +91,11 @@ public class UserController {
         return "SorF/failer";
     }
 
+    //注销当前登录帐号
     @RequestMapping("logout")
-    public String logout(HttpSession session) {
+    public String logout(HttpSession session, HttpServletResponse response) {
         session.setAttribute("loginUser", null);
-        return "front/videoPages/video-search";
+        return "redirect:/pages/front/videoPages/video-search.jsp";
     }
 
     //后台详细信息

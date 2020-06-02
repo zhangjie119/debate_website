@@ -150,7 +150,7 @@ folder instead of downloading all of them to reduce the load. -->
                         <form action="${pageContext.request.contextPath}/forum/searchByKeyword"
                               style="width:100%;height:5%;" method="post">
                             <div class="input-group margin">
-                                <input type="text" class="form-control" name="keyword" id="keyword"
+                                <input type="text" class="form-control" name="keyword" id="keyword" <c:if test="${not empty keyword}">value="${keyword}"</c:if>
                                        style="height: 40%;">
                                 <span class="input-group-btn">
                             <button type="submit" class="btn btn-info btn-flat" style="padding:5px 7px;" name="search"
@@ -255,7 +255,7 @@ folder instead of downloading all of them to reduce the load. -->
                             </div>
                             <div class="box-body">
                                 <c:forEach items="${hotArticleList}" var="hotArticle">
-                                    <a href="${pageContext.request.contextPath}/forum/lookingArticle?fid=${hotArticle.fid}" style="margin-left: 3%">${hotArticle.titles}</a><br>
+                                    <a href="${pageContext.request.contextPath}/forum/lookingArticle?fid=${hotArticle.fid}" style="margin-left: 3%; color: BLACK">${hotArticle.titles}</a><br>
                                 </c:forEach>
                             </div>
                             <div class="col-md-12"

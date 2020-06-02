@@ -313,7 +313,7 @@ folder instead of downloading all of them to reduce the load. -->
                             <li class="active"><a href="#video" data-toggle="tab">上传视频</a></li>
                             <li><a href="#draft" data-toggle="tab">上传辩稿</a></li>
                             <li><a href="#article" data-toggle="tab">发布帖子</a></li>
-                            <li><a href="#information" data-toggle="tab">修改信息</a></li>
+                            <li><a href="#information" data-toggle="tab">详细信息</a></li>
                         </ul>
                         <div class="tab-content">
                             <jsp:include page="userCenter-video.jsp"/>

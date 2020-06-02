@@ -45,7 +45,7 @@
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="${pageContext.request.contextPath}/pages/login.jsp" class="btn btn-default btn-flat">登录</a>
+                                    <a href="${pageContext.request.contextPath}/user/login" class="btn btn-default btn-flat">登录</a>
                                 </div>
                                 <div class="pull-right">
                                     <a href="${pageContext.request.contextPath}/pages/register.jsp" class="btn btn-default btn-flat">注册</a>

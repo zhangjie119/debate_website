@@ -32,6 +32,7 @@
         <p class="login-box-msg">登录系统</p>
 
         <form action="../user/login" method="post">
+            <input type="hidden" name="preUrl" value="${preUrl}" >
             <div class="form-group has-feedback">
                 <input type="text" name="username" id="username" class="form-control" placeholder="用户名"> <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>

@@ -60,6 +60,7 @@ public class VideoController {
         filename = uuid + "_" + filename;
         //完成文件上传
         video.transferTo(new File(path, filename));
+        //获取当前登录用户的信息
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("loginUser");
         String uploader = user.getNickname();

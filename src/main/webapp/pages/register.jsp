@@ -57,7 +57,7 @@
     <div class="register-box-body">
         <p class="login-box-msg">新用户注册</p>
 
-        <form action="user/register" method="post">
+        <form action="${pageContext.request.contextPath}/user/register" method="post">
             <div class="form-group has-feedback">
                 <input type="text" class="form-control" placeholder="登录名" name="username"
                        required oninvalid="setCustomValidity('登录名不能为空')" oninput="setCustomValidity('')">

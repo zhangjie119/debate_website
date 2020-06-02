@@ -179,7 +179,7 @@ folder instead of downloading all of them to reduce the load. -->
                             </a>
                         </div>
                         <div class="col-md-12 data text-center">
-                            <button type="submit" class="btn bg-maroon" >保存</button>
+                            <button type="submit" class="btn bg-maroon" >上传</button>
                             <button type="button" class="btn bg-default" onclick="history.back(-1);">返回</button>
                         </div>
                     </form>
@@ -187,7 +187,7 @@ folder instead of downloading all of them to reduce the load. -->
             </div>
     </div>
         </section>
-</div>
+    </div>
 </div>
 
 <!--基础控件/-->
