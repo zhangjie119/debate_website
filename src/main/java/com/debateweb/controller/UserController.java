@@ -5,7 +5,6 @@ import com.debateweb.service.UserService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
@@ -31,20 +30,9 @@ public class UserController {
     private UserService userService;
 
     /**
-     * 登录首页
-     *
-     * @param request
-     * @return
-     */
-    @RequestMapping("/index")
-    public String index(HttpServletRequest request) {
-        return "front/main";
-    }
-
-    /**
      * 查询所有用户数据
      *
-     * @return
+     * @return mv
      * @throws Exception
      */
     @RequestMapping("/findAll")
@@ -63,12 +51,14 @@ public class UserController {
         Cookie[] cookies = request.getCookies();
         //遍历cookie查找登录用户
         for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("loginUser")) {
+            //查询名为loginUser的cookie，该值储存的本网站自动登录用户的用户名
+            if ("loginUser".equals(cookie.getName())) {
+                //根据得到的用户名查询用户信息加入session中的登录用户中。
                 User loginUser = this.userService.queryByUsername(cookie.getValue());
                 session.setAttribute("loginUser", loginUser);
             }
         }
-        return "front/videoPages/video-search";
+        return "redirect:/pages/front/videoPages/video-search.jsp";
     }
 
     @GetMapping("login")
@@ -88,12 +78,14 @@ public class UserController {
                         @RequestParam String password,
                         @RequestParam String preUrl,
                         @RequestParam String vaptcha_token) {
-        String[] auto_login = request.getParameterValues("auto_login");
-        if (userService.loginCheck(username, password) && vaptcha_token.equals("") == false) {
+        //获取前端checkbox的值，checkbox只有一个。
+        String[] autoLogin = request.getParameterValues("auto_login");
+        //登录检测成功且用户进行了登录验证
+        if (userService.loginCheck(username, password) && !"".equals(vaptcha_token)) {
             User user = userService.queryByUsername(username);
             session.setAttribute("loginUser", user);
             //若用户选中自动登录
-            if (auto_login != null) {
+            if (autoLogin != null) {
                 Cookie cookie = new Cookie("loginUser", user.getUsername());
                 //设置保存时间为14天
                 cookie.setMaxAge(14 * 24 * 3600);
