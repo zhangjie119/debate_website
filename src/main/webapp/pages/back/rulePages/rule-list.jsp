@@ -156,9 +156,6 @@
                                style="text-align: center">
                             <thead>
                             <tr>
-                                <th class="" style="padding-right:0px;">
-                                    <input id="selall" type="checkbox" class="icheckbox_square-blue">
-                                </th>
                                 <th>ID</th>
                                 <th>规则名</th>
                             </tr>
@@ -166,9 +163,8 @@
                             <tbody>
                             <c:forEach items="${ruleList}" var="rule">
                                 <tr>
-                                    <td><input name="ids" type="checkbox"></td>
                                     <td>${rule.id}</td>
-                                    <td><a data-toggle="modal" data-target="#myModal${rule.id}">${rule.linkname}</a></td>
+                                    <td>${rule.linkname}</td>
                                     <div id="myModal${rule.id}" class="modal modal-primary" role="dialog">
                                         <div class="modal-dialog modal-lg">
                                             <div class="modal-content">

@@ -133,11 +133,17 @@ folder instead of downloading all of them to reduce the load. -->
     <!-- @@block = content -->
     <div class="content-wrapper" style="margin-left: 0px">
         <!-- 正文区域 -->
-        <section class="content" style=" text-align: center;">
-            <video src="${video.address}" controls="controls" style="width: auto; height: 74%;"></video><br>
+        <%--<section class="content" style=" text-align: center;">
             <h4><b>${video.debatesubject}</b></h4>
+            <video src="${video.address}" controls="controls" style="width: auto; height: 74%;"></video><br>
             <b>正方:${video.pros}</b>&nbsp;&nbsp;
             <b>反方:${video.cons}</b>
+        </section>--%>
+        <section class="content" style=" text-align: center;">
+            <h4><b>${video.debatesubject}</b></h4><br>
+            <div style="width: 10%; float:left; writing-mode:tb-rl;" ><h1 style="margin-top: 100px;margin-left: 80px;"><b>${video.pros}</b></h1></div>
+            <div style="width: 80%; float:left;" ><video src="${video.address}" controls="controls" style="width: auto; height: 75%;"></video></div>
+            <div style="width: 10%;float:left; writing-mode:tb-rl;" ><h1 style="margin-top: 100px; margin-right: 80px;"><b>${video.cons}</b></h1></div>
         </section>
         <!-- 正文区域 /-->
     </div>

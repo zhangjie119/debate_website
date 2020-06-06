@@ -164,9 +164,6 @@
                                style="text-align: center">
                             <thead>
                             <tr>
-                                <th class="" style="padding-right:0px;">
-                                    <input id="selall" type="checkbox" class="icheckbox_square-blue">
-                                </th>
                                 <th>回帖人</th>
                                 <th>回帖内容</th>
                                 <th>回帖时间</th>
@@ -176,7 +173,6 @@
                             <tbody>
                             <c:forEach items="${pageInfo.list}" var="comment">
                                 <tr>
-                                    <td><input name="ids" type="checkbox"></td>
                                     <td>${comment.username}</td>
                                     <td>${comment.pcontent}</td>
                                     <td>${comment.time}</td>
@@ -197,7 +193,7 @@
                 <div class="box-footer">
                     <div class="pull-left">
                         <div class="form-group form-inline">
-                            总共 ${pageInfo.pages} 页，共条${pageInfo.total}数据。 每页
+                            总共 ${pageInfo.pages} 页，共${pageInfo.total}条数据。 每页
                             <select class="form-control" id="changePageSize" onchange="changePageSize()">
                                 <option>${pageInfo.pageSize}</option>
                                 <option>1</option>

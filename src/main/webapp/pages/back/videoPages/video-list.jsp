@@ -155,9 +155,6 @@
                                style="text-align: center">
                             <thead>
                             <tr>
-                                <th class="" style="padding-right:0px;">
-                                    <input id="selall" type="checkbox" class="icheckbox_square-blue">
-                                </th>
                                 <th>ID</th>
                                 <th>辩题</th>
                                 <th>赛事</th>
@@ -172,7 +169,6 @@
                             <tbody>
                             <c:forEach items="${pageInfo.list}" var="video">
                                 <tr>
-                                    <td><input name="ids" type="checkbox"></td>
                                     <td>${video.vid}</td>
                                     <td><a href="${video.address}">${video.debatesubject}</a></td>
                                     <td>${video.racename}</td>
@@ -183,7 +179,7 @@
                                     <td>${video.uploadtime}</td>
                                     <td class="text-center">
                                         <button type="button" class="btn bg-olive btn-xs"
-                                                onclick="window.location.href='${video.address}'">播放
+                                                onclick="window.open('${pageContext.request.contextPath}/video/play?vid=${video.vid}')">播放
                                         </button>
                                         <button type="button" class="btn bg-olive btn-xs" onclick="window.location.href='${pageContext.request.contextPath}/video/revise?vid=${video.vid}'">修改</button>
                                         <button type="button" class="btn bg-olive btn-xs" onclick="window.location.href='${pageContext.request.contextPath}/video/delete?vid=${video.vid}'">删除</button>
@@ -202,7 +198,7 @@
                 <div class="box-footer">
                     <div class="pull-left">
                         <div class="form-group form-inline">
-                            总共 ${pageInfo.pages} 页，共条${pageInfo.total}数据。 每页
+                            总共 ${pageInfo.pages} 页，共${pageInfo.total}条数据。 每页
                             <select class="form-control" id="changePageSize" onchange="changePageSize()">
                                 <option>${pageInfo.pageSize}</option>
                                 <option>1</option>

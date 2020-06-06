@@ -142,7 +142,7 @@ folder instead of downloading all of them to reduce the load. -->
     <!-- @@master = admin-layout.html-->
     <!-- @@block = content -->
 
-    <div class="content-wrapper" style="margin-left: 0;">
+    <div class="content-wrapper" style="margin-left: 0; height:200%">
 
 
         <!-- 正文区域 -->

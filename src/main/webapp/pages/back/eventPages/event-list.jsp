@@ -131,11 +131,11 @@
         <!-- 内容头部 -->
         <section class="content-header">
             <h1>规则技巧
-                <small>规则管理</small>
+                <small>赛事列表</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
-                <li><a href="#">规则管理</a></li>
+                <li><a href="#">规则技巧</a></li>
             </ol>
         </section>
         <!-- 内容头部 /-->
@@ -156,19 +156,16 @@
                                style="text-align: center">
                             <thead>
                             <tr>
-                                <th class="" style="padding-right:0px;">
-                                    <input id="selall" type="checkbox" class="icheckbox_square-blue">
-                                </th>
                                 <th>ID</th>
                                 <th>赛事名</th>
                                 <th>赛事简介</th>
-                                <th>赛制</th>>
+                                <th>赛制</th>
+                                <th>操作</th>
                             </tr>
                             </thead>
                             <tbody>
                             <c:forEach items="${eventList}" var="event">
                                 <tr>
-                                    <td><input name="ids" type="checkbox"></td>
                                     <td>${event.id}</td>
                                     <td>${event.eventname}</td>
                                     <td><a data-toggle="modal" data-target="#myModalInfo${event.id}">查看简介</a></td>

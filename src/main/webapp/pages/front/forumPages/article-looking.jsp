@@ -196,7 +196,7 @@ folder instead of downloading all of them to reduce the load. -->
                                 <c:if test="${not empty article.photo}">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <img style="width: 70%; height: 40%;" src="${article.photo}">
+                                            <img style="width: 80%;" src="${article.photo}">
                                         </div>
                                     </div>
                                 </c:if>

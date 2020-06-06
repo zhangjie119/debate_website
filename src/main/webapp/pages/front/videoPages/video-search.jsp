@@ -135,7 +135,7 @@ folder instead of downloading all of them to reduce the load. -->
     }
 </script>
 
-<body class="hold-transition skin-purple sidebar-mini"">
+<body class="hold-transition skin-purple sidebar-mini">
 
 <div class="wrapper">
 
@@ -146,14 +146,14 @@ folder instead of downloading all of them to reduce the load. -->
     <!-- 内容区域 -->
     <!-- @@master = admin-layout.html-->
     <!-- @@block = content -->
-    <div class="content-wrapper" style="margin-left: 0px;" >
-        <section class="content" >
+    <div class="content-wrapper" style="margin-left: 0px; height:80%" >
+        <section class="content">
             <div style=" margin-top: 8%;">
                 <h1 style="text-align: center;">辩论视频搜索</h1></br></br>
                 <form action="${pageContext.request.contextPath}/video/search" style="width:45%;height:50%; margin-left: 30%;"
                       method="post">
                     <div class="input-group margin">
-                        <input type="text" class="form-control" name="keyword" id="keyword" style="height: 50px;">
+                        <input type="text" class="form-control" name="keyword" id="keyword" style="height: 50px;" placeholder="  辩题、学校、赛事、辩手">
                         <span class="input-group-btn">
                             <button type="submit" class="btn btn-info btn-flat" style="padding:15px 20px;" name="search" id="search">搜索</button>
                             <button onclick="checkUpload(); return false;" class="btn btn-info btn-flat" name="upload" id="upload" style="padding:15px 20px;">上传</button>

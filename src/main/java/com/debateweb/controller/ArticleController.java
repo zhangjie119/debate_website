@@ -58,10 +58,10 @@ public class ArticleController {
             filename = uuid + "_" + filename;
             //完成文件上传
             photo.transferTo(new File(path,filename));
-            address = "../../../img/article/" + filename;
+            address = "../img/article/" + filename;
         }
         if (articleService.upload(title, plate, fcontent, uploader.getId(), uploader.getNickname(), address)) {
-            return "SorF/success";
+            return "SorF/uploadArticle-success";
         }
         return "SorF/fail";
     }
@@ -99,7 +99,7 @@ public class ArticleController {
         article.setStatus(1);
         this.articleService.update(article);
         map.put("pageInfo", this.articleInfo(1, 5));
-        return "back/forumPages/article-check";
+        return "redirect:/article/check";
     }
 
     //审核不通过帖子

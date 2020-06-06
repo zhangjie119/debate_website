@@ -140,7 +140,7 @@ folder instead of downloading all of them to reduce the load. -->
             <div class="row">
                 <div style="width: 70%; margin-left: 15%; margin-top: 1%;">
                     <!-- Form Element sizes -->
-                    <form action="${pageContext.request.contextPath}/article/upload" method="post">
+                    <form action="${pageContext.request.contextPath}/article/upload" method="post" enctype="multipart/form-data">
                         <div class="box box-info">
                             <div class="box-body">
                                 <h4><b>标题</b></h4>

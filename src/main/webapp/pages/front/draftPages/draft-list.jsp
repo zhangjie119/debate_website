@@ -160,9 +160,6 @@ folder instead of downloading all of them to reduce the load. -->
                         <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
                             <thead>
                             <tr>
-                                <th class="" style="padding-right:0px;">
-                                    <input id="selall" type="checkbox" class="icheckbox_square-blue">
-                                </th>
                                 <th>辩题</th>
                                 <th>学校</th>
                                 <th>类型</th>
@@ -173,7 +170,6 @@ folder instead of downloading all of them to reduce the load. -->
                             <tbody>
                             <c:forEach items="${drafts}" var="draft">
                                 <tr>
-                                    <td><input name="ids" type="checkbox"></td>
                                     <td><a href="javascript: window.open('${pageContext.request.contextPath}/draft/reading?did=${draft.did}')">${draft.draftname}</a></td>
                                     <td>${draft.draftschool}</td>
                                     <td>${draft.drafttype}</td>

@@ -120,11 +120,11 @@ folder instead of downloading all of them to reduce the load. -->
 <div class="wrapper">
 
     <!-- 页面头部 -->
-    <jsp:include page="${pageContext.request.contextPath}/pages/back_header.jsp"/>
+    <jsp:include page="${pageContext.request.contextPath}/pages/back/back_header.jsp"/>
     <!-- 页面头部 /-->
 
     <!-- 侧导航栏 -->
-    <jsp:include page="${pageContext.request.contextPath}/pages/aside.jsp"/>
+    <jsp:include page="${pageContext.request.contextPath}/pages/back/aside.jsp"/>
     <!-- 侧导航栏 -->
 
     <!-- 内容区域 -->
@@ -168,7 +168,7 @@ folder instead of downloading all of them to reduce the load. -->
     <!-- 内容区域 /-->
 
     <!-- 底部导航 -->
-    <jsp:include page="${pageContext.request.contextPath}/pages/footer.jsp"/>
+    <jsp:include page="${pageContext.request.contextPath}/pages/back/footer.jsp"/>
     <!-- 底部导航 /-->
 </div>
 

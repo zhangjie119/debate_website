@@ -69,7 +69,7 @@
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="password" class="form-control" placeholder="密码" name="password1" id="password1"
+                <input type="password" minlength="6" class="form-control" placeholder="密码" name="password1" id="password1"
                        required oninvalid="setCustomValidity('密码不能为空')" oninput="setCustomValidity('')">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>

@@ -95,17 +95,6 @@
 
                 </ul>
             </li>
-            <li class="treeview"><a href="#"> <i class="fa fa-cogs"></i>
-                <span>系统管理</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i>
-								</span></a>
-
-                <ul class="treeview-menu">
-                    <li id="system-setting"><a href="${pageContext.request.contextPath}/rule/findAll">
-                        <i class="fa fa-circle-o"></i> 规则列表
-                    </a></li>
-                </ul>
-            </li>
-
         </ul>
     </section>
     <!-- /.sidebar -->

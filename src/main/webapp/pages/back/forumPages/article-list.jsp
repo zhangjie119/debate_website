@@ -156,9 +156,6 @@
                                style="text-align: center">
                             <thead>
                             <tr>
-                                <th class="" style="padding-right:0px;">
-                                    <input id="selall" type="checkbox" class="icheckbox_square-blue">
-                                </th>
                                 <th>ID</th>
                                 <th>标题</th>
                                 <th>所属板块</th>
@@ -171,7 +168,6 @@
                             <tbody>
                             <c:forEach items="${pageInfo.list}" var="article">
                                 <tr>
-                                    <td><input name="ids" type="checkbox"></td>
                                     <td>${article.fid}</td>
                                     <td><a data-toggle="modal" data-target="#myModal${article.fid}">${article.titles}</a></td>
                                     <td>${article.bname}</td>
@@ -228,7 +224,7 @@
                 <div class="box-footer">
                     <div class="pull-left">
                         <div class="form-group form-inline">
-                            总共 ${pageInfo.pages} 页，共条${pageInfo.total}数据。 每页
+                            总共 ${pageInfo.pages} 页，共${pageInfo.total}条数据。 每页
                             <select class="form-control" id="changePageSize" onchange="changePageSize()">
                                 <option>${pageInfo.pageSize}</option>
                                 <option>1</option>
@@ -359,28 +355,6 @@
         }
     }
 
-
-    $(document).ready(function () {
-
-        // 激活导航位置
-        setSidebarActive("admin-datalist");
-
-        // 列表按钮
-        $("#dataList td input[type='checkbox']").iCheck({
-            checkboxClass: 'icheckbox_square-blue',
-            increaseArea: '20%'
-        });
-        // 全选操作
-        $("#selall").click(function () {
-            var clicks = $(this).is(':checked');
-            if (!clicks) {
-                $("#dataList td input[type='checkbox']").iCheck("uncheck");
-            } else {
-                $("#dataList td input[type='checkbox']").iCheck("check");
-            }
-            $(this).data("clicks", !clicks);
-        });
-    });
 </script>
 </body>
 

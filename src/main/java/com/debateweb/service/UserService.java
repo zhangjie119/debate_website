@@ -15,7 +15,7 @@ public interface UserService {
     /**
      * 根据用户名查询用户
      *
-     * @param username
+     * @param username 用户名
      * @return 实例对象
      */
     User queryByUsername(String username);
@@ -74,8 +74,8 @@ public interface UserService {
     /**
      * 检查能否登陆成功
      *
-     * @param username
-     * @param password
+     * @param username 用户名
+     * @param password  密码
      * @return 是否成功
      */
     boolean loginCheck(String username, String password);

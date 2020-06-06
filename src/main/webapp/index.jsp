@@ -12,7 +12,9 @@
 </head>
 <body>
     <%--<jsp:forward page="pages/back/backstage_main.jsp" />--%>
-    <jsp:forward page="pages/front/videoPages/video-search.jsp" />
+    <jsp:forward page="/user/checkAutoLogin" />
+
+    <%--<jsp:forward page="pages/front/videoPages/video-search.jsp" />--%>
     <%--<jsp:forward page="pages/front/user-center.jsp" />--%>
 </body>
 </html>

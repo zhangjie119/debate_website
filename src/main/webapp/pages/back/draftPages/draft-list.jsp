@@ -162,9 +162,6 @@
                         <table id="dataList" class="table table-bordered table-striped table-hover dataTable" style="text-align: center">
                             <thead>
                             <tr>
-                                <th class="" style="padding-right:0px;">
-                                    <input id="selall" type="checkbox" class="icheckbox_square-blue">
-                                </th>
                                 <th>ID</th>
                                 <th>辩题</th>
                                 <th>学校</th>
@@ -177,7 +174,6 @@
                             <tbody>
                             <c:forEach items="${pageInfo.list}" var="draft">
                                 <tr>
-                                    <td><input name="ids" type="checkbox"></td>
                                     <td>${draft.did}</td>
                                     <td><a href="${draft.address}">${draft.draftname}</a></td>
                                     <td>${draft.draftschool}</td>
@@ -206,7 +202,7 @@
                 <div class="box-footer">
                     <div class="pull-left">
                         <div class="form-group form-inline">
-                            总共 ${pageInfo.pages} 页，共条${pageInfo.total}数据。 每页
+                            总共 ${pageInfo.pages} 页，共${pageInfo.total}条数据。 每页
                             <select class="form-control" id="changePageSize" onchange="changePageSize()">
                                 <option>${pageInfo.pageSize}</option>
                                 <option>1</option>

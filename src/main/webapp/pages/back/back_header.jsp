@@ -32,7 +32,7 @@
                                 <a href="${pageContext.request.contextPath}/pages/front/videoPages/video-search.jsp" class="btn btn-default btn-flat">用户页面</a>
                             </div>
                             <div class="pull-right">
-                                <a href="${pageContext.request.contextPath}/user/logout" class="btn btn-default btn-flat">注销</a>
+                                <a href="${pageContext.request.contextPath}/userCenter/main" class="btn btn-default btn-flat">个人中心</a>
                             </div>
                         </li>
                     </ul>

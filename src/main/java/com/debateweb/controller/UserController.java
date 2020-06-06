@@ -5,9 +5,11 @@ import com.debateweb.service.UserService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -20,7 +22,7 @@ import java.util.Map;
  * @since 2020-03-21 17:16:49
  */
 @Controller
-@RequestMapping("user")
+@RequestMapping("/user")
 public class UserController {
     /**
      * 服务对象
@@ -53,6 +55,22 @@ public class UserController {
         return mv;
     }
 
+
+    @GetMapping("/checkAutoLogin")
+    public String checkAutoLogin(HttpServletRequest request,
+                                 HttpSession session) {
+        //获取本地所有cookie
+        Cookie[] cookies = request.getCookies();
+        //遍历cookie查找登录用户
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("loginUser")) {
+                User loginUser = this.userService.queryByUsername(cookie.getValue());
+                session.setAttribute("loginUser", loginUser);
+            }
+        }
+        return "front/videoPages/video-search";
+    }
+
     @GetMapping("login")
     public String login(HttpServletRequest request, Map<String, Object> map) {
         //获取登录前的当前页
@@ -63,10 +81,28 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login(HttpSession session, @RequestParam String username, @RequestParam String password, @RequestParam String preUrl) {
-        if (userService.loginCheck(username, password)) {
+    public String login(HttpSession session,
+                        HttpServletResponse response,
+                        HttpServletRequest request,
+                        @RequestParam String username,
+                        @RequestParam String password,
+                        @RequestParam String preUrl,
+                        @RequestParam String vaptcha_token) {
+        String[] auto_login = request.getParameterValues("auto_login");
+        if (userService.loginCheck(username, password) && vaptcha_token.equals("") == false) {
             User user = userService.queryByUsername(username);
             session.setAttribute("loginUser", user);
+            //若用户选中自动登录
+            if (auto_login != null) {
+                Cookie cookie = new Cookie("loginUser", user.getUsername());
+                //设置保存时间为14天
+                cookie.setMaxAge(14 * 24 * 3600);
+                //设置保存路径为根路径
+                cookie.setPath("/");
+                //添加cookie
+                response.addCookie(cookie);
+            }
+
             //修改数据的时候要重定向
             if ("".equals(preUrl)) {
                 return "front/videoPages/video-search";
@@ -93,9 +129,11 @@ public class UserController {
 
     //注销当前登录帐号
     @RequestMapping("logout")
-    public String logout(HttpSession session, HttpServletResponse response) {
+    public String logout(HttpSession session, HttpServletRequest request) {
+        //当前登录用户为null
         session.setAttribute("loginUser", null);
-        return "redirect:/pages/front/videoPages/video-search.jsp";
+        //重定向回原页面
+        return "redirect:" + request.getHeader("referer");
     }
 
     //后台详细信息

@@ -178,10 +178,13 @@ public class UserCenterController {
 
         User user = new User(getUserId(session), nickName, sex, phoneNum, email, birthday, notes, address);
         user = this.userService.update(user);
+
+        //将更新后的用户信息设为当前登录用户
         session.setAttribute("loginUser", user);
         return "SorF/centerUpdate-success";
     }
 
+    //获取当前登录用户id
     public Integer getUserId(HttpSession session) {
         User user = (User) session.getAttribute("loginUser");
         return user.getId();

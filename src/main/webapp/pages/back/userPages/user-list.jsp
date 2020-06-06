@@ -162,9 +162,6 @@
                         <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
                             <thead>
                             <tr>
-                                <th class="" style="padding-right:0px;">
-                                    <input id="selall" type="checkbox" class="icheckbox_square-blue">
-                                </th>
                                 <th>ID</th>
                                 <th>用户名</th>
                                 <th>昵称</th>
@@ -178,7 +175,6 @@
                             <tbody>
                             <c:forEach  items="${pageInfo.list}" var="user" >
                                 <tr>
-                                    <td><input name="ids" type="checkbox"></td>
                                     <td>${user.id}</td>
                                     <td>${user.username}</td>
                                     <td>${user.nickname}</td>
@@ -204,7 +200,7 @@
                 <div class="box-footer">
                     <div class="pull-left">
                         <div class="form-group form-inline">
-                            总共 ${pageInfo.pages} 页，共条${pageInfo.total}数据。 每页
+                            总共 ${pageInfo.pages} 页，共${pageInfo.total}条数据。 每页
                             <select class="form-control" id="changePageSize" onchange="changePageSize()">
                                 <option>${pageInfo.pageSize}</option>
                                 <option>5</option>

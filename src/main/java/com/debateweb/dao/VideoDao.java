@@ -73,11 +73,11 @@ public interface VideoDao {
     /**
      * 根据关键字查找数据
      *
-     * @param keyword
-     * @return
+     * @param keyword 关键字
+     * @return 对象列表
      */
     @Select("select * from video where debateSubject like #{keyword} or raceName like #{keyword} or pros like #{keyword}" +
-            "or cons like #{keyword} or starDebater like #{keyword} order by (length(raceName)-length(#{keyword}))" )
+            "or cons like #{keyword} or starDebater like #{keyword} order by (length(debateSubject)-length(#{keyword}))" )
     List<Video> queryByKeyword(String keyword);
 
     /**
