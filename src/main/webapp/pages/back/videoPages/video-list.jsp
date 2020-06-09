@@ -161,8 +161,6 @@
                                 <th>正方</th>
                                 <th>反方</th>
                                 <th>明星辩手</th>
-                                <th>上传者</th>
-                                <th>上传时间</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
@@ -175,8 +173,6 @@
                                     <td>${video.pros}</td>
                                     <td>${video.cons}</td>
                                     <td>${video.stardebater}</td>
-                                    <td>${video.uploader}</td>
-                                    <td>${video.uploadtime}</td>
                                     <td class="text-center">
                                         <button type="button" class="btn bg-olive btn-xs"
                                                 onclick="window.open('${pageContext.request.contextPath}/video/play?vid=${video.vid}')">播放

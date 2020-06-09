@@ -23,7 +23,7 @@ import java.util.*;
  * @since 2020-03-30 23:51:00
  */
 @Controller
-@RequestMapping("video")
+@RequestMapping("/video")
 public class VideoController {
     /**
      * 服务对象
@@ -31,7 +31,12 @@ public class VideoController {
     @Resource
     private VideoService videoService;
 
-
+    /**
+     * 按照关键字查找视频
+     *
+     * @param keyword 关键字
+     * @return mv
+     */
     @PostMapping("/search")
     public ModelAndView queryByKeyword(@RequestParam String keyword) {
         ModelAndView mv = new ModelAndView();
@@ -41,6 +46,17 @@ public class VideoController {
         return mv;
     }
 
+    /**
+     * 上传视频
+     *
+     * @param video         视频文件
+     * @param debateSubject 辩题
+     * @param raceName      赛事名
+     * @param pros          正方
+     * @param cons          反方
+     * @param starDebater   明星辩手
+     * @return 成功或失败页面
+     */
     @PostMapping("/upload")
     public String draftUpload(HttpServletRequest request, MultipartFile video, @RequestParam String debateSubject, @RequestParam String raceName, @RequestParam String pros, @RequestParam String cons, @RequestParam String starDebater) throws Exception {
         System.out.println("正在进行springMVC文件上传");
@@ -73,7 +89,13 @@ public class VideoController {
         return "SorF/fail";
     }
 
-    //分页查询所有视频
+    /**
+     * 分页查询所有视频
+     *
+     * @param page 页码数
+     * @param size 每页大小
+     * @return 视频列表页面
+     */
     @RequestMapping("findAll")
     public String findAll(Map<String, Object> map, @RequestParam(name = "page", required = true, defaultValue = "1") int page, @RequestParam(name = "size", required = true, defaultValue = "5") int size) {
         //调用videoInfo方法分页得到视频数据
@@ -81,7 +103,12 @@ public class VideoController {
         return "back/videoPages/video-list";
     }
 
-    //跳转到播放页面
+    /**
+     * 跳转到播放页面
+     *
+     * @param vid 视频id
+     * @return 播放视频页面
+     */
     @RequestMapping("play")
     public String play(Map<String, Object> map, @RequestParam(name = "vid", required = true) Integer vid) {
         //根据id查询视频
@@ -92,16 +119,26 @@ public class VideoController {
         return "front/videoPages/video-play";
     }
 
-    //跳转到修改页面
+    /**
+     * 根据id查询视频进行修改
+     *
+     * @param vid 视频id
+     * @return 修改页面
+     */
     @RequestMapping("revise")
     public String revise(Map<String, Object> map, @RequestParam(name = "vid", required = true, defaultValue = "1") int vid) {
         Video video = videoService.queryById(vid);
         map.put("video", video);
 
-        return "back/video/video-revise";
+        return "back/videoPages/video-revise";
     }
 
-    //删除相关数据
+    /**
+     * 删除相关数据
+     *
+     * @param vid 视频id
+     * @return 视频列表
+     */
     @RequestMapping("delete")
     public String deleteById(Map<String, Object> map, @RequestParam(name = "vid", required = true, defaultValue = "1") int vid) {
         //根据id删除视频数据
@@ -110,9 +147,20 @@ public class VideoController {
         //加载数据重新跳转到视频列表页面
         map.put("pageInfo", this.videoInfo(1, 5));
         
-        return "back/video/video-list";
+        return "back/videoPages/video-list";
     }
 
+    /**
+     * 更新视频数据
+     *
+     * @param vid           视频id
+     * @param debateSubject 辩题
+     * @param raceName      赛事名
+     * @param pros          正方
+     * @param cons          反方
+     * @param starDebater   明星辩手
+     * @return 成功或失败页面
+     */
     @RequestMapping("update")
     public String update(@RequestParam int vid,
                          @RequestParam String debateSubject,

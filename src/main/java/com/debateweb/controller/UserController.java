@@ -35,7 +35,8 @@ public class UserController {
      * @return mv
      */
     @RequestMapping("/findAll")
-    public ModelAndView findAllUser(@RequestParam(name = "page", required = true, defaultValue = "1") int page, @RequestParam(name = "size", required = true, defaultValue = "5") int size) throws Exception {
+    public ModelAndView findAllUser(@RequestParam(name = "page", required = true, defaultValue = "1") int page,
+                                    @RequestParam(name = "size", required = true, defaultValue = "5") int size) throws Exception {
         ModelAndView mv = new ModelAndView();
         mv.addObject("pageInfo", this.userinfo(page,size));
         mv.setViewName("back/userPages/user-list");
@@ -78,6 +79,15 @@ public class UserController {
         return "login";
     }
 
+    /**
+     * 用户登录
+     *
+     * @param username      用户名
+     * @param password      密码
+     * @param preUrl        登录前页面
+     * @param vaptcha_token 验证token
+     * @return 用户登录前页面
+     */
     @PostMapping("/login")
     public String login(HttpSession session,
                         HttpServletResponse response,
@@ -115,8 +125,20 @@ public class UserController {
         }
     }
 
+    /**
+     * 注册用户
+     *
+     * @param username      用户名
+     * @param nickname      用户昵称
+     * @param password1     密码
+     * @param email         邮箱
+     * @return 成功与否页面
+     */
     @PostMapping("/register")
-    public String register(@RequestParam String username, @RequestParam String nickname, @RequestParam String password1, @RequestParam String email) {
+    public String register(@RequestParam String username,
+                           @RequestParam String nickname,
+                           @RequestParam String password1,
+                           @RequestParam String email) {
         if (this.userService.checkUsername(username)) {
             System.err.println("用户注册失败,该用户名已存在");
             return "SorF/failer";
@@ -130,8 +152,6 @@ public class UserController {
     /**
      * 注销当前登录帐号
      *
-     * @param session session
-     * @param request request
      * @return 登录前页面
      */
     @RequestMapping("logout")
@@ -142,7 +162,12 @@ public class UserController {
         return "redirect:" + request.getHeader("referer");
     }
 
-    //后台详细信息
+    /**
+     * 后台查看用户详细信息
+     *
+     * @param uid 用户id
+     * @return 用户详情页面
+     */
     @RequestMapping("information")
     public String information(Map<String, Object> map,
                               @RequestParam(name = "uid") Integer uid) {
@@ -151,7 +176,12 @@ public class UserController {
         return "back/userPages/user-information";
     }
 
-    //切换到修改页面
+    /**
+     * 后台切换到修改页面
+     *
+     * @param uid 用户id
+     * @return 后台修改页面
+     */
     @RequestMapping("revise")
     public String revise(Map<String, Object> map,
                          @RequestParam Integer uid) {
@@ -161,7 +191,19 @@ public class UserController {
         return "back/userPages/user-revise";
     }
 
-    //修改用户并跳转到该用户的用户详情页面
+    /**
+     * 修改用户并跳回到该用户的用户详情页面
+     *
+     * @param uid       用户id
+     * @param nickname  用户昵称
+     * @param sex       性别
+     * @param phonenum  电话号码
+     * @param email     邮箱
+     * @param birthday  生日
+     * @param address   地址
+     * @param notes     简介
+     * @return 用户详情页面
+     */
     @RequestMapping("update")
     public String update(Map<String, Object> map,
                          @RequestParam Integer uid,
@@ -182,19 +224,34 @@ public class UserController {
         return "back/userPages/user-information";
     }
 
-    //注销（删除）用户
+    /**
+     * 注销（删除）用户
+     *
+     * @param uid   用户id
+     * @param page  页数
+     * @param size  页面大小
+     * @return 后台用户列表
+     */
     @RequestMapping("delete")
     public String delete(Map<String, Object> map,
                          @RequestParam(name = "uid", required = true) Integer uid,
                          @RequestParam(name = "page", required = true, defaultValue = "1") int page,
                          @RequestParam(name = "size", required = true, defaultValue = "7") int size) {
+        //删除用户
         this.userService.deleteById(uid);
+        //重新获取用户列表
         map.put("pageInfo", this.userinfo(page,size));
 
         return "back/userPages/user-list";
     }
 
-    //查询所有用户并加分页bean
+    /**
+     * 查询所有用户并加分页bean
+     *
+     * @param page 页数
+     * @param size 页面大小
+     * @return 分页bean
+     */
     public PageInfo userinfo(int page, int size) {
         //isAdmin默认为false
         return new PageInfo(userService.findAll(page, size, false));

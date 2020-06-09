@@ -18,7 +18,7 @@ import java.util.Map;
  * @since 2020-04-04 16:25:50
  */
 @Controller
-@RequestMapping("plate")
+@RequestMapping("/plate")
 public class PlateController {
     /**
      * 服务对象
@@ -29,22 +29,14 @@ public class PlateController {
     @Resource
     private ArticleService articleService;
 
-    @RequestMapping("findAll")
+    @RequestMapping("/findAll")
     public String findAll(Map<String, Object> map, @RequestParam(name = "page", required = true, defaultValue = "1") int page, @RequestParam(name = "size", required = true, defaultValue = "5") int size) {
         map.put("pageInfo", this.plateInfo(page,size));
         return "back/forumPages/plate-list";
     }
 
-    //为新建帖子页面获取板块信息
-    @RequestMapping("article-add")
-    public String uploadArticle(Map<Object, Object> map) {
-        //添加所有板块信息
-        List<Plate> listPlate = plateService.queryAll();
-        map.put("plates", listPlate);
-        return "back/article-add";
-    }
 
-    @RequestMapping("delete")
+    @RequestMapping("/delete")
     public String delete(Map<Object, Object> map, @RequestParam(name = "bid" , required = true) int bid) {
         String bname = plateService.queryById(bid).getBname();
         this.articleService.updatePlate(bname);

@@ -18,7 +18,7 @@ import java.util.Map;
  * @since 2020-04-28 22:48:56
  */
 @Controller
-@RequestMapping("RandS")
+@RequestMapping("/RandS")
 public class RandSController {
     /**
      * 服务对象
@@ -29,7 +29,7 @@ public class RandSController {
     @Resource
     private RuleService ruleService;
 
-    @RequestMapping("findAll")
+    @RequestMapping("/findAll")
     public String findAll(Map<String, Object> map) {
         List<Rule> ruleList = ruleService.queryAll();
         List<Event> eventList = eventService.queryAll();

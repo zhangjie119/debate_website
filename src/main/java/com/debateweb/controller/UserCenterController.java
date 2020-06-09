@@ -15,34 +15,45 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("userCenter")
+@RequestMapping("/userCenter")
 public class UserCenterController {
 
     /**
-     * 服务对象
+     * 用户服务对象
      */
-    //用户服务
     @Resource
     private UserService userService;
 
-    //视频服务
+    /**
+     * 视频服务对象
+     */
     @Resource
     private VideoService videoService;
 
-    //辩论稿服务
+    /**
+     * 辩论稿服务对象
+     */
     @Resource
     private DraftService draftService;
 
-    //论坛帖子服务
+    /**
+     * 论坛帖子服务对象
+     */
     @Resource
     private ArticleService articleService;
 
-    //帖子评论服务
+    /**
+     * 帖子评论服务对象
+     */
     @Resource
     private CommentService commentService;
 
-    //加载用户信息
-    @RequestMapping("main")
+    /**
+     * 加载用户信息
+     *
+     * @return 个人中心页面
+     */
+    @RequestMapping("/main")
     public String userCenter(HttpSession session, Map<String, Object> map) {
         //获取当前登录用户的id
         User user = (User) session.getAttribute("loginUser");
@@ -69,16 +80,31 @@ public class UserCenterController {
         return "front/userCenterPages/user-center";
     }
 
-    //跳向修改界面
-    @RequestMapping("videoRevise")
+    /**
+     * 跳向视频修改界面
+     *
+     * @param vid 视频id
+     * @return 视频修改页面
+     */
+    @RequestMapping("/videoRevise")
     public String videoRevise(Map<String, Object> map, @RequestParam(name = "vid", required = true) Integer vid) {
         Video video = videoService.queryById(vid);
         map.put("video", video);
         return "front/videoPages/video-revise";
     }
 
-    //执行视频修改
-    @RequestMapping("videoUpdate")
+    /**
+     * 执行视频修改
+     *
+     * @param vid               视频id
+     * @param debateSubject     辩题
+     * @param raceName          赛事名
+     * @param pros              正方
+     * @param cons              反方
+     * @param starDebater       明星辩手
+     * @return 成功与否页面
+     */
+    @RequestMapping("/videoUpdate")
     public String videoUpdate(@RequestParam int vid,
                               @RequestParam String debateSubject,
                               @RequestParam String raceName,
@@ -99,7 +125,7 @@ public class UserCenterController {
     }
 
     //删除视频
-    @RequestMapping("videoDelete")
+    @RequestMapping("/videoDelete")
     public String videoDelete(HttpSession session, Map<String, Object> map, @RequestParam(name = "vid", required = true) Integer vid) {
         this.videoService.deleteById(vid);
         map.put("videoList", this.videoService.queryByUid(getUserId(session)));
@@ -107,7 +133,7 @@ public class UserCenterController {
     }
 
     //修改稿件
-    @RequestMapping("draftRevise")
+    @RequestMapping("/draftRevise")
     public String draftRevise(Map<String, Object> map, @RequestParam(name = "did", required = true) Integer did) {
         Draft draft = draftService.queryById(did);
         map.put("draft", draft);
@@ -115,7 +141,7 @@ public class UserCenterController {
     }
 
     //更新稿件
-    @RequestMapping("draftUpdate")
+    @RequestMapping("/draftUpdate")
     public String update(@RequestParam Integer did,
                          @RequestParam String draftName,
                          @RequestParam String draftSchool,
@@ -132,7 +158,7 @@ public class UserCenterController {
     }
 
     //删除稿件
-    @RequestMapping("draftDelete")
+    @RequestMapping("/draftDelete")
     public String draftDelete(HttpSession session, Map<String, Object> map, @RequestParam(name = "did", required = true) Integer did) {
         this.draftService.deleteById(did);
         map.put("draftList", this.draftService.queryByUid(getUserId(session)));
@@ -140,7 +166,7 @@ public class UserCenterController {
     }
 
     //删除稿件
-    @RequestMapping("articleDelete")
+    @RequestMapping("/articleDelete")
     public String articleDelete(HttpSession session, Map<String, Object> map, @RequestParam(name = "fid", required = true) Integer fid) {
         //根据id删除帖子
         this.articleService.deleteById(fid);
@@ -153,20 +179,20 @@ public class UserCenterController {
     }
 
     //修改用户详细信息
-    @RequestMapping("informationRevise")
+    @RequestMapping("/informationRevise")
     public String informationRevise() {
         //跳转修改页面，数据从session获取
         return "front/userCenterPages/userCenter-setting";
     }
 
     //返回个人信息界面，作放弃修改之用
-    @RequestMapping("information")
+    @RequestMapping("/information")
     public String informatione(){
         return "front/userCenterPages/userCenter-information";
     }
 
     //更新个人信息
-    @RequestMapping("informationUpdate")
+    @RequestMapping("/informationUpdate")
     public String informationeUpdate(HttpSession session,
                                @RequestParam String nickName,
                                @RequestParam String sex,
