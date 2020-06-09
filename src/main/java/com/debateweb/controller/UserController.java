@@ -33,7 +33,6 @@ public class UserController {
      * 查询所有用户数据
      *
      * @return mv
-     * @throws Exception
      */
     @RequestMapping("/findAll")
     public ModelAndView findAllUser(@RequestParam(name = "page", required = true, defaultValue = "1") int page, @RequestParam(name = "size", required = true, defaultValue = "5") int size) throws Exception {
@@ -43,7 +42,11 @@ public class UserController {
         return mv;
     }
 
-
+    /**
+     * 检测系统是否有自动登录的用户
+     *
+     * @return 视频搜索页面
+     */
     @GetMapping("/checkAutoLogin")
     public String checkAutoLogin(HttpServletRequest request,
                                  HttpSession session) {
@@ -61,6 +64,11 @@ public class UserController {
         return "redirect:/pages/front/videoPages/video-search.jsp";
     }
 
+    /**
+     * 用户点击登录时，跳转至登录页面
+     *
+     * @return 登陆页面
+     */
     @GetMapping("login")
     public String login(HttpServletRequest request, Map<String, Object> map) {
         //获取登录前的当前页
@@ -119,7 +127,13 @@ public class UserController {
         return "SorF/failer";
     }
 
-    //注销当前登录帐号
+    /**
+     * 注销当前登录帐号
+     *
+     * @param session session
+     * @param request request
+     * @return 登录前页面
+     */
     @RequestMapping("logout")
     public String logout(HttpSession session, HttpServletRequest request) {
         //当前登录用户为null

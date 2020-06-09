@@ -39,7 +39,7 @@
             <div class="form-group has-feedback">
                 <input type="password" name="password" id="password" class="form-control" placeholder="密码" required oninvalid="setCustomValidity('密码不能为空')" oninput="setCustomValidity('')"> <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
-            <%--登陆验证--%>
+            <!-- 登陆验证 -->
             <div id="vaptchaContainer" style="height: 36px;">
                 <!--vaptcha-container是用来引入VAPTCHA的容器，下面代码为预加载动画，仅供参考-->
                 <div class="vaptcha-init-main">
@@ -67,7 +67,6 @@
             </div>
         </form>
 
-        <a href="#">忘记密码</a><br>
         <a href="../pages/register.jsp" class="text-center">新用户注册</a>
 
 
