@@ -28,7 +28,7 @@
 
             </a>
                 <ul class="treeview-menu">
-                    <li id="vedio-list"><a href="${pageContext.request.contextPath}/video/findAll?page=1&size=1"> <i class="fa fa-circle-o"></i> 视频列表
+                    <li id="vedio-list"><a href="${pageContext.request.contextPath}/video/findAll?page=1&size=5"> <i class="fa fa-circle-o"></i> 视频列表
                     </a></li>
                     <li id="vedio-add"><a href="${pageContext.request.contextPath}/pages/back/videoPages/video-add.jsp"> <i class="fa fa-circle-o"></i> 添加视频
                     </a></li>
@@ -40,7 +40,7 @@
             </a>
                 <ul class="treeview-menu">
 
-                    <li id="draft-list"><a href="${pageContext.request.contextPath}/draft/findAll?page=1&size=1"> <i class="fa fa-circle-o"></i> 稿件列表
+                    <li id="draft-list"><a href="${pageContext.request.contextPath}/draft/findAll?page=1&size=5"> <i class="fa fa-circle-o"></i> 稿件列表
                     </a></li>
                     <li id="draft-add"><a href="${pageContext.request.contextPath}/pages/back/draftPages/draft-add.jsp"> <i class="fa fa-circle-o"></i> 稿件添加
                     </a></li>
@@ -70,7 +70,7 @@
 								</span>
             </a>
                 <ul class="treeview-menu">
-                    <li id="article-list"><a href="${pageContext.request.contextPath}/article/findAll?page=1&size=1">
+                    <li id="article-list"><a href="${pageContext.request.contextPath}/article/findAll?page=1&size=5">
                         <i class="fa fa-circle-o"></i> 帖子列表
                     </a></li>
                     <li id="plate-list"><a href="${pageContext.request.contextPath}/plate/findAll?page=1&size=8">

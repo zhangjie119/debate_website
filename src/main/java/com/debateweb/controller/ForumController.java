@@ -56,8 +56,8 @@ public class ForumController {
         return "front/forumPages/article-upload";
     }
 
-    @PostMapping("/searchByKeyword")
-    public String searchByKeyword(Map<Object, Object> map, @RequestParam String keyword) {
+    @RequestMapping("/searchByKeyword")
+    public String searchByKeyword(Map<Object, Object> map, @RequestParam(name = "keyword") String keyword) {
         //添加根据关键字得到的帖子
         List<Article> articles = articleService.queryByKeyword(keyword);
         map.put("articles", articles);
@@ -65,6 +65,10 @@ public class ForumController {
         //添加所有板块信息
         List<Plate> listPlate = plateService.queryAll();
         map.put("plates", listPlate);
+
+        //获取热门帖子
+        List<Article> hotArticleList = articleService.queryHotArticles();
+        map.put("hotArticleList", hotArticleList);
 
         //添加原始关键字
         map.put("keyword", keyword);

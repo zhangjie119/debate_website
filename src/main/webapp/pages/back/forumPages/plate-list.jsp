@@ -196,12 +196,11 @@
                             总共 ${pageInfo.pages} 页，共${pageInfo.total}条数据。 每页
                             <select class="form-control" id="changePageSize" onchange="changePageSize()">
                                 <option>${pageInfo.pageSize}</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
+                                <c:if test="${pageInfo.pageSize != 5}"><option>5</option></c:if>
+                                <c:if test="${pageInfo.pageSize != 6}"><option>6</option></c:if>
+                                <c:if test="${pageInfo.pageSize != 7}"><option>7</option></c:if>
+                                <c:if test="${pageInfo.pageSize != 8}"><option>8</option></c:if>
+                                <c:if test="${pageInfo.pageSize != 9}"><option>9</option></c:if>
                             </select> 条
                         </div>
                     </div>

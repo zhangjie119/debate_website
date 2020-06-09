@@ -236,7 +236,7 @@ folder instead of downloading all of them to reduce the load. -->
                             <div class="box-body">
                                 <c:forEach items="${plates}" var="plate">
                                     <div class="col-xs-4 col-md-4" style="text-align: center;">
-                                        <a href="?bname=${plate.bname}" style="color: #000000;">
+                                        <a href="?<c:if test="${not empty keyword}">keyword=${keyword}&</c:if>bname=${plate.bname}" style="color: #000000;">
                                             <img src="../../../img/zzuli_debateTeam_icon.jpg"
                                                  style="height: 40px; width: 40px;"/>
                                             <p>${plate.bname}</p>
