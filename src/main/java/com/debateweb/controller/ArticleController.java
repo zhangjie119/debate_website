@@ -35,6 +35,15 @@ public class ArticleController {
     @Resource
     private CommentService commentService;
 
+    /**
+     * 上传论坛
+     *
+     * @param photo     图片
+     * @param title     辩题
+     * @param plate     版块
+     * @param fcontent  帖子内容
+     * @return 成功与否页面
+     */
     @PostMapping("/upload")
     public String articleUpload(HttpServletRequest request, MultipartFile photo, @RequestParam String title, @RequestParam String plate, @RequestParam String fcontent) throws Exception {
         HttpSession session = request.getSession();
@@ -66,13 +75,25 @@ public class ArticleController {
         return "SorF/fail";
     }
 
+    /**
+     * 后台查询所有帖子
+     *
+     * @param page 页面数
+     * @param size 页面大小
+     * @return 论坛列表
+     */
     @RequestMapping("findAll")
     public String findAll(Map<String, Object> map, @RequestParam(name = "page",required = true,defaultValue = "1") int page, @RequestParam(name = "size", required = true,defaultValue = "5") int size) {
         map.put("pageInfo", this.articleInfo(page,size));
         return "back/forumPages/article-list";
     }
 
-    //审核帖子
+    /**
+     * 审核帖子
+     *
+     * @param page 页面数
+     * @return
+     */
     @RequestMapping("check")
     public String check(Map<String, Object> map, @RequestParam(name = "page",required = true,defaultValue = "1") int page) {
         List<Article> articles = articleService.queryUnApproval(page, 8);

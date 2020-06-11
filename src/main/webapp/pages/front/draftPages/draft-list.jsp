@@ -175,8 +175,8 @@ folder instead of downloading all of them to reduce the load. -->
                                     <td>${draft.drafttype}</td>
                                     <td>${draft.uploder}</td>
                                     <td>${draft.uploadtime}</td>
-                                    <td class="text-center">
-                                        <button type="button" class="btn bg-olive btn-xs" onclick="window.location.href='${draft.address}'">下载</button>
+                                    <td class="text-center"?>
+                                        <button type="button" class="btn bg-olive btn-xs" onclick="window.location.href='${pageContext.request.contextPath}/draft/download?did=${draft.did}'">下载</button>
                                     </td>
                                 </tr>
                             </c:forEach>

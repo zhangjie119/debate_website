@@ -57,7 +57,7 @@ public class ForumController {
     }
 
     @RequestMapping("/searchByKeyword")
-    public String searchByKeyword(Map<Object, Object> map, @RequestParam(name = "keyword") String keyword) {
+    public String searchByKeyword(Map<Object, Object> map, @RequestParam(name = "keyword", defaultValue = "") String keyword) {
         //添加根据关键字得到的帖子
         List<Article> articles = articleService.queryByKeyword(keyword);
         map.put("articles", articles);

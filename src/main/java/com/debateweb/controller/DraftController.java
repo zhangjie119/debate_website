@@ -8,6 +8,7 @@ import org.apache.poi.hwpf.extractor.WordExtractor;
 import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -37,15 +38,33 @@ public class DraftController {
     @Resource
     private DraftService draftService;
 
+    /**
+     * 查询稿件
+     *
+     * @param keyword 关键字
+     * @return mv
+     */
     @PostMapping("/search")
     public ModelAndView queryByKeyword(@RequestParam String keyword){
         ModelAndView mv = new ModelAndView();
+        //查找稿件
         List<Draft> drafts = draftService.queryByKeyword(keyword);
+        //在添加稿件列表
         mv.addObject("drafts", drafts);
+        //设置跳转页面
         mv.setViewName("front/draftPages/draft-list");
         return mv;
     }
 
+    /**
+     * 上传稿件
+     *
+     * @param draft         稿件
+     * @param draftName     辩题
+     * @param draftSchool   学校
+     * @param draftType     类型
+     * @return 成功与否页面
+     */
     @PostMapping("/upload")
     public String draftUpload(HttpServletRequest request, MultipartFile draft, @RequestParam String draftName, @RequestParam String draftSchool, @RequestParam String draftType) throws Exception {
         //使用fileupload组件完成文件上传
@@ -62,7 +81,12 @@ public class DraftController {
         String filename = draft.getOriginalFilename();
         //把文件名称设置唯一值
         String uuid = UUID.randomUUID().toString().replace("-", "");
-        filename = uuid + "_" + filename;
+        /* 因springMVC暂时无法识别中文
+         * 下载时路径中包含中文系统会出现乱码，无法识别
+         * 因此文件名全用随机数
+         */
+        //filename = uuid + "_" + filename;
+        filename = uuid;
         //完成文件上传
         draft.transferTo(new File(path, filename));
         //获取当前用户
@@ -79,23 +103,51 @@ public class DraftController {
         return "SorF/fail";
     }
 
-    //无法正常运行，重定向稿件路径错误
-/*    @RequestMapping("download")
+    /**
+     * 下载稿件
+     *
+     * 因springMVC无法识别中文，所以稿件名只能为纯符号。
+     * 需为springMVC配置utf-8解决该问题。
+     *
+     * @param did 稿件id
+     * @return 重定向稿件路径
+     */
+    @RequestMapping("/download")
     public String download(@RequestParam(name = "did", required = true) Integer did) {
         Draft draft = this.draftService.queryById(did);
+        //稿件下载次数加一
         draft.setDowntimes(draft.getDowntimes() + 1);
+        //更新数据库
         this.draftService.update(draft);
-        return "redirect:"+draft.getAddress();
-    }*/
+        //获取数据库中的稿件路径
+        String address = draft.getAddress();
+        //将路径中相对路劲的部分删除，只留下文件名
+        address = address.substring(16, address.length());
+        //添加路径信息
+        address = "/drafts/" + address;
+        //重定向为文件路径，利用浏览器直接下载稿件。
+        return "redirect:"+address;
+    }
 
-    //分页查询所有稿件
+    /**
+     * 分页查询所有稿件
+     *
+     * @param page 页面数
+     * @param size 页面大小
+     * @return 成功与否页面
+     */
     @RequestMapping("findAll")
     public String findAll(Map<String, Object> map, @RequestParam(name = "page",required = true,defaultValue = "1") int page, @RequestParam(name = "size", required = true,defaultValue = "5") int size) {
         map.put("pageInfo", this.draftInfo(page,size));
         return "back/draftPages/draft-list";
     }
 
-    //跳转到修改页面
+    /**
+     * 跳转到修改页面
+     *
+     * @param did 稿件id
+     * @return 修改页面
+     */
     @RequestMapping("revise")
     public String revise(Map<String, Object> map, @RequestParam(name = "did", required = true, defaultValue = "1") int did) {
         Draft draft = draftService.queryById(did);
@@ -103,6 +155,15 @@ public class DraftController {
         return "back/draftPages/draft-revise";
     }
 
+    /**
+     * 修改稿件
+     *
+     * @param did           稿件id
+     * @param draftName     辩题
+     * @param draftSchool   学校
+     * @param draftType     类型
+     * @return 成功或失败
+     */
     @RequestMapping("update")
     public String update(@RequestParam Integer did,
                          @RequestParam String draftName,
@@ -119,7 +180,12 @@ public class DraftController {
         return "SorF/Update-fail";
     }
 
-    //删除稿件数据
+    /**
+     * 删除稿件数据
+     *
+     * @param did 稿件id
+     * @return 稿件列表页面
+     */
     @RequestMapping("delete")
     public String deleteById(Map<String, Object> map, @RequestParam(name = "did", required = true) int did) {
         //根据id删除稿件数据
@@ -144,6 +210,12 @@ public class DraftController {
         return pageInfo;
     }
 
+    /**
+     * 在线浏览稿件
+     *
+     * @param did 稿件id
+     * @return 浏览稿件页面
+     */
     @RequestMapping("reading")
     public String reading(Map<String, Object> map, @RequestParam(name = "did", required = true) int did) throws IOException {
         Draft draft = draftService.queryById(did);
@@ -158,14 +230,15 @@ public class DraftController {
         File file = new File(address);
         String buffer = "";
         FileInputStream is = new FileInputStream(file);
+        //解析文件
         try {
             //doc格式文件
-            if (addressFormat.equals(".doc")) {
+            if (".doc".equals(addressFormat)) {
                 WordExtractor ex = new WordExtractor(is);
                 buffer = ex.getText();
                 ex.close();
             //docx格式文件
-            } else if (addressFormat.equals("docx")) {
+            } else if ("docx".equals(addressFormat)) {
                 XWPFDocument xdoc = new XWPFDocument(is);
                 XWPFWordExtractor ex = new XWPFWordExtractor(xdoc);
                 buffer = ex.getText();
@@ -178,9 +251,7 @@ public class DraftController {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (is != null) {
-                is.close();
-            }
+            is.close();
         }
         return "front/draftPages/draft-reading";
     }
